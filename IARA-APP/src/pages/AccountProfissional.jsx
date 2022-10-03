@@ -11,30 +11,26 @@ import HeaderColaborador from "../components/HearderColaborador";
 
 function AccountProfissional() {
 
-
     const [infoPrestador, setPrestador] = useState([])
     const [preferencias, setPreferencias] = useState([])
-    const idPrestador = useParams()
-    console.log(idPrestador)
 
-    useEffect(() => {
-        const infoPrestador = localStorage.dadosUsuario;
-        if (infoPrestador) {
-            setPrestador(infoPrestador);
-        }
-        api.get(`/prestador/${idPrestador.id}`).then((res) => {
-            setPrestador(res.data)
-            setPreferencias(res.data.caracteristicas)
-            console.log(localStorage)
-        })
-    },[])
+    async function buscarInfos(idPrestador) {
+        const resposta = await api.get(`prestador/${idPrestador}`);
+        setPrestador(resposta.data);
+        console.log("OLHA O QUE VEIO DA API!!", resposta.data)
+    }
+    buscarInfos()
 
     return (
         <>
-            <HeaderColaborador />
+            <HeaderColaborador/>
             <main class="margin-top-thirty">
-                <div class="container">
-                    <CardInformacoesDoProfissionalAdm />
+                <div class="container" funcaoInfos={buscarInfos}>
+                    {infoPrestador.map((prestadores) => (
+                        <CardInformacoesDoProfissionalAdm
+                        nome={prestadores.nome}
+                        />
+                    ))}
                     <div class="dflex jbetween margin-top-thirty">
                         <CardTabelaDePrecosAdm />
                         <CardAgendaDeAtendimentos />
@@ -48,3 +44,5 @@ function AccountProfissional() {
 
 }
 export default AccountProfissional;
+
+

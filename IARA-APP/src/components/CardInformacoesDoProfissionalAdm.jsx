@@ -2,7 +2,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-function CardInformacoesDoProfissionalAdm() {
+function CardInformacoesDoProfissionalAdm(props) {
 
     return (
         <div class="card prelative">
@@ -16,7 +16,9 @@ function CardInformacoesDoProfissionalAdm() {
                 <div class="dflex acenter jbetween">
                     <img src="../img/foto-perfil.png" alt="Foto de perfil" class="margin-right-twenty" />
                     <div>
-                        <b>Ana Clara Pinheiros, 32 anos</b><br />Cabeleireira
+                        <span onLoad={() => props.funcaoInfos(1)}>
+                            <b>{props.nome}{props.sobrenome}, 32 anos</b><br />Cabeleireira
+                        </span>
                     </div>
                 </div>
                 <div class="dflex acenter jbetween">
