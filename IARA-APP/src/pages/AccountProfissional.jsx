@@ -8,40 +8,64 @@ import CardTabelaDePrecosAdm from "../components/CardTabelaDePrecosAdm";
 import Footer from "../components/Footer";
 import HeaderColaborador from "../components/HearderColaborador";
 
-
 function AccountProfissional() {
 
     const [infoPrestador, setPrestador] = useState([])
     const [preferencias, setPreferencias] = useState([])
+    const idPrestador = useParams()
 
-    async function buscarInfos(idPrestador) {
-        const resposta = await api.get(`prestador/${idPrestador}`);
-        setPrestador(resposta.data);
-        console.log("OLHA O QUE VEIO DA API!!", resposta.data)
+    useEffect(() => {
+        const infoPrestador = localStorage.dadosUsuario;
+        if (infoPrestador) {
+            setPrestador(infoPrestador);
+        }
+
+        async function buscarInfos() {
+            const resposta = await api.get(`prestador/${localStorage.idPrestador}`);
+            setPrestador(resposta.data);
+            console.log("OLHA O QUE VEIO DA API!!", resposta.data)
+            console.log(infoPrestador)
+        }
+        buscarInfos();
+    }, [])
+
+    var generoCompleto;
+    if(infoPrestador.genero == 'F'){
+        generoCompleto="Feminino";
     }
-    buscarInfos()
+    else{
+        generoCompleto="Masculino";
+    }
 
-    return (
-        <>
-            <HeaderColaborador/>
-            <main class="margin-top-thirty">
-                <div class="container" funcaoInfos={buscarInfos}>
-                    {infoPrestador.map((prestadores) => (
-                        <CardInformacoesDoProfissionalAdm
-                        nome={prestadores.nome}
-                        />
-                    ))}
-                    <div class="dflex jbetween margin-top-thirty">
-                        <CardTabelaDePrecosAdm />
-                        <CardAgendaDeAtendimentos />
+    if(infoPrestador.length!=0){
+        return (
+            <>
+                <HeaderColaborador/>
+                <main class="margin-top-thirty">
+                    <div class="container">
+                            <CardInformacoesDoProfissionalAdm
+                            nome={infoPrestador.nome}
+                            sobrenome={infoPrestador.sobrenome}
+                            telefone={infoPrestador.telefone}
+                            genero={generoCompleto}
+                            rua={infoPrestador.enderecos[0].rua}
+                            numero={infoPrestador.enderecos[0].numero}
+                            bairro={infoPrestador.enderecos[0].bairro}
+                            cidade={infoPrestador.enderecos[0].cidade}
+                            uf={infoPrestador.enderecos[0].uf}
+                            cep={infoPrestador.enderecos[0].cep}
+                            />
+                        <div class="dflex jbetween margin-top-thirty">
+                            <CardTabelaDePrecosAdm />
+                            <CardAgendaDeAtendimentos />
+                        </div>
+                        <CardPortifolioAdm />
                     </div>
-                    <CardPortifolioAdm />
-                </div>
-            </main>
-            <Footer />
-        </>
-    )
-
+                </main>
+                <Footer />
+            </>
+        )
+    }
 }
 export default AccountProfissional;
 

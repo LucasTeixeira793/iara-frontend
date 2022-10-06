@@ -16,8 +16,8 @@ function CardInformacoesDoProfissionalAdm(props) {
                 <div class="dflex acenter jbetween">
                     <img src="../img/foto-perfil.png" alt="Foto de perfil" class="margin-right-twenty" />
                     <div>
-                        <span onLoad={() => props.funcaoInfos(1)}>
-                            <b>{props.nome}{props.sobrenome}, 32 anos</b><br />Cabeleireira
+                        <span>
+                            <b>{props.nome} {props.sobrenome}, 32 anos</b><br />Cabeleireira
                         </span>
                     </div>
                 </div>
@@ -29,15 +29,15 @@ function CardInformacoesDoProfissionalAdm(props) {
             <div class="margin-top-thirty dflex jbetween">
                 <div>
                     <b>Telefone</b><br />
-                    <span>(11) 99724-0127</span><br /><br />
+                    <span>{props.telefone}</span><br /><br />
                     <b>Gênero</b><br />
-                    <span>Feminino</span>
+                        <span>{props.genero }</span>
                 </div>
                 <div>
                     <b>Endereço</b><br />
-                    <span>Rua Francisco de Oliveira, 144<br />
-                        Parque das Árvores, São Paulo<br />
-                        SP - 14404-068</span>
+                    <span>{props.rua}, {props.numero}<br />
+                        {props.bairro}, {props.cidade}<br />
+                        {props.uf} - {props.cep}</span>
                 </div>
                 <div>
                     <b>Preferências de atendimento</b>
