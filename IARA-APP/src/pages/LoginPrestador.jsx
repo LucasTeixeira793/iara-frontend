@@ -67,7 +67,7 @@ function LoginPrestador() {
                                 value={values.email}
                                 onChange={verificarValues}
                                 autocomplete="off"
-                                class="input"
+                                class="input-login-novo"
                             />
                             <label class="user-label">E-mail</label>
                         </div>
@@ -79,7 +79,7 @@ function LoginPrestador() {
                                 value={values.senha}
                                 onChange={verificarValues}
                                 autocomplete="off"
-                                class="input" />
+                                class="input-login-novo" />
                             <label class="user-label">Senha</label>
                         </div>
 
