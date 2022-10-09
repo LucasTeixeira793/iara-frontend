@@ -16,9 +16,7 @@ function Dashboard() {
                 <div class="dflex jbetween margin-bottom-80">
                     <div class="width-70-porc">
                         <h3 class="txt-center font-size-eighteen margin-top-ten"><b>NÚMERO DE ATENDIMENTOS EM COMPARAÇÃO COM A SEMANA ANTERIOR</b></h3>
-                        <div>
-                            <GraficoSemanal />
-                        </div>
+                        <GraficoSemanal />
                     </div>
                     <div class="width-30-margin-15 dflex fwrap">
                         <DashCardTotalAtendimentos />

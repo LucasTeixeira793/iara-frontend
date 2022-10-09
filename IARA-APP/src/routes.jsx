@@ -15,6 +15,7 @@ import PerfilCliente from "./pages/PerfilCliente";
 import EscolhaLogin from "./pages/EscolhaLogin";
 import LoginPrestador from "./pages/LoginPrestador";
 import Dashboard from "./pages/Dashboard";
+import DashboardIara from "./pages/DashboardIara";
 
 function Rotas(){
     return(
@@ -36,6 +37,7 @@ function Rotas(){
                 <Route path="/accountCliente" element={<AccountCliente/>}/>
                 <Route path="/perfilCliente" element={<PerfilCliente/>}/>
                 <Route path="/dashboard" element={<Dashboard/>}/>
+                <Route path="/dashboardIara" element={<DashboardIara/>}/>
             </Routes>
         </BrowserRouter>
 
