@@ -1297,7 +1297,11 @@ i.icon.star {
   cursor: pointer;
   user-select: none;
   border-radius: 10px;
- 
+ }
+
+ .btn-heart {
+  gap: 0px;
+  padding: 10px;
  }
  
  .input-fav {
@@ -1374,7 +1378,7 @@ i.icon.star {
  .card-fav {
   border-radius: 10px;
   box-shadow: 0px 1px 4px 0px #de0235;
-  padding: 13px 25px;
+  padding: 13px 28px;
   color: #000;
   transition: all .4s;
   display: block;
@@ -1383,6 +1387,10 @@ i.icon.star {
 .card-fav:hover {
   transform: scale(1.02);
   box-shadow: 0px 1px 8px 0px #de0235;
+}
+
+.margin-right-20 {
+  margin-right: 20px;
 }
 
 .margin-right-15 {
