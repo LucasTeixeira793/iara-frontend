@@ -25,8 +25,8 @@ function HeaderColaborador() {
                         <img src="../img/profissionais/img-prof-1.png" alt="Foto de perfil" />
                     </button>
                     <div class="itens jflex pabsolute txt-dark-red account-menu">
-                        <a class="txt-dark-red transform-bold margin-bottom-10" href="">MINHA CONTA</a>
-                        <a class="txt-dark-red transform-bold margin-bottom-10" href="" >ANÁLISES</a>
+                        <a class="txt-dark-red transform-bold margin-bottom-10" href="/accountProfissional">MINHA CONTA</a>
+                        <a class="txt-dark-red transform-bold margin-bottom-10" href="/dashboard" >ANÁLISES</a>
                         <a class="txt-dark-red transform-bold" href="/">SAIR</a>
                     </div>
                 </div>
