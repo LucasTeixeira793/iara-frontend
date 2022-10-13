@@ -4,7 +4,7 @@ function CardInformacoesCliente(){
         <div class="card prelative">
             <div class="dflex acenter jbetween">
                 <div class="dflex acenter jbetween">
-                    <img src="../img/foto-perfil.png" alt="Foto de perfil" class="margin-right-twenty" />
+                    <img src="../img/foto-perfil.png" alt="Foto de perfil" class="margin-right-twenty height-85" />
                     <div>
                         <b>Isabela Santos, 27 anos</b><br />
                     </div>

@@ -1282,3 +1282,116 @@ i.icon.star {
   border-radius: 10px;
   border: 5px solid rgb(222 2 53);
 }
+
+.height-85 {
+  height: 85px;
+}
+
+/* botao favoritar */
+.label-fav {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 15px 10px 10px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 10px;
+ 
+ }
+ 
+ .input-fav {
+  display: none;
+ }
+
+ .input-fav:checked ~ label {
+    background-color: rgb(171 2 41);
+    color: white;
+ }
+ 
+ .input-fav:checked + label svg {
+  fill: #fff;
+  stroke: #fff;
+  animation: heartButton 1s;
+ }
+ 
+ @keyframes heartButton {
+  0% {
+   transform: scale(1);
+  }
+ 
+  25% {
+   transform: scale(1.3);
+  }
+ 
+  50% {
+   transform: scale(1);
+  }
+ 
+  75% {
+   transform: scale(1.3);
+  }
+ 
+  100% {
+   transform: scale(1);
+  }
+ }
+ 
+ .input-fav + label .action {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+ }
+ 
+ .input-fav + label .action span {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  transition: all .5s;
+ }
+ 
+ .input-fav + label .action span.option-1 {
+  transform: translate(0px,0%);
+  opacity: 1;
+ }
+ 
+ .input-fav:checked + label .action span.option-1 {
+  transform: translate(0px,-100%);
+  opacity: 0;
+ }
+ 
+ .input-fav + label .action span.option-2 {
+  transform: translate(0px,100%);
+  opacity: 0;
+ }
+ 
+ .input-fav:checked + label .action span.option-2 {
+  transform: translate(0px,0%);
+  opacity: 1;
+ }
+
+ .card-fav {
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px 0px #de0235;
+  padding: 13px 25px;
+  color: #000;
+  transition: all .4s;
+  display: block;
+}
+
+.card-fav:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 1px 8px 0px #de0235;
+}
+
+.margin-right-15 {
+  margin-right: 15px;
+}
+
+.overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+}
