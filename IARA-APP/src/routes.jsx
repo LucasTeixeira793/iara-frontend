@@ -16,6 +16,7 @@ import EscolhaLogin from "./pages/EscolhaLogin";
 import LoginPrestador from "./pages/LoginPrestador";
 import Dashboard from "./pages/Dashboard";
 import DashboardIara from "./pages/DashboardIara";
+import Favoritos from "./pages/Favoritos";
 
 function Rotas(){
     return(
@@ -38,6 +39,7 @@ function Rotas(){
                 <Route path="/perfilCliente" element={<PerfilCliente/>}/>
                 <Route path="/dashboard" element={<Dashboard/>}/>
                 <Route path="/dashboardIara" element={<DashboardIara/>}/>
+                <Route path="/favoritos" element={<Favoritos/>}/>
             </Routes>
         </BrowserRouter>
 
