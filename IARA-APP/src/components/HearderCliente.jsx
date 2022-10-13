@@ -25,7 +25,7 @@ function HeaderCliente() {
                     </button>
                     <div class="itens jflex pabsolute txt-dark-red account-menu">
                         <a class="txt-dark-red transform-bold margin-bottom-10" href="/accountCliente">MINHA CONTA</a>
-                        <a class="txt-dark-red transform-bold margin-bottom-10" href="" >FAVORITOS</a>
+                        <a class="txt-dark-red transform-bold margin-bottom-10" href="/favoritos" >FAVORITOS</a>
                         <a class="txt-dark-red transform-bold" href="/">SAIR</a>
                     </div>
                 </div>
