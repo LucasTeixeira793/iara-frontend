@@ -1282,3 +1282,7 @@ i.icon.star {
   border-radius: 10px;
   border: 5px solid rgb(222 2 53);
 }
+
+.height-85 {
+  height: 85px;
+}
