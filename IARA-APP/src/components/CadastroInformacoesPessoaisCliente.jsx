@@ -23,7 +23,10 @@ function CadastroInformacoesPessoaisCliente() {
     const [telefone, setTelefone] = useState('');
     const [genero, setGenero] = useState('F');
     const [id, setId] = useState([]);
-    
+    const [cep, setCep] = useState('');
+    const [numero, setNumero] = useState('');
+    const [complemento, setComplemento] = useState(null);
+
 
     const navigate = useNavigate();
 
@@ -44,18 +47,40 @@ function CadastroInformacoesPessoaisCliente() {
             telefone: telefone,
             genero: genero
         }
+
         if (senha !== senhaVerificacao) {
             alert("As senhas devem ser iguais!");
         } else {
+            SubmeterFormEndereco();
             api.post('/cliente', jsonCliente, {
                 headers: {
                     'Content-Type': 'application/json'
-                }
-            }).then(() => {
-                navigate("/sucessoCadastro")
+                }    
+            }).then((resposta) => {
+                console.log(resposta)
+                alert(resposta.data.id)
+                //navigate("/sucessoCadastro")
             });
         }
+    }
 
+    function SubmeterFormEndereco(e) {
+
+        let jsonEndereco = {
+            cep: cep,
+            numero: numero,
+            complemento: complemento
+        }
+
+        if (senha !== senhaVerificacao) {
+            alert("As senhas devem ser iguais!");
+        } else {
+            api.post('/endereco', jsonEndereco, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
     }
 
 
@@ -64,10 +89,10 @@ function CadastroInformacoesPessoaisCliente() {
             <div class="page dflex acenter jcenter txt-medium">
                 <form id="cadastro-cliente" class="container" onSubmit={SubmeterFormCliente}>
                     <Link to={'/escolhaCadastro'} >
-                    <div class="logo transform prelative">
-                        <img src={logo}/>
-                        <span class="subtitulo">CADASTRO</span>
-                    </div>
+                        <div class="logo transform prelative">
+                            <img src={logo} />
+                            <span class="subtitulo">CADASTRO</span>
+                        </div>
                     </Link>
                     <h2>Dados Pessoais</h2>
                     <div class="dflex jbetween fwrap">
@@ -135,6 +160,68 @@ function CadastroInformacoesPessoaisCliente() {
                                 mask='(00) 00000-0000'
                             />
                             <label class="user-label">Telefone</label>
+                        </div>
+                    </div>
+
+                    <h2>Endereço</h2>
+                    <div class="dflex jbetween fwrap" onSubmit={SubmeterFormEndereco}>
+                        <div class="user-input-wrp width-4 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-cep"
+                                onChange={e => setCep(e.target.value)}
+                                maxLength="8" />
+                            <label class="user-label">CEP</label>
+                        </div>
+                        <div class="width-8"></div>
+                        <div class="user-input-wrp width-5 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-logradouro" />
+                            <label class="user-label">Logradouro</label>
+                        </div>
+                        <div class="user-input-wrp width-2 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-numero"
+                                maxLength="5"
+                                onChange={e => setNumero(e.target.value)} />
+                            <label class="user-label">Número</label>
+                        </div>
+                        <div class="user-input-wrp width-5 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-complemento"
+                                onChange={e => setComplemento(e.target.value) | setComplemento(null)} />
+                            <label class="user-label">Complemento</label>
+                        </div>
+                        <div class="user-input-wrp width-5 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-bairro" />
+                            <label class="user-label">Bairro</label>
+                        </div>
+                        <div class="user-input-wrp width-5 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-cidade" />
+                            <label class="user-label">Cidade</label>
+                        </div>
+                        <div class="user-input-wrp width-2 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-uf"
+                                maxlength="2"
+                                value={null}
+                                oninput="this.value = this.value.toUpperCase()" />
+                            <label class="user-label">UF</label>
                         </div>
                     </div>
 

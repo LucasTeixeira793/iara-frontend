@@ -2,12 +2,14 @@ import logo from '../html-css-template/img/logo-branco.png';
 import api from "../api";
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router";
 
 function CadastroDoEndereco() {
 
     const [cep, setCep] = useState('');
     const [numero, setNumero] = useState('');
     const [complemento, setComplemento] = useState(null);
+    const idCliente = useParams();
     function SubmeterFormEndereco(e) {
 
         let jsonEndereco = {
@@ -15,6 +17,7 @@ function CadastroDoEndereco() {
             numero: numero,
             complemento: complemento
         }
+        
     }
 
     return (
