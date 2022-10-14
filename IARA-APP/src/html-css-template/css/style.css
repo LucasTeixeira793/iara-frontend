@@ -1312,7 +1312,12 @@ i.icon.star {
     background-color: rgb(171 2 41);
     color: white;
  }
- 
+
+ .input-fav:not(:checked) ~ label {
+  background-color:white;
+  color: rgb(171 2 41);
+}
+
  .input-fav:checked + label svg {
   fill: #fff;
   stroke: #fff;
