@@ -44,7 +44,6 @@ function CadastroInformacoesPessoaisCliente() {
 
         evento.preventDefault();
 
-
         let jsonCliente = {
             nome: nome,
             sobrenome: sobrenome,
@@ -62,6 +61,7 @@ function CadastroInformacoesPessoaisCliente() {
             SubmeterFormEndereco();
             api.post('/cliente', jsonCliente, {
                 headers: {
+                    "Access-Control-Allow-Origin": "*",
                     'Content-Type': 'application/json'
                 }
             }
@@ -88,6 +88,7 @@ function CadastroInformacoesPessoaisCliente() {
         } else {
             api.post('/endereco', jsonEndereco, {
                 headers: {
+                    "Access-Control-Allow-Origin": "*",
                     'Content-Type': 'application/json'
                 }
             });

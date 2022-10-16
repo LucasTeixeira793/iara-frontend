@@ -33,7 +33,7 @@ function useSelecionarCategoria(idCategoria) {
   useEffect(() => {
     console.log("Entrou no useEffect");
     async function buscarCategoria(){
-        const resposta = await api.get(`categoria/prestador/1`);
+        const resposta = await api.get(`categoria/prestador/1`, {headers: {"Access-Control-Allow-Origin": "*"}});
         setProfissionais(resposta.data);
         console.log("OLHA O QUE VEIO DA API!!", resposta.data)
     }   

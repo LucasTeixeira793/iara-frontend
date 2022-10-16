@@ -69,6 +69,7 @@ function CadastroInformacoesPessoaisProfissional() {
             SubmeterFormEndereco();
             api.post('/prestador', jsonCliente, {
                 headers: {
+                    "Access-Control-Allow-Origin": "*",
                     'Content-Type': 'application/json'
                 }
             }).then((resposta) => {

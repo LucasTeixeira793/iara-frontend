@@ -31,6 +31,7 @@ function Login() {
         api.get(`/cliente/logar/${values.email}/${values.senha}`, values,
             {
                 headers: {
+                    "Access-Control-Allow-Origin": "*",
                     'Content-Type': 'application/json'
                 }
             }
