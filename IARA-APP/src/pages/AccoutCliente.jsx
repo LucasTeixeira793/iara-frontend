@@ -1,7 +1,7 @@
 import CardAgendaCliente from "../components/CardAgendaCliente";
 import Footer from "../components/Footer";
 import HeaderCliente from "../components/HearderCliente";
-import CardInformacoesClienteAdm from "./CardInformacoesClienteAdm";
+import CardInformacoesClienteAdm from "../components/CardInformacoesClienteAdm";
 
 function AccountCliente() {
 
