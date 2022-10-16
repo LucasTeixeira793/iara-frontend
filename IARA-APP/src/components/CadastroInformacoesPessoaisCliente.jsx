@@ -33,7 +33,7 @@ function CadastroInformacoesPessoaisCliente() {
     function SubmeterFormCliente(evento) {
 
         evento.preventDefault();
-        api.get("/cliente").then((resposta) => {
+        api.get("/cliente", {headers: {"Access-Control-Allow-Origin": "*"}}).then((resposta) => {
             setId(resposta.data)
         })
 
@@ -54,6 +54,7 @@ function CadastroInformacoesPessoaisCliente() {
             SubmeterFormEndereco();
             api.post('/cliente', jsonCliente, {
                 headers: {
+                    "Access-Control-Allow-Origin": "*",
                     'Content-Type': 'application/json'
                 }    
             }).then((resposta) => {
@@ -77,6 +78,7 @@ function CadastroInformacoesPessoaisCliente() {
         } else {
             api.post('/endereco', jsonEndereco, {
                 headers: {
+                    "Access-Control-Allow-Origin": "*",
                     'Content-Type': 'application/json'
                 }
             });

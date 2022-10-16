@@ -33,7 +33,7 @@ function CadastroInformacoesPessoaisProfissional() {
     function SubmeterFormProfissional(evento) {
 
         evento.preventDefault();
-        api.get("/prestador").then((resposta) => {
+        api.get("/prestador", {headers: {"Access-Control-Allow-Origin": "*"}}).then((resposta) => {
             setId(resposta.data)
         })
         let jsonCliente = {
@@ -54,6 +54,7 @@ function CadastroInformacoesPessoaisProfissional() {
         } else {
             api.post('/prestador', jsonCliente, {
                 headers: {
+                    "Access-Control-Allow-Origin": "*",
                     'Content-Type': 'application/json'
                 }
             }).then(() => {

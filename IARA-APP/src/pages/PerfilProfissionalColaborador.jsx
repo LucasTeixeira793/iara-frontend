@@ -22,7 +22,7 @@ function PerfilProfissionalColaborador() {
         if (infoPrestador) {
             setPrestador(infoPrestador);
         }
-        api.get(`/prestador/${idPrestador.id}`).then((res) => {
+        api.get(`/prestador/${idPrestador.id}`, {headers: {"Access-Control-Allow-Origin": "*"}}).then((res) => {
             setPrestador(res.data)
             setPreferencias(res.data.caracteristicas)
             console.log(localStorage)

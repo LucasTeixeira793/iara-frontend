@@ -26,7 +26,8 @@ function LoginPrestador() {
         api.get(`/prestador/logar/${values.email}/${values.senha}`, values,
             {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*"
                 }
             }
         ).then((res) => {
