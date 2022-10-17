@@ -29,7 +29,7 @@ function CardAgendarAtendimentos() {
                 </div>
                 <div>
                     <h4 class="margin-bottom-10">Selecione o Dia:</h4>
-                    <input required class="input max-content" type="date"/>
+                    <input required class="bg-almost-white input max-content" type="date"/>
                 </div>
                 <div>
                     <h4 class="margin-bottom-10">Selecione o Horário:</h4>
