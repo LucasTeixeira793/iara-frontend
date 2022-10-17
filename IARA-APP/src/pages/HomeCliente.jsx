@@ -20,7 +20,7 @@ function Home() {
     };
 
     async function selecionarCategoria(idCategoria) {
-        const resposta = await api.get(`categoria/prestador/${idCategoria}`);
+        const resposta = await api.get(`categoria/prestador/${idCategoria}`, {headers: {"Access-Control-Allow-Origin": "*"}});
         setProfissionais(resposta.data);
         console.log("OLHA O QUE VEIO DA API!!", resposta.data)
     }

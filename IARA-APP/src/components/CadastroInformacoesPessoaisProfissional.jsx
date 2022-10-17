@@ -1,10 +1,23 @@
 import logo from '../html-css-template/img/logo-branco.png';
 import api from "../api";
+import apiCep from '../apiCep';
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 function CadastroInformacoesPessoaisProfissional() {
+
+    function ViaCep(){
+        var cep = document.getElementById("input-cep").value;
+        apiCep.get(`/${cep}/json`).then((resposta) => {
+            console.log(resposta)
+            document.getElementById("input-cidade").value=resposta.data.localidade;
+            document.getElementById("input-logradouro").value=resposta.data.logradouro;
+            document.getElementById("input-bairro").value=resposta.data.bairro;
+            document.getElementById("input-uf").value=resposta.data.uf;
+        })
+    }
+    
 
     const maskTelefone = (value) => {
         return value
@@ -22,20 +35,21 @@ function CadastroInformacoesPessoaisProfissional() {
     const [senhaVerificacao, setSenhaVerificacao] = useState('');
     const [telefone, setTelefone] = useState('');
     const [genero, setGenero] = useState('F');
-    const [id, setId] = useState([]);
+    const [cep, setCep] = useState('');
+    const [numero, setNumero] = useState('');
+    const [complemento, setComplemento] = useState(null);
+
     const atendeDomicilio = false;
     const atendeEstabelecimento = false;
     const distancia = 0;
 
 
     const navigate = useNavigate();
-    
+
     function SubmeterFormProfissional(evento) {
 
         evento.preventDefault();
-        api.get("/prestador").then((resposta) => {
-            setId(resposta.data)
-        })
+
         let jsonCliente = {
             nome: nome,
             sobrenome: sobrenome,
@@ -52,15 +66,56 @@ function CadastroInformacoesPessoaisProfissional() {
         if (senha !== senhaVerificacao) {
             alert("As senhas devem ser iguais!");
         } else {
+            SubmeterFormEndereco();
             api.post('/prestador', jsonCliente, {
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    'Content-Type': 'application/json'
+                }
+            }).then((resposta) => {
+                AssociarEndereco(resposta.data.id);
+                
+            });
+            navigate("/sucessoCadastro");
+        }
+
+    }
+
+    function SubmeterFormEndereco() {
+
+        let jsonEndereco = {
+            cep: cep,
+            numero: numero,
+            complemento: complemento
+        }
+
+        if (senha !== senhaVerificacao) {
+            alert("As senhas devem ser iguais!");
+        } else {
+            api.post('/endereco', jsonEndereco, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(() => {
-                navigate("/sucessoCadastro")
             });
         }
+        
+    }
 
+    function AssociarEndereco(id) {
+        alert(id);
+        let jsonEndereco = {
+            cep: cep,
+            numero: numero,
+            complemento: complemento
+        }
+        console.log(jsonEndereco);
+
+        api.post(`/prestador/endereco/${id}`, jsonEndereco, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
     }
 
 
@@ -143,7 +198,67 @@ function CadastroInformacoesPessoaisProfissional() {
                             <label class="user-label">Telefone</label>
                         </div>
                     </div>
-
+                    <h2>Endereço</h2>
+                    <div class="dflex jbetween fwrap" onSubmit={SubmeterFormEndereco}>
+                        <div class="user-input-wrp width-4 input-group">
+                            <input
+                                onKeyUp={ViaCep}
+                                type="text"
+                                class="input"
+                                id="input-cep"
+                                onChange={e => setCep(e.target.value)}
+                                maxLength="8" />
+                            <label class="user-label">CEP</label>
+                        </div>
+                        <div class="width-8"></div>
+                        <div class="user-input-wrp width-5 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-logradouro" />
+                            <label class="user-label">Logradouro</label>
+                        </div>
+                        <div class="user-input-wrp width-2 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-numero"
+                                maxLength="5"
+                                onChange={e => setNumero(e.target.value)} />
+                            <label class="user-label">Número</label>
+                        </div>
+                        <div class="user-input-wrp width-5 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-complemento"
+                                onChange={e => setComplemento(e.target.value)} />
+                            <label class="user-label">Complemento</label>
+                        </div>
+                        <div class="user-input-wrp width-5 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-bairro" />
+                            <label class="user-label">Bairro</label>
+                        </div>
+                        <div class="user-input-wrp width-5 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-cidade" />
+                            <label class="user-label">Cidade</label>
+                        </div>
+                        <div class="user-input-wrp width-2 input-group">
+                            <input
+                                type="text"
+                                class="input"
+                                id="input-uf"
+                                maxlength="2"
+                                oninput="this.value = this.value.toUpperCase()" />
+                            <label class="user-label">UF</label>
+                        </div>
+                    </div>
                     <h2>Autenticação</h2>
                     <div class="dflex jbetween fwrap">
                         <div class="user-input-wrp width-4 input-group">

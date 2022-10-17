@@ -16,7 +16,7 @@ function Header() {
                     </button>
                 </form>
                 <div class="dflex acenter">
-                    <a href=" " class="txt-dark-red txt-medium margin-right-fifty transform">INSTITUCIONAL</a>
+                    <a href="http://s3-iara.s3-website-us-east-1.amazonaws.com/" class="txt-dark-red txt-medium margin-right-fifty transform">INSTITUCIONAL</a>
                 </div>
                 <Link to={'/escolhacadastro'}><button class="button bg-red txt-white bg-hover-white txt-hover-dark-red box-shadow-none-hover" >CADASTRE-SE</button></Link>
                 <Link to={'/escolhaLogin'}><button class="button bg-white txt-black bg-hover-dark-red txt-hover-white box-shadow-none-hover" >LOGIN</button></Link>

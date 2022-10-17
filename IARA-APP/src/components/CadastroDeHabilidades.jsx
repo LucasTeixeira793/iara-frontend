@@ -12,7 +12,8 @@ function CadastroDeHabilidades(props) {
 
     useEffect(() => {
         try {
-            api.get("categoria/").then((resposta) => {
+            api.get("categoria/", {headers: {"Access-Control-Allow-Origin": "*"}}).then((resposta) => {
+                
                 console.log(resposta.data)
                 setCategoria(resposta.data)
             })
