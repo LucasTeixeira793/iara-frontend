@@ -20,7 +20,7 @@ function Footer() {
                 <div>
                     <h4>MINHA CONTA</h4>
                     <a href="">Meu Perfil</a>
-                    <a href="">Meus Pontos</a>
+                    <a href="">Meus Favoritos</a>
                 </div>
                 <div>
                     <h4>CONTATO</h4>
