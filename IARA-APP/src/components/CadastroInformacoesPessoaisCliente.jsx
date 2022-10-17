@@ -61,7 +61,6 @@ function CadastroInformacoesPessoaisCliente() {
             SubmeterFormEndereco();
             api.post('/cliente', jsonCliente, {
                 headers: {
-                    "Access-Control-Allow-Origin": "*",
                     'Content-Type': 'application/json'
                 }
             }

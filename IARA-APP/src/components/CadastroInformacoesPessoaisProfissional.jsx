@@ -5,19 +5,19 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
-function CadastroInformacoesPessoaisProfissional() {
 
-    function ViaCep(){
-        var cep = document.getElementById("input-cep").value;
-        apiCep.get(`/${cep}/json`).then((resposta) => {
-            console.log(resposta)
-            document.getElementById("input-cidade").value=resposta.data.localidade;
-            document.getElementById("input-logradouro").value=resposta.data.logradouro;
-            document.getElementById("input-bairro").value=resposta.data.bairro;
-            document.getElementById("input-uf").value=resposta.data.uf;
-        })
-    }
-    
+function ViaCep(){
+    var cep = document.getElementById("input-cep").value;
+    apiCep.get(`/${cep}/json`).then((resposta) => {
+        console.log(resposta)
+        document.getElementById("input-cidade").value=resposta.data.localidade;
+        document.getElementById("input-logradouro").value=resposta.data.logradouro;
+        document.getElementById("input-bairro").value=resposta.data.bairro;
+        document.getElementById("input-uf").value=resposta.data.uf;
+    })
+}
+
+function CadastroInformacoesPessoaisProfissional() {
 
     const maskTelefone = (value) => {
         return value
@@ -69,12 +69,10 @@ function CadastroInformacoesPessoaisProfissional() {
             SubmeterFormEndereco();
             api.post('/prestador', jsonCliente, {
                 headers: {
-                    "Access-Control-Allow-Origin": "*",
                     'Content-Type': 'application/json'
                 }
             }).then((resposta) => {
-                AssociarEndereco(resposta.data.id);
-                
+                AssociarEndereco(resposta.data.id);           
             });
             navigate("/sucessoCadastro");
         }
@@ -82,7 +80,6 @@ function CadastroInformacoesPessoaisProfissional() {
     }
 
     function SubmeterFormEndereco() {
-
         let jsonEndereco = {
             cep: cep,
             numero: numero,
@@ -115,7 +112,6 @@ function CadastroInformacoesPessoaisProfissional() {
                 'Content-Type': 'application/json'
             }
         });
-        
     }
 
 
