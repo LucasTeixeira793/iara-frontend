@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import api from "../api";
 import CardAgendaDeAtendimentos from "../components/CardAgendaDeAtendimentos";
 import CardInformacoesDoProfissionalAdm from "../components/CardInformacoesDoProfissionalAdm"
@@ -11,8 +10,6 @@ import HeaderColaborador from "../components/HearderColaborador";
 function AccountProfissional() {
 
     const [infoPrestador, setPrestador] = useState([])
-    const [preferencias, setPreferencias] = useState([])
-    const idPrestador = useParams()
 
     useEffect(() => {
         const infoPrestador = localStorage.dadosUsuario;
@@ -23,10 +20,11 @@ function AccountProfissional() {
         async function buscarInfos() {
             const resposta = await api.get(`prestador/${localStorage.idPrestador}`);
             setPrestador(resposta.data);
-            console.log("OLHA O QUE VEIO DA API!!", resposta.data)
+            console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
             console.log(infoPrestador)
         }
         buscarInfos();
+
     }, [])
 
     var generoCompleto;
@@ -36,6 +34,14 @@ function AccountProfissional() {
     else{
         generoCompleto="Masculino";
     }
+
+    var preferenciaCompleta;
+    if  (infoPrestador.atendeDomicilio == true) {
+        preferenciaCompleta="Em domicílio"
+    } else {
+        preferenciaCompleta="Em estabelecimento"
+    }
+
 
     if(infoPrestador.length!=0){
         return (
@@ -54,12 +60,14 @@ function AccountProfissional() {
                             cidade={infoPrestador.enderecos[0].cidade}
                             uf={infoPrestador.enderecos[0].uf}
                             cep={infoPrestador.enderecos[0].cep}
+                            raio={infoPrestador.distancia}
+                            preferencias={preferenciaCompleta}
                             />
                         <div class="dflex jbetween margin-top-thirty">
                             <CardTabelaDePrecosAdm />
                             <CardAgendaDeAtendimentos />
                         </div>
-                        <CardPortifolioAdm />
+                            <CardPortifolioAdm />
                     </div>
                 </main>
                 <Footer />

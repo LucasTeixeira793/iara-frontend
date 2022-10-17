@@ -1,7 +1,25 @@
-import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LinhaTabelaAgenda from "../components/LinhaTabelaAgenda";
+import api from "../api";
+import { useEffect, useState } from "react";
 
 function CardAgendaDeAtendimentos() {
+
+    const [infoAgenda, setAgenda] = useState([])
+    const [setPrestador] = useState([])
+
+    useEffect(() => {
+        const infoPrestador = localStorage.dadosUsuario;
+        if (infoPrestador) {
+            setPrestador(infoPrestador);
+        }
+        async function buscarAgenda() {
+            const resposta = await api.get(`agenda/${localStorage.idPrestador}`);
+            setAgenda(resposta.data);
+            console.log("OLHA O QUE VEIO DA API!! --- Agenda", resposta.data)
+        }
+        buscarAgenda();
+    }, [])
+
     return (
         <div class="card half prelative">
             <h3 class="txt-bigger txt-center txt-red txt-bold">Agenda de Atendimentos</h3>
@@ -14,13 +32,16 @@ function CardAgendaDeAtendimentos() {
                         <th>Data</th>
                         <th>Cliente</th>
                     </tr>
-                    <tr>
-                        <td><span class="button bg-red txt-white margin-none pointer-none">Corte</span></td>
-                        <td><span class="button bg-red txt-white margin-none pointer-none">Domingo</span></td>
-                        <td><span class="button bg-red txt-white margin-none pointer-none">10:00</span></td>
-                        <td><span class="button bg-red txt-white margin-none pointer-none">10/04/22</span></td>
-                        <td><span class="button bg-red margin-none bg-hover-white"><u><a class="txt-white txt-hover-dark-red" href="">Isabela Santos</a></u></span></td>
-                    </tr>
+                    {infoAgenda.map((agenda) => (
+                        <LinhaTabelaAgenda
+                            tipo={agenda.servicoAtribuido.servico.tipo}
+                            dia={agenda.data}
+                            horario={agenda.horaInicio}
+                            data={agenda.data}
+                            nomeCliente={agenda.servicoAtribuido.cliente.nome}
+                            sobrenomeCliente={agenda.servicoAtribuido.cliente.sobrenome}
+                        />
+                    ))}
                 </table>
             </div>
         </div>

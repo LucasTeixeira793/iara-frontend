@@ -42,12 +42,12 @@ function CardInformacoesDoProfissionalAdm(props) {
                 <div>
                     <b>Preferências de atendimento</b>
                     <ul>
-                        <li>Em Domicílio</li>
+                        <li>{props.preferencias}</li>
                     </ul>
                     <br />
                     <b>Raio de atendimento</b>
                     <ul>
-                        <li>35 Km</li>
+                        <li>{props.raio} Km</li>
                     </ul>
                 </div>
             </div>
