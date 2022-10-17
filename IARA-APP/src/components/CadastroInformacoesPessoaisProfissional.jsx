@@ -154,6 +154,7 @@ function CadastroInformacoesPessoaisProfissional() {
                                 value={genero}
                                 onChange={evento => setGenero(evento.target.value)}
                             >
+                                <option value="" hidden="true" default="true"></option>
                                 <option value="F"> Feminino </option>
                                 <option value="M"> Masculino</option>
                                 <option value="O">Outro</option>
