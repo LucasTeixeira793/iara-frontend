@@ -1374,6 +1374,10 @@ i.icon.star {
   transform: translate(0px,100%);
   opacity: 0;
  }
+
+.bg-almost-white {
+  background-color: #fdfbfb !important;
+}
  
  .input-fav:checked + label .action span.option-2 {
   transform: translate(0px,0%);
