@@ -117,12 +117,12 @@ function CadastroInformacoesPessoaisCliente() {
         <>
             <div class="page dflex acenter jcenter txt-medium">
                 <form id="cadastro-cliente" class="container" onSubmit={SubmeterFormCliente}>
-                    <Link to={'/escolhaCadastro'} >
-                        <div class="logo transform prelative">
+                    <div class="logo transform prelative">
+                        <Link to={'/escolhaCadastro'} >
                             <img src={logo} />
                             <span class="subtitulo">CADASTRO</span>
-                        </div>
-                    </Link>
+                        </Link>
+                    </div>
                     <h2>Dados Pessoais</h2>
                     <div class="dflex jbetween fwrap">
                         <div class="user-input-wrp width-4 input-group">
