@@ -28,7 +28,7 @@ function CadastroDoEndereco() {
                     <span class="subtitulo">CADASTRO</span>
                 </a>
                 <h2>Endereço</h2>
-                <div class="card bg-off-white dflex jbetween fwrap" onSubmit={SubmeterFormEndereco}>
+                <div class="card bg-off-white low-shadow dflex jbetween fwrap" onSubmit={SubmeterFormEndereco}>
                     <div class="user-input-wrp width-4 input-group">
                         <input
                             type="text"
