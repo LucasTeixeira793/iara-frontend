@@ -22,7 +22,7 @@ function CardInformacoesDoProfissionalAdm(props) {
                     </div>
                 </div>
                 <div class="dflex acenter jbetween">
-                    <a href="#" class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-none margin-right-twenty">ANÁLISES</a>
+                    <a href="/dashboard" class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-none margin-right-twenty">ANÁLISES</a>
                     <div class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-none dflex acenter jbetween"><span>4</span>/5 <i class="icon star"></i></div>
                 </div>
             </div>
