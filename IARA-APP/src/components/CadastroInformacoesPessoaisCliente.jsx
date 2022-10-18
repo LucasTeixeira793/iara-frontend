@@ -124,7 +124,7 @@ function CadastroInformacoesPessoaisCliente() {
                         </Link>
                     </div>
                     <h2>Dados Pessoais</h2>
-                    <div class="dflex jbetween fwrap">
+                    <div class="card bg-off-white low-shadow dflex jbetween fwrap">
                         <div class="user-input-wrp width-4 input-group">
                             <input
                                 type="text"
@@ -194,7 +194,7 @@ function CadastroInformacoesPessoaisCliente() {
                     </div>
 
                     <h2>Endereço</h2>
-                    <div class="dflex jbetween fwrap" onSubmit={SubmeterFormEndereco}>
+                    <div class="card bg-off-white low-shadow dflex jbetween fwrap" onSubmit={SubmeterFormEndereco}>
                         <div class="user-input-wrp width-4 input-group">
                             <input
                                 onKeyUp={ViaCep}
@@ -256,7 +256,7 @@ function CadastroInformacoesPessoaisCliente() {
                     </div>
 
                     <h2>Autenticação</h2>
-                    <div class="dflex jbetween fwrap">
+                    <div class="card bg-off-white low-shadow dflex jbetween fwrap">
                         <div class="user-input-wrp width-4 input-group">
                             <input
                                 type="text"
