@@ -184,7 +184,7 @@ function CadastroDeHabilidades(props) {
                         </div>
                     </div>
                     <div class="separador"></div>
-                    <div class="dflex fwrap astart jaround width-100-porc">
+                    <div class="dflex fwrap astart jaround width-100-porc margin-bottom-neg-30">
                         <div class="width-50-margin-20">
                             <h3>Preferência de Atendimento</h3>
                             <div class="dflex fwrap">
