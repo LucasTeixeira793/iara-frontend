@@ -96,7 +96,6 @@ function CadastroInformacoesPessoaisCliente() {
     }
 
     function AssociarEndereco(id) {
-        alert(id);
         let jsonEndereco = {
             cep: cep,
             numero: numero,
@@ -124,12 +123,13 @@ function CadastroInformacoesPessoaisCliente() {
                         </Link>
                     </div>
                     <h2>Dados Pessoais</h2>
-                    <div class="dflex jbetween fwrap">
+                    <div class="card bg-off-white low-shadow dflex jbetween fwrap">
                         <div class="user-input-wrp width-4 input-group">
                             <input
                                 type="text"
                                 class="input"
                                 id="input-nome"
+                                required
                                 onChange={evento => setNome(evento.target.value)}
                             />
                             <label class="user-label">Nome</label>
@@ -139,6 +139,7 @@ function CadastroInformacoesPessoaisCliente() {
                                 type="text"
                                 class="input"
                                 id="input-sobrenome"
+                                required
                                 onChange={evento => setSobrenome(evento.target.value)}
                             />
                             <label class="user-label">Sobrenome</label>
@@ -149,6 +150,7 @@ function CadastroInformacoesPessoaisCliente() {
                                 type="text"
                                 class="input"
                                 id="input-genero"
+                                required
                                 onChange={evento => setGenero(evento.target.value)}
                             >
                                 <option value="" hidden="true" default="true"></option>
@@ -163,6 +165,7 @@ function CadastroInformacoesPessoaisCliente() {
                                 type="date"
                                 class="input"
                                 id="input-nascimento"
+                                required
                                 onChange={evento => setDataNasc(evento.target.value)}
                             // onkeypress="$(this).mask('00/00/0000')
                             />
@@ -174,6 +177,7 @@ function CadastroInformacoesPessoaisCliente() {
                                 class="input"
                                 id="input-cpf"
                                 maxLength="11"
+                                required
                                 onChange={evento => setCpf(evento.target.value)}
                             // onkeypress="$(this).mask('000.000.000-00')"
                             />
@@ -185,6 +189,7 @@ function CadastroInformacoesPessoaisCliente() {
                                 class="input"
                                 id="input-telefone"
                                 value={telefone}
+                                required
                                 onChange={evento => setTelefone(maskTelefone(evento.target.value))}
                                 maxLength="15"
                                 mask='(00) 00000-0000'
@@ -194,13 +199,14 @@ function CadastroInformacoesPessoaisCliente() {
                     </div>
 
                     <h2>Endereço</h2>
-                    <div class="dflex jbetween fwrap" onSubmit={SubmeterFormEndereco}>
+                    <div class="card bg-off-white low-shadow dflex jbetween fwrap" onSubmit={SubmeterFormEndereco}>
                         <div class="user-input-wrp width-4 input-group">
                             <input
                                 onKeyUp={ViaCep}
                                 type="text"
                                 class="input"
                                 id="input-cep"
+                                required
                                 onChange={e => setCep(e.target.value)}
                                 maxLength="8" />
                             <label class="user-label">CEP</label>
@@ -210,6 +216,7 @@ function CadastroInformacoesPessoaisCliente() {
                             <input
                                 type="text"
                                 class="input"
+                                required
                                 id="input-logradouro" />
                             <label class="user-label">Logradouro</label>
                         </div>
@@ -219,6 +226,7 @@ function CadastroInformacoesPessoaisCliente() {
                                 class="input"
                                 id="input-numero"
                                 maxLength="5"
+                                required
                                 onChange={e => setNumero(e.target.value)} />
                             <label class="user-label">Número</label>
                         </div>
@@ -234,6 +242,7 @@ function CadastroInformacoesPessoaisCliente() {
                             <input
                                 type="text"
                                 class="input"
+                                required
                                 id="input-bairro" />
                             <label class="user-label">Bairro</label>
                         </div>
@@ -241,6 +250,7 @@ function CadastroInformacoesPessoaisCliente() {
                             <input
                                 type="text"
                                 class="input"
+                                required
                                 id="input-cidade" />
                             <label class="user-label">Cidade</label>
                         </div>
@@ -250,18 +260,20 @@ function CadastroInformacoesPessoaisCliente() {
                                 class="input"
                                 id="input-uf"
                                 maxlength="2"
+                                required
                                 oninput="this.value = this.value.toUpperCase()" />
                             <label class="user-label">UF</label>
                         </div>
                     </div>
 
                     <h2>Autenticação</h2>
-                    <div class="dflex jbetween fwrap">
+                    <div class="card bg-off-white low-shadow dflex jbetween fwrap">
                         <div class="user-input-wrp width-4 input-group">
                             <input
-                                type="text"
+                                type="email"
                                 class="input"
                                 id="input-email"
+                                required
                                 onChange={evento => setEmail(evento.target.value)}
                             />
                             <label class="user-label">E-mail</label>
@@ -270,6 +282,7 @@ function CadastroInformacoesPessoaisCliente() {
                             <input
                                 type="password"
                                 class="input"
+                                required
                                 onChange={evento => setSenha(evento.target.value)}
                                 id="input-senha"
                             />
@@ -280,6 +293,7 @@ function CadastroInformacoesPessoaisCliente() {
                                 type="password"
                                 class="input"
                                 id="input-confirmar-senha"
+                                required
                                 onChange={evento => setSenhaVerificacao(evento.target.value)}
                             />
                             <label class="user-label">Confirmar Senha</label>

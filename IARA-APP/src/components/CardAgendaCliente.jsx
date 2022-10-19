@@ -17,7 +17,7 @@ function CardAgendaCliente() {
                         <td><span class="button bg-red txt-white margin-none pointer-none">Domingo</span></td>
                         <td><span class="button bg-red txt-white margin-none pointer-none">10:00</span></td>
                         <td><span class="button bg-red txt-white margin-none pointer-none">10/04/22</span></td>
-                        <td><span class="button bg-red margin-none bg-hover-white link-profissional"><u><a class="txt-white" href="">Ana Clara Pinheiros</a></u></span></td>
+                        <td><span class="button bg-red margin-none bg-hover-white link-profissional"><u><a class="txt-white" href="/perfilProfissional">Ana Clara Pinheiros</a></u></span></td>
                     </tr>
                 </table>
             </div>
