@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import LinhaTabelaPrecos from "../components/LinhaTabelaPrecos";
 import api from "../api";
 import { useEffect, useState } from "react";
+import moment from "moment";
+import 'moment/locale/pt-br'
 
 function CardTabelaDePrecosAdm() {
 
@@ -25,6 +27,12 @@ function CardTabelaDePrecosAdm() {
         
     }, [])
 
+    const formCurrency = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+        minimumFractionDigits: 2
+    })
+
 
     return (
         <div class="card half prelative">
@@ -38,7 +46,7 @@ function CardTabelaDePrecosAdm() {
                 <LinhaTabelaPrecos
                     tipo={precos.tipo}
                     duracao={precos.duracaoEstimada}
-                    preco={precos.valor}
+                    preco={formCurrency.format(precos.valor)}
                 />
             ))}
         </div>

@@ -1,6 +1,8 @@
 import LinhaTabelaAgenda from "../components/LinhaTabelaAgenda";
 import api from "../api";
 import { useEffect, useState } from "react";
+import moment from "moment";
+import 'moment/locale/pt-br'
 
 function CardAgendaDeAtendimentos() {
 
@@ -20,6 +22,14 @@ function CardAgendaDeAtendimentos() {
         buscarAgenda();
     }, [])
 
+    const date = new Intl.DateTimeFormat('pt-BR').format(infoAgenda.data)
+
+    const formCurrency = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+        minimumFractionDigits: 2
+    })
+
     return (
         <div class="card half prelative">
             <h3 class="txt-bigger txt-center txt-red txt-bold">Agenda de Atendimentos</h3>
@@ -27,17 +37,17 @@ function CardAgendaDeAtendimentos() {
                 <table>
                     <tr>
                         <th>Serviço</th>
-                        <th>Dia</th>
-                        <th>Horário</th>
                         <th>Data</th>
+                        <th>Horário</th>
+                        <th>Valor</th>
                         <th>Cliente</th>
                     </tr>
                     {infoAgenda.map((agenda) => (
                         <LinhaTabelaAgenda
                             tipo={agenda.servicoAtribuido.servico.tipo}
-                            dia={agenda.data}
+                            dia={date}
                             horario={agenda.horaInicio}
-                            data={agenda.data}
+                            valor={formCurrency.format(agenda.servicoAtribuido.servico.valor)}
                             nomeCliente={agenda.servicoAtribuido.cliente.nome}
                             sobrenomeCliente={agenda.servicoAtribuido.cliente.sobrenome}
                         />
