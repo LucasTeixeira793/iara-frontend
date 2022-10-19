@@ -2,7 +2,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-function CardInformacoesDoProfissional() {
+function CardInformacoesDoProfissional(props) {
 
     return (
         <div class="card prelative">
@@ -10,7 +10,7 @@ function CardInformacoesDoProfissional() {
                 <div class="dflex acenter jbetween">
                     <img src="../img/profissionais/img-prof-1.png" alt="Foto de perfil" class="height-85 margin-right-twenty" />
                     <div>
-                        <b>Ana Clara Pinheiros, 32 anos</b><br />Cabeleireira
+                        <b>{props.nome} {props.sobrenome}, 32 anos</b><br />Cabeleireira
                     </div>
                 </div>
                 <div class="dflex acenter jbetween">
@@ -29,25 +29,25 @@ function CardInformacoesDoProfissional() {
             <div class="margin-top-thirty dflex jbetween">
                 <div>
                     <b>Telefone</b><br />
-                    <span>(11) 99724-0127</span><br /><br />
+                    <span>{props.telefone}</span><br /><br />
                     <b>Gênero</b><br />
-                    <span>Feminino</span>
+                    <span>{props.genero }</span>
                 </div>
                 <div>
                     <b>Endereço</b><br />
-                    <span>Rua Francisco de Oliveira, 144<br />
-                        Parque das Árvores, São Paulo<br />
-                        SP - 14404-068</span>
+                    <span>{props.rua}, {props.numero}<br />
+                        {props.bairro}, {props.cidade}<br />
+                        {props.uf} - {props.cep}</span>
                 </div>
                 <div>
                     <b>Preferências de atendimento</b>
                     <ul>
-                        <li>Em Domicílio</li>
+                        <li>{props.preferencias}</li>
                     </ul>
                     <br />
                     <b>Raio de atendimento</b>
                     <ul>
-                        <li>35 Km</li>
+                        <li>{props.raio} Km</li>
                     </ul>
                 </div>
             </div>

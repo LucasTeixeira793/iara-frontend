@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import LinhaTabelaPrecos from "../components/LinhaTabelaPrecos";
 import api from "../api";
 import { useEffect, useState } from "react";
-import moment from "moment";
 import 'moment/locale/pt-br'
 
 function CardTabelaDePrecosAdm() {

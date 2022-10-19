@@ -31,7 +31,7 @@ function CardInformacoesDoProfissionalAdm(props) {
                     <b>Telefone</b><br />
                     <span>{props.telefone}</span><br /><br />
                     <b>Gênero</b><br />
-                        <span>{props.genero }</span>
+                        <span>{props.genero}</span>
                 </div>
                 <div>
                     <b>Endereço</b><br />

@@ -23,7 +23,6 @@ function CardAgendaDeAtendimentos() {
     }, [])
 
     const date = new Intl.DateTimeFormat('pt-BR').format(infoAgenda.data)
-
     const formCurrency = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
