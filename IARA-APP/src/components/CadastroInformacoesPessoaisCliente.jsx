@@ -4,6 +4,8 @@ import apiCep from '../apiCep';
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import 'moment/locale/pt-br';
+import moment from 'moment';
 
 function ViaCep() {
     var cep = document.getElementById("input-cep").value;
@@ -165,6 +167,7 @@ function CadastroInformacoesPessoaisCliente() {
                                 type="date"
                                 class="input"
                                 id="input-nascimento"
+                                max={moment().format("YYYY-MM-DD")}
                                 required
                                 onChange={evento => setDataNasc(evento.target.value)}
                             // onkeypress="$(this).mask('00/00/0000')
