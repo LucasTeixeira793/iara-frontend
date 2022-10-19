@@ -391,6 +391,10 @@ h2 {
   margin-bottom: -5px;
 }
 
+.margin-bottom-neg-30 {
+  margin-bottom: -30px;
+}
+
 
 .dblock {
   display: block;
