@@ -64,7 +64,8 @@ function LoginPrestador() {
                                 required
                                 id="input-email"
                                 name="email"
-                                type="text"
+                                type="email"
+                                required
                                 value={values.email}
                                 onChange={verificarValues}
                                 autocomplete="off"
@@ -77,6 +78,7 @@ function LoginPrestador() {
                                 id="input-senha"
                                 name="senha"
                                 type="password"
+                                required
                                 value={values.senha}
                                 onChange={verificarValues}
                                 autocomplete="off"
