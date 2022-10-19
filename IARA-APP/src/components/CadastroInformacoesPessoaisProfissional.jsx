@@ -38,7 +38,6 @@ function CadastroInformacoesPessoaisProfissional() {
     const [cep, setCep] = useState('');
     const [numero, setNumero] = useState('');
     const [complemento, setComplemento] = useState(null);
-
     const atendeDomicilio = false;
     const atendeEstabelecimento = false;
     const distancia = 0;
@@ -72,6 +71,7 @@ function CadastroInformacoesPessoaisProfissional() {
                     'Content-Type': 'application/json'
                 }
             }).then((resposta) => {
+                alert("Entrei then((resposta)");
                 AssociarEndereco(resposta.data.id);           
             });
             navigate("/sucessoCadastro");
@@ -99,7 +99,6 @@ function CadastroInformacoesPessoaisProfissional() {
     }
 
     function AssociarEndereco(id) {
-        alert(id);
         let jsonEndereco = {
             cep: cep,
             numero: numero,

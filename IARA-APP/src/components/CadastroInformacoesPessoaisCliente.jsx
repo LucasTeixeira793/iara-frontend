@@ -96,7 +96,6 @@ function CadastroInformacoesPessoaisCliente() {
     }
 
     function AssociarEndereco(id) {
-        alert(id);
         let jsonEndereco = {
             cep: cep,
             numero: numero,

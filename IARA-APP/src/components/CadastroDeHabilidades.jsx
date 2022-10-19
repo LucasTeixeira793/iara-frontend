@@ -8,12 +8,32 @@ import { Link } from 'react-router-dom';
 
 function CadastroDeHabilidades(props) {
 
-    const [categoria, setCategoria] = useState([]);
+    const [categoria, setCategoria] = useState("");
+    const [infoPrestador, setPrestador] = useState([]);
+    const [descricao, setDescricao] = useState("");
+    const [id, setId] = useState();
+
+    useEffect(() => {
+        const infoPrestador = localStorage.dadosUsuario;
+        if (infoPrestador) {
+            setPrestador(infoPrestador);
+        }
+
+        async function buscarInfos() {
+            const resposta = await api.get(`prestador/${localStorage.idPrestador}`, { headers: { "Access-Control-Allow-Origin": "*" } });
+            setPrestador(resposta.data);
+            setId(resposta.data.id)
+            console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
+            console.log("Prestador: " + infoPrestador)
+        }
+        buscarInfos();
+
+    }, [])
 
     useEffect(() => {
         try {
-            api.get("categoria/", {headers: {"Access-Control-Allow-Origin": "*"}}).then((resposta) => {
-                
+            api.get("categoria/", { headers: { "Access-Control-Allow-Origin": "*" } }).then((resposta) => {
+
                 console.log(resposta.data)
                 setCategoria(resposta.data)
             })
@@ -22,9 +42,27 @@ function CadastroDeHabilidades(props) {
         }
 
     }, [])
+
+    function SubmeterFormHabilidade(evento) {
+
+        evento.preventDefault();
+
+        let jsonHabilidade = {
+            idPrestador: parseInt(id),
+            categoria: categoria,
+            descricao: descricao
+        }
+
+        api.post(`/habilidade/prestador`, jsonHabilidade, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+    }
     return (
         <div class="page dflex acenter jcenter txt-medium">
-            <form id="cadastro-cliente" class="container">
+            <form id="cadastro-cliente" class="container" onSubmit={SubmeterFormHabilidade}>
                 <div href="" class="logo transform prelative">
                     <img src={logo} />
                     <span class="subtitulo">CADASTRO</span>
@@ -35,17 +73,26 @@ function CadastroDeHabilidades(props) {
                         <div class="width-50-margin-20">
                             <h3>Cadastrar Serviços</h3>
                             <div class="dflex fwrap jbetween">
-                                <select class="input width-50-margin-10 margin-bottom-15">
+                                <select class="input width-50-margin-10 margin-bottom-15" onChange={evento => setCategoria(evento.target.value)}>
                                     <option value="" hidden="true" default="true">Escolha a Categoria</option>
-                                    <option value="">Corte Cabelo</option>
-                                    <option value="">Hidratação</option>
-                                    <option value="">Maquiagem</option>
-                                    <option value="">Manicure</option>
-                                    <option value="">Design de sobrancelhas</option>
-                                    <option value="">Massagem</option>
-                                    <option value="">Pedicure</option>
+                                    <option value="Corte Cabelo">Corte Cabelo</option>
+                                    <option value="Hidratação">Hidratação</option>
+                                    <option value="Maquiagem">Maquiagem</option>
+                                    <option value="Manicure">Manicure</option>
+                                    <option value="Design de sobrancelhas">Design de sobrancelhas</option>
+                                    <option value="Massagem">Massagem</option>
+                                    <option value="Pedicure">Pedicure</option>
                                 </select>
-                                <input type="text" placeholder="Escolha a Especialidade" step="any" class="input width-50-margin-10 margin-bottom-15" />
+                                <select class="input width-50-margin-10 margin-bottom-15"  onChange={evento => setDescricao(evento.target.value)}>
+                                    <option value="" hidden="true" default="true">Escolha a Especialidade</option>
+                                    <option value="Corte Cabelo">Corte Cabelo</option>
+                                    <option value="Hidratação">Hidratação</option>
+                                    <option value="Maquiagem">Maquiagem</option>
+                                    <option value="Manicure">Manicure</option>
+                                    <option value="Design de sobrancelhas">Design de sobrancelhas</option>
+                                    <option value="Massagem">Massagem</option>
+                                    <option value="Pedicure">Pedicure</option>
+                                </select>
                                 <input type="number" min="1" step="any" placeholder="Preço (R$)" id="input-preco" class="input width-50-margin-10 margin-bottom-15" />
                                 <input type="text" placeholder="Duração" class="input width-50-margin-10" id="input-duracao-servico" onkeypress="$(this).mask('00:00')" />
                             </div>
