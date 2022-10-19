@@ -34,6 +34,7 @@ function CadastroDoEndereco() {
                             type="text"
                             class="input"
                             id="input-cep"
+                            required
                             onChange={e => setCep(e.target.value)}
                             maxLength="8" />
                         <label class="user-label">CEP</label>
@@ -43,6 +44,7 @@ function CadastroDoEndereco() {
                         <input
                             type="text"
                             class="input"
+                            required
                             id="input-logradouro" />
                         <label class="user-label">Logradouro</label>
                     </div>
@@ -51,6 +53,7 @@ function CadastroDoEndereco() {
                             type="text"
                             class="input"
                             id="input-numero"
+                            required
                             maxLength="5"
                             onChange={e => setNumero(e.target.value)} />
                         <label class="user-label">Número</label>
@@ -67,6 +70,7 @@ function CadastroDoEndereco() {
                         <input
                             type="text"
                             class="input"
+                            required
                             id="input-bairro" />
                         <label class="user-label">Bairro</label>
                     </div>
@@ -74,6 +78,7 @@ function CadastroDoEndereco() {
                         <input
                             type="text"
                             class="input"
+                            required
                             id="input-cidade" />
                         <label class="user-label">Cidade</label>
                     </div>
@@ -83,6 +88,7 @@ function CadastroDoEndereco() {
                             class="input"
                             id="input-uf"
                             maxlength="2"
+                            required
                             value={null}
                             oninput="this.value = this.value.toUpperCase()" />
                         <label class="user-label">UF</label>
