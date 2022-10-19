@@ -68,7 +68,7 @@ function CadastroDeHabilidades(props) {
                     <span class="subtitulo">CADASTRO</span>
                 </div>
                 <h2>Cadastro Profissional</h2>
-                <div class="dflex jbetween fwrap">
+                <div class="card bg-off-white low-shadow dflex jbetween fwrap">
                     <div class="dflex fwrap astart jaround width-100-porc">
                         <div class="width-50-margin-20">
                             <h3>Cadastrar Serviços</h3>
