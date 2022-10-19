@@ -26,6 +26,13 @@ function CadastroInformacoesPessoaisCliente() {
             .replace(/^(\d{2})(\d)/g, "($1) $2")
             .replace(/(\d)(\d{4})$/, "$1-$2");
     };
+    
+    const maskCPF = (value) => {
+        return value
+        .replace(/\D/g, "") 
+        .replace(/^(\d{3})/g, "$1.")
+        .replace(/(\d{3})(\d{3})/g, "$1.$2-");
+    };
 
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
@@ -179,9 +186,11 @@ function CadastroInformacoesPessoaisCliente() {
                                 type="text"
                                 class="input"
                                 id="input-cpf"
-                                maxLength="11"
+                                maxLength="14"
                                 required
-                                onChange={evento => setCpf(evento.target.value)}
+                                value={cpf}
+                                onChange={evento => setCpf(maskCPF(evento.target.value))}
+                                mask='000.000.000-00'
                             // onkeypress="$(this).mask('000.000.000-00')"
                             />
                             <label class="user-label">CPF</label>
