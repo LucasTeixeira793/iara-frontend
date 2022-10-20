@@ -19,7 +19,7 @@ function EscolhaLogin() {
                         </Link>
                     </div>
                     <div class="txt-white dflex acenter jcenter login">
-                        não possui cadastro? <Link class="txt-white transform" to="/escolhaCadastro"><u><b>Cadastrar aqui</b></u></Link>
+                        Não possui cadastro? <Link class="txt-white transform" to="/escolhaCadastro"><u><b>Cadastrar aqui</b></u></Link>
                     </div>
                 </div>
             </div>
