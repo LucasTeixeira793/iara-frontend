@@ -1,8 +1,40 @@
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import api from "../api";
 
 function CardInformacoesDoProfissionalAdm(props) {
+
+    const [infoPrestador, setPrestador] = useState([])
+
+    useEffect(() => {
+        const infoPrestador = localStorage.dadosUsuario;
+        if (infoPrestador) {
+            setPrestador(infoPrestador);
+        }
+
+        async function buscarInfos() {
+            const resposta = await api.get(`prestador/${localStorage.idPrestador}`, { headers: { "Access-Control-Allow-Origin": "*" } });
+            setPrestador(resposta.data);
+            console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
+            console.log(infoPrestador)
+        }
+        buscarInfos();
+    }, [])
+
+    const fotoTratada = `url("data:image;base64,${infoPrestador.foto}")`
+
+    const image = {
+        imagemPortfolio: {
+            backgroundImage: fotoTratada,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            width: "78px",
+            borderRadius: "50%"
+        }
+    }
 
     return (
         <div class="card prelative">
@@ -14,10 +46,10 @@ function CardInformacoesDoProfissionalAdm(props) {
 
             <div class="dflex acenter jbetween">
                 <div class="dflex acenter jbetween">
-                    <img src="../img/profissionais/img-prof-1.png" alt="Foto de perfil" class="height-85 margin-right-twenty" />
+                    <div style={image.imagemPortfolio} alt="Foto de perfil" class="height-85 margin-right-twenty" />
                     <div>
                         <span>
-                            <b>{props.nome} {props.sobrenome}, 32 anos</b><br />Cabeleireira
+                            <b>{props.nome} {props.sobrenome}</b><br />Cabeleireira
                         </span>
                     </div>
                 </div>

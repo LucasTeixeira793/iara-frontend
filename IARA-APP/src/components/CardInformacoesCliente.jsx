@@ -6,7 +6,7 @@ function CardInformacoesCliente(props){
                 <div class="dflex acenter jbetween">
                     <img src="../img/foto-perfil.png" alt="Foto de perfil" class="margin-right-twenty height-85" />
                     <div>
-                    <b>{props.nome} {props.sobrenome}, {props.idade} anos</b><br />
+                    <b>{props.nome} {props.sobrenome}</b><br />
                     </div>
                 </div>
                 <div class="dflex acenter jbetween">

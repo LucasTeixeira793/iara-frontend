@@ -18,7 +18,7 @@ function AccountProfissional() {
         }
 
         async function buscarInfos() {
-            const resposta = await api.get(`prestador/${localStorage.idPrestador}`, {headers: {"Access-Control-Allow-Origin": "*"}});
+            const resposta = await api.get(`prestador/${localStorage.idPrestador}`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setPrestador(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
             console.log(infoPrestador)
@@ -28,28 +28,27 @@ function AccountProfissional() {
     }, [])
 
     var generoCompleto;
-    if(infoPrestador.genero == 'F'){
-        generoCompleto="Feminino";
+    if (infoPrestador.genero == 'F') {
+        generoCompleto = "Feminino";
     }
-    else{
-        generoCompleto="Masculino";
+    else {
+        generoCompleto = "Masculino";
     }
 
     var preferenciaCompleta;
-    if  (infoPrestador.atendeDomicilio == true) {
-        preferenciaCompleta="Em domicílio"
+    if (infoPrestador.atendeDomicilio == true) {
+        preferenciaCompleta = "Em domicílio"
     } else {
-        preferenciaCompleta="Em estabelecimento"
+        preferenciaCompleta = "Em estabelecimento"
     }
 
-
-    if(infoPrestador.length!=0){
+    if (infoPrestador.length != 0) {
         return (
             <>
-                <HeaderColaborador/>
+                <HeaderColaborador />
                 <main class="margin-top-thirty">
                     <div class="container">
-                            <CardInformacoesDoProfissionalAdm
+                        <CardInformacoesDoProfissionalAdm
                             nome={infoPrestador.nome}
                             sobrenome={infoPrestador.sobrenome}
                             telefone={infoPrestador.telefone}
@@ -62,12 +61,12 @@ function AccountProfissional() {
                             cep={infoPrestador.enderecos[0].cep}
                             raio={infoPrestador.distancia}
                             preferencias={preferenciaCompleta}
-                            />
+                        />
                         <div class="dflex jbetween margin-top-thirty">
                             <CardTabelaDePrecosAdm />
                             <CardAgendaDeAtendimentos />
                         </div>
-                            <CardPortifolioAdm />
+                        <CardPortifolioAdm />
                     </div>
                 </main>
                 <Footer />

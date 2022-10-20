@@ -1,9 +1,40 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
 import api from '../api';
+import { useEffect, useState } from "react";
 
 function HeaderCliente() {
+
+    const [infoCliente, setCliente] = useState([])
+
+    useEffect(() => {
+        const infoCliente = localStorage.dadosUsuario;
+        if (infoCliente) {
+            setCliente(infoCliente);
+        }
+
+        async function buscarInfos() {
+            const resposta = await api.get(`Cliente/${localStorage.idCliente}`, { headers: { "Access-Control-Allow-Origin": "*" } });
+            setCliente(resposta.data);
+            console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
+            console.log(infoCliente)
+        }
+        buscarInfos();
+    }, [])
+
+    const fotoTratada = `url("data:image;base64,${infoCliente.foto}")`
+
+    const image = {
+        imagemPortfolio: {
+            backgroundImage: fotoTratada,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            width: "78px",
+            borderRadius: "50%"
+        }
+    }
+
     return (
         <header class="header-logged">
             <div class="container dflex acenter jbetween">
@@ -21,7 +52,7 @@ function HeaderCliente() {
                 </div>
                 <div class="prelative">
                     <button type="button" class="btn-no-style btn-profile dflex acenter jcenter">
-                        <img src="../img/foto-perfil.png" alt="Foto de perfil" />
+                    <div style={image.imagemPortfolio} alt="Foto de perfil" class="height-85 margin-right-twenty" />
                     </button>
                     <div class="itens jflex pabsolute txt-dark-red account-menu">
                         <a class="txt-dark-red transform-bold margin-bottom-10" href="/accountCliente">MINHA CONTA</a>

@@ -1,6 +1,3 @@
-import Slider from "react-slick";
-import { GoChevronRight } from "react-icons/go";
-import { GoChevronLeft } from "react-icons/go";
 import api from "../api";
 import { useEffect, useState } from "react";
 
@@ -25,31 +22,24 @@ function LinhaFotosPortfolio(props) {
 
   }, [])
 
-  const settings = {
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    dots: true,
-    nextArrow: <GoChevronRight color="red" />,
-    prevArrow: <GoChevronLeft  color="red"/>
-};
-
-const imgTratada = `url(data:image;base64,${infoFotoPortfolio})`
+const imgTratada = `url(data:image;base64,${infoFotoPortfolio[0]})`
 
 const image = {
   imagemPortfolio: {
-    backgroundImage: imgTratada
+    backgroundImage: imgTratada,
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    height: "344px",
+    width: "480px"
   }
 }
 
   return (
     <>
       <div id="portfolio" class="padding-zero-twenty">
-        {/* <Slider {...settings}> */}
           <div class="padding-zero-twenty" style={image.imagemPortfolio}>
           </div>
-        {/* </Slider> */}
       </div>
     </>
   );

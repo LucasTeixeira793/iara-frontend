@@ -1,10 +1,40 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
-
-
+import { useEffect, useState } from "react";
+import api from "../api";
 
 function HeaderColaborador() {
+
+    const [infoPrestador, setPrestador] = useState([])
+
+    useEffect(() => {
+        const infoPrestador = localStorage.dadosUsuario;
+        if (infoPrestador) {
+            setPrestador(infoPrestador);
+        }
+
+        async function buscarInfos() {
+            const resposta = await api.get(`prestador/${localStorage.idPrestador}`, { headers: { "Access-Control-Allow-Origin": "*" } });
+            setPrestador(resposta.data);
+            console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
+            console.log(infoPrestador)
+        }
+        buscarInfos();
+    }, [])
+
+    const fotoTratada = `url("data:image;base64,${infoPrestador.foto}")`
+
+    const image = {
+        imagemPortfolio: {
+            backgroundImage: fotoTratada,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            width: "78px",
+            borderRadius: "50%"
+        }
+    }
+
     return (
         <header class="header-logged">
             <div class="container dflex acenter jbetween">
@@ -22,7 +52,7 @@ function HeaderColaborador() {
                 </div>
                 <div class="prelative">
                     <button type="button" class="btn-no-style btn-profile dflex acenter jcenter">
-                        <img src="../img/profissionais/img-prof-1.png" alt="Foto de perfil" />
+                        <div style={image.imagemPortfolio} alt="Foto de perfil" class="height-85 margin-right-twenty" />
                     </button>
                     <div class="itens jflex pabsolute txt-dark-red account-menu">
                         <a class="txt-dark-red transform-bold margin-bottom-10" href="/accountProfissional">MINHA CONTA</a>

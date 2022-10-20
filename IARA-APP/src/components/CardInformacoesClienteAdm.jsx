@@ -13,9 +13,9 @@ function CardInformacoesClienteAdm(props){
             </Link>
             <div class="dflex acenter jbetween">
                 <div class="dflex acenter jbetween">
-                    <img src="../img/foto-perfil.png" alt="Foto de perfil" class="margin-right-twenty" />
+                    <img src={props.foto} alt="Foto de perfil" class="margin-right-twenty" />
                     <div>
-                        <b>{props.nome} {props.sobrenome}, {props.idade} anos</b><br />
+                        <b>{props.nome} {props.sobrenome}</b><br />
                     </div>
                 </div>
                 <div class="dflex acenter jbetween">

@@ -39,6 +39,7 @@ function AccountCliente() {
                 <HeaderCliente />
                 <main class="margin-top-thirty margin-bottom-thirty container">
                     <CardInformacoesClienteAdm
+                    foto={infoCliente.foto}
                     nome={infoCliente.nome}
                     sobrenome={infoCliente.sobrenome}
                     telefone={infoCliente.telefone}
