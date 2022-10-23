@@ -14,7 +14,7 @@ function HeaderCliente() {
         }
 
         async function buscarInfos() {
-            const resposta = await api.get(`Cliente/${localStorage.idCliente}`, { headers: { "Access-Control-Allow-Origin": "*" } });
+            const resposta = await api.get(`cliente/${localStorage.idCliente}`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setCliente(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
             console.log(infoCliente)
