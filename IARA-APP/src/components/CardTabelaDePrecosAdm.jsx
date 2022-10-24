@@ -32,7 +32,6 @@ function CardTabelaDePrecosAdm() {
         minimumFractionDigits: 2
     })
 
-
     return (
         <div class="card half prelative">
             <Link to={"/cadastroHabilidades"}>
@@ -44,7 +43,7 @@ function CardTabelaDePrecosAdm() {
             {infoPreco.map((precos) => (
                 <LinhaTabelaPrecos
                     tipo={precos.tipo}
-                    duracao={precos.duracaoEstimada}
+                    duracao={precos.duracaoEstimada + "h"}
                     preco={formCurrency.format(precos.valor)}
                 />
             ))}

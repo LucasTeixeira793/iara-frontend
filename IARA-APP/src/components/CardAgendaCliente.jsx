@@ -19,14 +19,19 @@ function CardAgendaCliente() {
         async function buscarAgenda() {
             const resposta = await api.get(`servico-atribuido/cliente/${localStorage.idCliente}/ativos`);
             setAgenda(resposta.data);
-            const resposta2 = await api.get(`prestador/${resposta.data[0].servico.prestador}`);
+            const resposta2 = await api.get(`prestador/${infoAgenda.data.servico.prestador}`);
+            // console.log("aaaaaaaaaaaaa", res);
             setIdPrestador(resposta2.data)
-            console.log("OLHA O QUE VEIO DA API!! --- Agenda", resposta.data)
+            console.log("OLHA O QUE VEIO DA API!! --- AgendaCliente", resposta.data)
         }
         buscarAgenda();
     }, [])
 
-    const date = new Intl.DateTimeFormat('pt-BR').format(infoAgenda.data)
+    const formHour = new Intl.DateTimeFormat("pt-BR", {
+        hour: "numeric",
+        minute: "numeric"
+      })
+    const formDate = new Intl.DateTimeFormat('pt-BR')
     const formCurrency = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
@@ -48,8 +53,8 @@ function CardAgendaCliente() {
                     {infoAgenda.map((agenda) => (
                         <LinhaTabelaAgenda
                             tipo={agenda.servico.tipo}
-                            dia={date}
-                            horario={agenda.horaInicio}
+                            dia={formDate.format(agenda.data)}
+                            horario={formHour.format(infoAgenda.dataHoraInicio)}
                             valor={formCurrency.format(agenda.servico.valor)}
                             nomeCliente={infoIdPrestador.nome}
                             sobrenomeCliente={infoIdPrestador.sobrenome}

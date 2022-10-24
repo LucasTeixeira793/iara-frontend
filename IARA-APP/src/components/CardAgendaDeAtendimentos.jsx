@@ -22,7 +22,12 @@ function CardAgendaDeAtendimentos() {
         buscarAgenda();
     }, [])
 
-    const date = new Intl.DateTimeFormat('pt-BR').format(infoAgenda.data)
+    console.log(infoAgenda.servicoAtribuido);
+    const formDate = new Intl.DateTimeFormat("pt-BR", {
+        year: "numeric",
+        month: "numeric",
+        day: "2-digit"
+      })
     const formCurrency = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
@@ -44,7 +49,7 @@ function CardAgendaDeAtendimentos() {
                     {infoAgenda.map((agenda) => (
                         <LinhaTabelaAgenda
                             tipo={agenda.servicoAtribuido.servico.tipo}
-                            dia={date}
+                            dia={formDate.format(infoAgenda.data)}
                             horario={agenda.horaInicio}
                             valor={formCurrency.format(agenda.servicoAtribuido.servico.valor)}
                             nomeCliente={agenda.servicoAtribuido.cliente.nome}
