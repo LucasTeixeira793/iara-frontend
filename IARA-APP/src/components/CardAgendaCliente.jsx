@@ -19,8 +19,7 @@ function CardAgendaCliente() {
         async function buscarAgenda() {
             const resposta = await api.get(`servico-atribuido/cliente/${localStorage.idCliente}/ativos`);
             setAgenda(resposta.data);
-            const resposta2 = await api.get(`prestador/${infoAgenda.data.servico.prestador}`);
-            // console.log("aaaaaaaaaaaaa", res);
+            const resposta2 = await api.get(`prestador/${resposta.data[0].servico.prestador}`);
             setIdPrestador(resposta2.data)
             console.log("OLHA O QUE VEIO DA API!! --- AgendaCliente", resposta.data)
         }
