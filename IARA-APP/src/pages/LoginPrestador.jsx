@@ -42,7 +42,7 @@ function LoginPrestador() {
             .catch(error => {
                 if (error.request.status === 401) {
                     console.log("success")
-                    alert("Email e/ou senha inválidos!")
+                    //alert("Email e/ou senha inválidos!")
                     swal.fire({
                         icon: "error",
                         title: <h1>Ops... Dados inválidos</h1>,
