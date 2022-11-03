@@ -2,16 +2,17 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import api from '../api';
 import { useEffect, useState } from "react";
+import logo from "../html-css-template/img/logo-sem-fundo.png";
 
 function HeaderCliente() {
 
     const [infoCliente, setCliente] = useState([])
 
     useEffect(() => {
-        const infoCliente = localStorage.dadosUsuario;
-        if (infoCliente) {
-            setCliente(infoCliente);
-        }
+        // const infoCliente = localStorage.dadosUsuario;
+        // if (infoCliente) {
+        //     setCliente(infoCliente);
+        // }
 
         async function buscarInfos() {
             const resposta = await api.get(`cliente/${localStorage.idCliente}`, { headers: { "Access-Control-Allow-Origin": "*" } });
@@ -19,10 +20,13 @@ function HeaderCliente() {
             console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
             console.log(infoCliente)
         }
-        buscarInfos();
+            buscarInfos();
+
     }, [])
 
     const fotoTratada = `url("data:image;base64,${infoCliente.foto}")`
+
+    
 
     const image = {
         imagemPortfolio: {
@@ -39,7 +43,7 @@ function HeaderCliente() {
         <header class="header-logged">
             <div class="container dflex acenter jbetween">
                 <a href="/home" class="logo transform">
-                    <img alt="Logo" src="../img/logo.png" />
+                    <img alt="Logo" src={logo} />
                 </a>
                 <form>
                     <input type="text" placeholder="Buscar" class="input-search" required />
