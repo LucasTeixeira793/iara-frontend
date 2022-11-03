@@ -28,20 +28,24 @@ function CardTabelaDePrecosAdm() {
         minimumFractionDigits: 2
     })
 
-
-    return (
-        <div class="card half prelative">
-            <h3 class="txt-bigger txt-center txt-red txt-bold">Tabela de Preços</h3>
-            {infoPreco.map((precos) => (
-                <LinhaTabelaPrecos
-                    tipo={precos.tipo}
-                    duracao={precos.duracaoEstimada}
-                    preco={formCurrency.format(precos.valor)}
-                />
-            ))}
-        </div>
-    );
-
+    if (infoPreco === null) {
+        return (
+            <div>Vazio</div>
+        );
+    } else {
+        return (
+            <div class="card half prelative">
+                <h3 class="txt-bigger txt-center txt-red txt-bold">Tabela de Preços</h3>
+                {infoPreco.map((precos) => (
+                    <LinhaTabelaPrecos
+                        tipo={precos.tipo}
+                        duracao={precos.duracaoEstimada}
+                        preco={formCurrency.format(precos.valor)}
+                    />
+                ))}
+            </div>
+        );
+    }
 
 
 }

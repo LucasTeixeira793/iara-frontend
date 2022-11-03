@@ -6,18 +6,18 @@ import api from "../api";
 import { useEffect, useState } from "react";
 import 'moment/locale/pt-br'
 
-function CardTabelaDePrecosAdm() {
+function CardTabelaDePrecosAdm(props) {
 
     const [infoPreco, setPreco] = useState([])
     const [setPrestador] = useState([])
 
     useEffect(() => {
-        const infoPrestador = localStorage.dadosUsuario;
-        if (infoPrestador) {
-            setPrestador(infoPrestador);
-        }
+        // const infoPrestador = localStorage.dadosUsuario;
+        // if (infoPrestador) {
+        //     setPrestador(infoPrestador);
+        // }
         async function buscarPrecos() {
-            const resposta = await api.get(`servico/prestador/${localStorage.idPrestador}`);
+            const resposta = await api.get(`servico/prestador/${props.id}`);
             setPreco(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Preços", resposta.data)
             console.log(infoPreco)
@@ -32,24 +32,30 @@ function CardTabelaDePrecosAdm() {
         minimumFractionDigits: 2
     })
 
-    return (
-        <div class="card half prelative">
-            <Link to={"/cadastroHabilidades"}>
-                <a class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red transform">
-                    <FontAwesomeIcon icon={faPen} />
-                </a>
-            </Link>
-            <h3 class="txt-bigger txt-center txt-red txt-bold">Tabela de Preços</h3>
-            {infoPreco.map((precos) => (
-                <LinhaTabelaPrecos
-                    tipo={precos.tipo}
-                    duracao={precos.duracaoEstimada + "h"}
-                    preco={formCurrency.format(precos.valor)}
-                />
-            ))}
-        </div>
-    );
-
+    if(infoPreco === null){
+        return(
+            <div>Vazio</div>
+        );
+    }else{
+        return (
+            <div class="card half prelative">
+                <Link to={"/cadastroHabilidades"}>
+                    <a class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red transform">
+                        <FontAwesomeIcon icon={faPen} />
+                    </a>
+                </Link>
+                <h3 class="txt-bigger txt-center txt-red txt-bold">Tabela de Preços</h3>
+                {infoPreco.map((precos) => (
+                    <LinhaTabelaPrecos
+                        tipo={precos.tipo}
+                        duracao={precos.duracaoEstimada}
+                        preco={formCurrency.format(precos.valor)}
+                    />
+                ))}
+            </div>       
+        );          
+    }
+   
 
 
 }

@@ -9,13 +9,9 @@ import HeaderColaborador from "../components/HearderColaborador";
 
 function AccountProfissional() {
 
-    const [infoPrestador, setPrestador] = useState([])
+    const [infoPrestador, setPrestador] = useState({enderecos: [], servicos: []})
 
     useEffect(() => {
-        const infoPrestador = localStorage.dadosUsuario;
-        if (infoPrestador) {
-            setPrestador(infoPrestador);
-        }
 
         async function buscarInfos() {
             const resposta = await api.get(`prestador/${localStorage.idPrestador}`, { headers: { "Access-Control-Allow-Origin": "*" } });
@@ -41,7 +37,6 @@ function AccountProfissional() {
     } else {
         preferenciaCompleta = "Em estabelecimento"
     }
-
     if (infoPrestador.length != 0) {
         return (
             <>
@@ -53,18 +48,18 @@ function AccountProfissional() {
                             sobrenome={infoPrestador.sobrenome}
                             telefone={infoPrestador.telefone}
                             genero={generoCompleto}
-                            rua={infoPrestador.enderecos[0].rua}
-                            numero={infoPrestador.enderecos[0].numero}
-                            bairro={infoPrestador.enderecos[0].bairro}
-                            cidade={infoPrestador.enderecos[0].cidade}
-                            uf={infoPrestador.enderecos[0].uf}
-                            cep={infoPrestador.enderecos[0].cep}
+                            rua={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].rua : "Nao tem rua"}
+                            numero={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].numero : "Nao tem nummero"}
+                            bairro={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].bairro : "Nao tem bairro"}
+                            cidade={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].cidade : "Nao tem cidade"}
+                            uf={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].uf : "Nao tem uf"}
+                            cep={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].cep : "Nao tem cep"}
                             raio={infoPrestador.distancia}
                             preferencias={preferenciaCompleta}
                         />
                         <div class="dflex jbetween margin-top-thirty">
-                            <CardTabelaDePrecosAdm />
-                            <CardAgendaDeAtendimentos />
+                            <CardTabelaDePrecosAdm id={infoPrestador.id}/>
+                            <CardAgendaDeAtendimentos id={infoPrestador.id} />
                         </div>
                         <CardPortifolioAdm />
                     </div>
