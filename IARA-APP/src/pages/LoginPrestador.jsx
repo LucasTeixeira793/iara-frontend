@@ -36,7 +36,7 @@ function LoginPrestador() {
 
             console.log(res.data);
             console.log(localStorage.idPrestador);
-            navigate("/accountProfissional")
+            navigate("/cadastrohabilidades")
         },
         )
             .catch(error => {

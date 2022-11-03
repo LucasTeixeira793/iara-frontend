@@ -46,7 +46,7 @@ function Home() {
                 <CarrosselProfissionais
                   id={profissional.id}
                   nome={profissional.nome}
-                  habilidade={profissional.habilidades[0].descricao}
+                  sobrenome={profissional.sobrenome}
                   distancia={profissional.distancia + " KM"}
                   avaliacao={4}
                   foto={profissional.foto}             
