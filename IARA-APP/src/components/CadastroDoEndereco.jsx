@@ -94,6 +94,7 @@ function CadastroDoEndereco() {
                         <label class="user-label">UF</label>
                     </div>
                 </div>
+                
                 <button type="submit" class="button bg-dark-red txt-white bg-hover-white txt-hover-dark-red align-right shadow-smooth">CADASTRAR</button>
             </form>
         </>

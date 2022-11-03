@@ -59,6 +59,13 @@ function CadastroDeHabilidades(props) {
             }
         });
 
+    function CadastrarAgenda(){
+
+        let jsonAgenda = {
+            
+        }
+    }
+
     }
     return (
         <div class="page dflex acenter jcenter txt-medium">
@@ -77,7 +84,7 @@ function CadastroDeHabilidades(props) {
                             <div class="dflex fwrap jbetween">
                                 <select class="input width-50-margin-10 margin-bottom-15" onChange={evento => setCategoria(evento.target.value)}>
                                     <option value="" hidden="true" default="true">Escolha a Categoria</option>
-                                    <option value="Corte Cabelo">Corte Cabelo</option>
+                                    <option value="Corte Cabelo">Corte de Cabelo</option>
                                     <option value="Hidratação">Hidratação</option>
                                     <option value="Maquiagem">Maquiagem</option>
                                     <option value="Manicure">Manicure</option>

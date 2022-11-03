@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import 'moment/locale/pt-br';
 import moment from 'moment';
+import swal from 'sweetalert';
 
 
 function ViaCep(){
@@ -80,10 +81,10 @@ function CadastroInformacoesPessoaisProfissional() {
                     'Content-Type': 'application/json'
                 }
             }).then((resposta) => {
-                alert("Entrei then((resposta)");
-                AssociarEndereco(resposta.data.id);           
+                AssociarEndereco(resposta.data.id);    
             });
-            navigate("/sucessoCadastro");
+                navigate("/sucessoCadastro");
+           
         }
 
     }
@@ -104,10 +105,10 @@ function CadastroInformacoesPessoaisProfissional() {
                 }
             });
         }
-        
     }
 
     function AssociarEndereco(id) {
+        alert("Que bom ter você por aqui " + nome + "!!!")  
         let jsonEndereco = {
             cep: cep,
             numero: numero,
