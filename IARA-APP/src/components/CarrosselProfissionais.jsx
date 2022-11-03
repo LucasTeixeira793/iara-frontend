@@ -2,11 +2,26 @@ import foto from "../html-css-template/img/img-prof-default.png";
 import { useNavigate } from "react-router-dom";
 function CarrosselProfissionais(props) {
   const navigate = useNavigate();
+  const fotoTratada = `url("data:image;base64,${props.foto}")`
+
+    const image = {
+        imagemPortfolio: {
+            backgroundImage: fotoTratada,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            width: "78px",
+            borderRadius: "50%",
+            marginBottom: "3%",
+            marginLeft: "27%"
+            
+        }
+    }
   return (
     <>
       <div class="item">
         <div class="card bg-dark-red txt-white txt-center">
-          <img src={foto} />
+          <div style={image.imagemPortfolio} alt="Foto de perfil" class="height-85 margin-right-twenty" />
           <div class="nome">
             <b>{props.nome}</b>
             <br />
@@ -30,7 +45,7 @@ function CarrosselProfissionais(props) {
           </button>
         </div>
       </div>
-      {console.log("resposta " +  props.id)}
+      {console.log("resposta " + props.id)}
     </>
   );
 }

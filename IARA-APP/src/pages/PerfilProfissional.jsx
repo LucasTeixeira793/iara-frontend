@@ -57,12 +57,13 @@ function PerfilProfissional() {
                         cidade={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].cidade : "Nao tem cidade"}
                         uf={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].uf : "Nao tem uf"}
                         cep={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].cep : "Nao tem cep"}
+                        complemento={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].complemento : "Nao tem cep"}
                         raio={objPrestador.distancia}
                         preferencias={preferenciaCompleta}
                     />
                     <div class="dflex jbetween margin-top-thirty">
-                        <CardTabelaDePrecos/>
-                        {/* <CardAgendarAtendimentos /> */}
+                        {"<CardTabelaDePrecos/>"}
+                        <CardAgendarAtendimentos />
                     </div>
                     <CardPortifolio />
                 </div>
