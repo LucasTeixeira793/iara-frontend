@@ -20,7 +20,7 @@ function Home() {
     };
 
     async function selecionarCategoria(idCategoria) {
-        const resposta = await api.get(`categoria/prestador/${idCategoria}`, {headers: {"Access-Control-Allow-Origin": "*"}});
+        const resposta = await api.get(`categoria/prestador/${idCategoria}`, { headers: { "Access-Control-Allow-Origin": "*" } });
         setProfissionais(resposta.data);
         console.log("OLHA O QUE VEIO DA API!!", resposta.data)
     }
@@ -36,6 +36,7 @@ function Home() {
                         <Slider {...settings}>
                             {profissionais.map((profissional) => (
                                 <CarrosselProfissionais
+                                    id={profissional.id}
                                     nome={profissional.nome}
                                     habilidade={profissional.habilidades[0].descricao}
                                     distancia={profissional.distancia + " KM"}
