@@ -44,6 +44,7 @@ function AccountProfissional() {
                 <main class="margin-top-thirty">
                     <div class="container">
                         <CardInformacoesDoProfissionalAdm
+                            foto={infoPrestador.foto}
                             nome={infoPrestador.nome}
                             sobrenome={infoPrestador.sobrenome}
                             telefone={infoPrestador.telefone}

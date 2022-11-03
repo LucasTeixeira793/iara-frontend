@@ -1,12 +1,32 @@
-function CardInformacoesCliente(props){
+import foto from "../html-css-template/img/img-prof-default.png";
 
-    return(
+function CardInformacoesCliente(props) {
+
+    var fotoTratada;
+    if (props.foto !== null) {
+        fotoTratada = `url("data:image;base64,${props.foto}")`
+    }
+    else {
+        fotoTratada = `url("${foto}")`
+    }
+
+    const image = {
+        imagemPortfolio: {
+            backgroundImage: fotoTratada,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            width: "78px",
+            borderRadius: "50%"
+        }
+    }
+    return (
         <div class="card prelative">
             <div class="dflex acenter jbetween">
                 <div class="dflex acenter jbetween">
-                    <img src="../img/foto-perfil.png" alt="Foto de perfil" class="margin-right-twenty height-85" />
+                    <div style={image.imagemPortfolio} alt="Foto de perfil" class="height-85 margin-right-twenty" />
                     <div>
-                    <b>{props.nome} {props.sobrenome}</b><br />
+                        <b>{props.nome} {props.sobrenome}</b><br />
                     </div>
                 </div>
                 <div class="dflex acenter jbetween">
@@ -23,8 +43,8 @@ function CardInformacoesCliente(props){
                 <div>
                     <b>Endereço</b><br />
                     <span>{props.rua}, {props.numero}<br />
-                    {props.bairro}, {props.cidade}<br />
-                    {props.uf} - {props.cep}</span>
+                        {props.bairro}, {props.cidade}<br />
+                        {props.uf} - {props.cep}</span>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import 'moment/locale/pt-br'
 
-function CardAgendaCliente() {
+function CardAgendaCliente(props) {
 
     const [infoAgenda, setAgenda] = useState([])
     const [infoIdPrestador, setIdPrestador] = useState([])

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import api from '../api';
 import { useEffect, useState } from "react";
 import logo from "../html-css-template/img/logo-sem-fundo.png";
+import foto from "../html-css-template/img/img-prof-default.png";
 
 function HeaderCliente() {
 
@@ -24,7 +25,13 @@ function HeaderCliente() {
 
     }, [])
 
-    const fotoTratada = `url("data:image;base64,${infoCliente.foto}")`
+    var fotoTratada;
+    if (infoCliente.foto !== null) {
+        fotoTratada = `url("data:image;base64,${infoCliente.foto}")`
+    }
+    else {
+        fotoTratada = `url("${foto}")`
+    }
 
     
 

@@ -1,10 +1,30 @@
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import foto from "../html-css-template/img/img-prof-default.png";
 
-function CardInformacoesClienteAdm(props){
+function CardInformacoesClienteAdm(props) {
 
-    return(
+    var fotoTratada;
+    if (props.foto !== null) {
+        fotoTratada = `url("data:image;base64,${props.foto}")`
+    }
+    else {
+        fotoTratada = `url("${foto}")`
+    }
+
+    const image = {
+        imagemPortfolio: {
+            backgroundImage: fotoTratada,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            width: "78px",
+            borderRadius: "50%"
+        }
+    }
+
+    return (
         <div class="card prelative">
             <Link to={"/cadastroCliente"}>
                 <a class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red transform">
@@ -13,7 +33,7 @@ function CardInformacoesClienteAdm(props){
             </Link>
             <div class="dflex acenter jbetween">
                 <div class="dflex acenter jbetween">
-                    <img src={props.foto} alt="Foto de perfil" class="margin-right-twenty" />
+                    <div style={image.imagemPortfolio} alt="Foto de perfil" class="height-85 margin-right-twenty" />
                     <div>
                         <b>{props.nome} {props.sobrenome}</b><br />
                     </div>
@@ -31,9 +51,9 @@ function CardInformacoesClienteAdm(props){
                 </div>
                 <div>
                     <b>Endereço</b><br />
-                    <span>{props.rua}, {props.numero}<br />
-                    {props.bairro}, {props.cidade}<br />
-                    {props.uf} - {props.cep}</span>
+                    <span>{props.rua}, {props.numero}, {props.complemento}<br />
+                        {props.bairro}, {props.cidade}<br />
+                        {props.uf} - {props.cep}</span>
                 </div>
             </div>
         </div>

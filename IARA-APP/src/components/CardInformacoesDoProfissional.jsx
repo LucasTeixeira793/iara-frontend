@@ -3,10 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import api from "../api";
+import foto from "../html-css-template/img/img-prof-default.png";
 
 function CardInformacoesDoProfissional(props) {
 
-    const fotoTratada = `url("data:image;base64,${props.foto}")`
+    var fotoTratada;
+    if(props.foto!== null){
+      fotoTratada = `url("data:image;base64,${props.foto}")`
+    }
+    else{
+      fotoTratada = `url("${foto}")`
+    }
+
+    
 
     const image = {
         imagemPortfolio: {

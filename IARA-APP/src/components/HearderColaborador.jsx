@@ -2,6 +2,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from "react";
 import api from "../api";
+import foto from "../html-css-template/img/img-prof-default.png";
 
 function HeaderColaborador() {
 
@@ -22,7 +23,13 @@ function HeaderColaborador() {
         buscarInfos();
     }, [])
 
-    const fotoTratada = `url("data:image;base64,${infoPrestador.foto}")`
+    var fotoTratada;
+    if (infoPrestador.foto !== null) {
+        fotoTratada = `url("data:image;base64,${infoPrestador.foto}")`
+    }
+    else {
+        fotoTratada = `url("${foto}")`
+    }
 
     const image = {
         imagemPortfolio: {
