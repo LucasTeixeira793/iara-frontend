@@ -1,12 +1,19 @@
 import foto from "../html-css-template/img/img-prof-default.png";
 import { useNavigate } from "react-router-dom";
+//import fotoPadrao from "../html-css-template/img/foto-padrao.png";
 function CarrosselProfissionais(props) {
   const navigate = useNavigate();
-  const fotoTratada = `url("data:image;base64,${props.foto}")`
-
+  var fotoTratada;
+  if(props.foto!== null){
+    fotoTratada = `url("data:image;base64,${props.foto}")`
+  }
+  else{
+    fotoTratada = `url("${foto}")`
+  }
     const image = {
+
         imagemPortfolio: {
-            backgroundImage: fotoTratada,
+            backgroundImage: fotoTratada ,
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
@@ -17,6 +24,8 @@ function CarrosselProfissionais(props) {
             
         }
     }
+  
+  
   return (
     <>
       <div class="item">
@@ -25,7 +34,7 @@ function CarrosselProfissionais(props) {
           <div class="nome">
             <b>{props.nome}</b>
             <br />
-            {props.habilidade}
+            {props.sobrenome}
           </div>
           <div class="distancia">{props.distancia}</div>
           <div
