@@ -46,15 +46,11 @@ function Login() {
         }
         )
             .catch(error => {
-                if (error.request.status === 401) {
-                    console.log("success")
-                    //alert("Email e/ou senha inválidos!")
-                    swal.fire({
-                        icon: "error",
-                        title: <h1>Ops... Dados inválidos</h1>,
-                        text: "Por favor, tente novamente!"
-                    });
-                }
+                swal.fire({
+                    icon: "error",
+                    title: <h1>Ops... Dados inválidos</h1>,
+                    text: "Por favor, tente novamente!"
+                });
             });
     }
 
@@ -72,7 +68,6 @@ function Login() {
                                 id="input-email"
                                 name="email"
                                 type="email"
-                                required
                                 value={values.email}
                                 onChange={verificarValues}
                                 autocomplete="off"
@@ -85,7 +80,6 @@ function Login() {
                                 id="input-senha"
                                 name="senha"
                                 type="password"
-                                required
                                 value={values.senha}
                                 onChange={verificarValues}
                                 autocomplete="off"

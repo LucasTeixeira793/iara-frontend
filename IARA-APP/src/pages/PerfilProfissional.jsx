@@ -62,7 +62,7 @@ function PerfilProfissional() {
                         preferencias={preferenciaCompleta}
                     />
                     <div class="dflex jbetween margin-top-thirty">
-                        {"<CardTabelaDePrecos/>"}
+                        <CardTabelaDePrecos/>
                         <CardAgendarAtendimentos />
                     </div>
                     <CardPortifolio />
