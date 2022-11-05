@@ -70,18 +70,19 @@ function CardInformacoesDoProfissionalAdm(props) {
                     <b>Telefone</b><br />
                     <span>{props.telefone}</span><br /><br />
                     <b>Gênero</b><br />
-                        <span>{props.genero}</span>
+                    <span>{props.genero}</span>
                 </div>
                 <div>
                     <b>Endereço</b><br />
-                    <span>{props.rua}, {props.numero}<br />
+                    <span>{props.rua}, {props.numero},  {props.complemento}<br />
                         {props.bairro}, {props.cidade}<br />
                         {props.uf} - {props.cep}</span>
                 </div>
                 <div>
                     <b>Preferências de atendimento</b>
                     <ul>
-                        <li>{props.preferencias}</li>
+                        <li>{props.domicilio}</li>
+                        <li>{props.estabelecimento}</li>
                     </ul>
                     <br />
                     <b>Raio de atendimento</b>

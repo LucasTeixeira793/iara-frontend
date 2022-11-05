@@ -9,14 +9,14 @@ import moment from 'moment';
 import swal from 'sweetalert';
 
 
-function ViaCep(){
+function ViaCep() {
     var cep = document.getElementById("input-cep").value;
     apiCep.get(`/${cep}/json`).then((resposta) => {
         console.log(resposta)
-        document.getElementById("input-cidade").value=resposta.data.localidade;
-        document.getElementById("input-logradouro").value=resposta.data.logradouro;
-        document.getElementById("input-bairro").value=resposta.data.bairro;
-        document.getElementById("input-uf").value=resposta.data.uf;
+        document.getElementById("input-cidade").value = resposta.data.localidade;
+        document.getElementById("input-logradouro").value = resposta.data.logradouro;
+        document.getElementById("input-bairro").value = resposta.data.bairro;
+        document.getElementById("input-uf").value = resposta.data.uf;
     })
 }
 
@@ -28,12 +28,12 @@ function CadastroInformacoesPessoaisProfissional() {
             .replace(/^(\d{2})(\d)/g, "($1) $2")
             .replace(/(\d)(\d{4})$/, "$1-$2");
     };
-    
+
     const maskCPF = (value) => {
         return value
-        .replace(/\D/g, "") 
-        .replace(/^(\d{3})/g, "$1.")
-        .replace(/(\d{3})(\d{3})/g, "$1.$2-");
+            .replace(/\D/g, "")
+            .replace(/^(\d{3})/g, "$1.")
+            .replace(/(\d{3})(\d{3})/g, "$1.$2-");
     };
 
     const [nome, setNome] = useState('');
@@ -48,9 +48,10 @@ function CadastroInformacoesPessoaisProfissional() {
     const [cep, setCep] = useState('');
     const [numero, setNumero] = useState('');
     const [complemento, setComplemento] = useState(null);
-    const atendeDomicilio = false;
-    const atendeEstabelecimento = false;
-    const distancia = 0;
+    const [atendeDomicilio, setAtendeDomicilio ] = useState(false);
+    const [atendeEstabelecimento, setAtendeEstabelecimento] = useState(false);
+    const [categoria, setCategoria] = useState('');
+    const [distancia, setDistancia] = useState();
 
 
     const navigate = useNavigate();
@@ -72,6 +73,7 @@ function CadastroInformacoesPessoaisProfissional() {
             atendeEstabelecimento: atendeEstabelecimento,
             distancia: distancia
         }
+        console.log('-------' + jsonCliente)
         if (senha !== senhaVerificacao) {
             alert("As senhas devem ser iguais!");
         } else {
@@ -81,10 +83,11 @@ function CadastroInformacoesPessoaisProfissional() {
                     'Content-Type': 'application/json'
                 }
             }).then((resposta) => {
-                AssociarEndereco(resposta.data.id);    
+                AssociarEndereco(resposta.data.id);
+                // SubmeterFormHabilidade(resposta.data.id);
             });
-                navigate("/sucessoCadastro");
-           
+            //navigate("/sucessoCadastro");
+            alert('domicilio ' + atendeDomicilio + ' Estabelecimento ' + atendeEstabelecimento)
         }
 
     }
@@ -108,7 +111,7 @@ function CadastroInformacoesPessoaisProfissional() {
     }
 
     function AssociarEndereco(id) {
-        alert("Que bom ter você por aqui " + nome + "!!!")  
+        alert("Que bom ter você por aqui " + nome + "!!!")
         let jsonEndereco = {
             cep: cep,
             numero: numero,
@@ -123,12 +126,28 @@ function CadastroInformacoesPessoaisProfissional() {
         });
     }
 
+    function SubmeterFormHabilidade(id) {
+
+        // evento.preventDefault();
+
+        let jsonHabilidade = {
+            idPrestador: id,
+            categoria: categoria,
+            descricao: categoria
+        }
+
+        api.post(`/habilidade/prestador`, jsonHabilidade, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 
     return (
         <>
             <div class="page dflex acenter jcenter txt-medium">
                 <form id="cadastro-cliente" class="container" onSubmit={SubmeterFormProfissional}>
-                   <div class="logo transform prelative">
+                    <div class="logo transform prelative">
                         <Link to={'/escolhaCadastro'} >
                             <img src={logo} />
                             <span class="subtitulo">CADASTRO</span>
@@ -278,6 +297,139 @@ function CadastroInformacoesPessoaisProfissional() {
                                 required
                                 oninput="this.value = this.value.toUpperCase()" />
                             <label class="user-label">UF</label>
+                        </div>
+                    </div>
+                    <h2>Cadastro Profissional</h2>
+                    <div class="card bg-off-white low-shadow dflex jbetween fwrap">
+                        <div class="dflex fwrap astart jaround width-100-porc">
+                            <div class="width-50-margin-20">
+                                <h3>Cadastrar Serviços</h3>
+                                <div class="dflex fwrap jbetween">
+                                    <select class="input width-100-margin-10 margin-bottom-15" onChange={evento => setCategoria(evento.target.value)}>
+                                        <option value="" hidden="true" default="true">Escolha a Categoria</option>
+                                        <option value="Corte Cabelo">Corte de Cabelo</option>
+                                        <option value="Hidratação">Hidratação</option>
+                                        <option value="Maquiagem">Maquiagem</option>
+                                        <option value="Manicure">Manicure</option>
+                                        <option value="Design de sobrancelhas">Design de sobrancelhas</option>
+                                        <option value="Massagem">Massagem</option>
+                                        <option value="Pedicure">Pedicure</option>
+                                    </select>
+                                    <input type="number" min="1" step="any" placeholder="Preço (R$)" id="input-preco" class="input width-50-margin-10 margin-bottom-15" />
+                                    <input type="text" placeholder="Duração" class="input width-50-margin-10" id="input-duracao-servico" onkeypress="$(this).mask('00:00')" />
+                                </div>
+                                <button type="submit" class="button button-cadastro-profissional txt-white bg-hover-white txt-hover-dark-red">CADASTRAR</button>
+                            </div>
+                            <div class="width-50-margin-20">
+                                <h3>Serviços Cadastrados</h3>
+                                <div class="table">
+                                    <table>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <button type="button" class="trash">
+
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <button type="button" class="trash">
+
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="separador"></div>
+                        <div class="dflex fwrap astart jaround width-100-porc">
+                            <div class="width-50-margin-20">
+                                <h3>Dias de Atendimento</h3>
+                                <div class="dflex fwrap">
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="Segunda-Feira" />
+                                        <div class="checkmark"></div>
+                                        <span>Segunda-Feira</span>
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="Terça-Feira" />
+                                        <div class="checkmark"></div>
+                                        <span>Terça-Feira</span>
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="Quarta-Feira" />
+                                        <div class="checkmark"></div>
+                                        <span>Quarta-Feira</span>
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="Quinta-Feira" />
+                                        <div class="checkmark"></div>
+                                        <span>Quinta-Feira</span>
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="Sexta-Feira" />
+                                        <div class="checkmark"></div>
+                                        <span>Sexta-Feira</span>
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="Sábado" />
+                                        <div class="checkmark"></div>
+                                        <span>Sábado</span>
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="Domingo" />
+                                        <div class="checkmark"></div>
+                                        <span>Domingo</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="width-50-margin-20">
+                                <h3 class="margin-bottom-10">Horário de Atendimento</h3>
+                                <div class="dflex acenter jbetween margin-bottom-15">
+                                    <input type="text" placeholder="Duração" class="input width-40-porc" id="atendimento-inicial" onkeypress="$(this).mask('00:00')" />
+                                    <span>até</span>
+                                    <input type="text" placeholder="Duração" class="input width-40-porc" id="atendimento-final" onkeypress="$(this).mask('00:00')" />
+                                </div>
+                                <h3 class="margin-bottom-10">Horário de Pausa</h3>
+                                <div class="dflex acenter jbetween">
+                                    <input type="text" placeholder="Duração" class="input width-40-porc" id="pausa-inicial" onkeypress="$(this).mask('00:00')" />
+                                    <span>até</span>
+                                    <input type="text" placeholder="Duração" class="input width-40-porc" id="pausa-final" onkeypress="$(this).mask('00:00')" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="separador"></div>
+                        <div class="dflex fwrap astart jaround width-100-porc margin-bottom-neg-30">
+                            <div class="width-50-margin-20">
+                                <h3>Preferência de Atendimento</h3>
+                                <div class="dflex fwrap">
+                                    <label class="label-checkbox wide">
+                                        <input type="checkbox" id="checkbox-estabelecimento" name="Estabelecimento Próprio"  onChange={evento => setAtendeDomicilio(!atendeDomicilio)}/>
+                                        <div class="checkmark"></div>
+                                        <span>Estabelecimento Próprio</span>
+                                    </label>
+                                    <label class="label-checkbox wide">
+                                        <input type="checkbox" id="checkbox-domicilio" name="Em Domicílio" onChange={evento => setAtendeEstabelecimento(!atendeEstabelecimento)}/>
+                                        <div class="checkmark"></div>
+                                        <span>Em Domicílio</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="width-50-margin-20">
+                                <h3 class="margin-bottom-10">Raio de Atentimento em Domicílio</h3>
+                                <div class="dflex jbetween">
+                                    <div id="div-range" class="range-parent width-100-porc disabled">
+                                        <input type="number" min="1" max="100" step="any" placeholder="Raio de 0 Km até 100 Km" class="input width-50-margin-10" id="range"  onChange={evento => setDistancia(evento.target.value)}  />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <h2>Autenticação</h2>

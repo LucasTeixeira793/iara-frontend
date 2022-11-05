@@ -9,7 +9,9 @@ import HeaderColaborador from "../components/HearderColaborador";
 
 function AccountProfissional() {
 
-    const [infoPrestador, setPrestador] = useState({enderecos: [], servicos: []})
+    const [infoPrestador, setPrestador] = useState({ enderecos: [], servicos: [] })
+    const [domicilio, setDomicilio] = useState("")
+    const [estabelecimento, setEstabelecimento] = useState("")
 
     useEffect(() => {
 
@@ -18,6 +20,12 @@ function AccountProfissional() {
             setPrestador(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
             console.log(infoPrestador)
+            if (resposta.data.atendeDomicilio === true) {
+                setDomicilio("Domicílio")
+            }
+            if (resposta.data.atendeEstabelecimento === true) {
+                setEstabelecimento("Estabelecimento")
+            }
         }
         buscarInfos();
 
@@ -31,12 +39,7 @@ function AccountProfissional() {
         generoCompleto = "Masculino";
     }
 
-    var preferenciaCompleta;
-    if (infoPrestador.atendeDomicilio == true) {
-        preferenciaCompleta = "Em domicílio"
-    } else {
-        preferenciaCompleta = "Em estabelecimento"
-    }
+    
     if (infoPrestador.length != 0) {
         return (
             <>
@@ -55,11 +58,13 @@ function AccountProfissional() {
                             cidade={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].cidade : "Nao tem cidade"}
                             uf={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].uf : "Nao tem uf"}
                             cep={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].cep : "Nao tem cep"}
+                            complemento={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].complemento : "Nao tem cep"}
                             raio={infoPrestador.distancia}
-                            preferencias={preferenciaCompleta}
+                            domicilio={domicilio}
+                            estabelecimento={estabelecimento}
                         />
                         <div class="dflex jbetween margin-top-thirty">
-                            <CardTabelaDePrecosAdm id={infoPrestador.id}/>
+                            <CardTabelaDePrecosAdm id={infoPrestador.id} />
                             <CardAgendaDeAtendimentos id={infoPrestador.id} />
                         </div>
                         <CardPortifolioAdm />

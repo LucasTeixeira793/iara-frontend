@@ -66,7 +66,8 @@ function CardInformacoesDoProfissional(props) {
                 <div>
                     <b>Preferências de atendimento</b>
                     <ul>
-                        <li>{props.preferencias}</li>
+                        <li>{props.domicilio}</li>
+                        <li>{props.estabelecimento}</li>
                     </ul>
                     <br />
                     <b>Raio de atendimento</b>

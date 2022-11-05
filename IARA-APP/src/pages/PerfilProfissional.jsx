@@ -14,7 +14,8 @@ function PerfilProfissional() {
     const [objPrestador, setObjPrestador] = useState({enderecos: []});
 
     const [generoCompleto, setGeneroCompleto] = useState("")
-    const [preferenciaCompleta, setPreferenciaCompleta] = useState("")
+    const [domicilio, setDomicilio] = useState("")
+    const [estabelecimento, setEstabelecimento] = useState("")
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -29,9 +30,10 @@ function PerfilProfissional() {
                 }
 
                 if (res.data.atendeDomicilio === true) {
-                    setPreferenciaCompleta("Em domicílio")
-                } else {
-                    setPreferenciaCompleta("Em estabelecimento")
+                    setDomicilio("Domicílio")
+                }
+                if (res.data.atendeEstabelecimento === true) {
+                    setEstabelecimento("Estabelecimento")
                 }
             }).catch(erro => {
                 console.log(erro)
@@ -59,7 +61,9 @@ function PerfilProfissional() {
                         cep={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].cep : "Nao tem cep"}
                         complemento={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].complemento : "Nao tem cep"}
                         raio={objPrestador.distancia}
-                        preferencias={preferenciaCompleta}
+                        domicilio={domicilio}
+                        estabelecimento={estabelecimento}
+
                     />
                     <div class="dflex jbetween margin-top-thirty">
                         <CardTabelaDePrecos/>

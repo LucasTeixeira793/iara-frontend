@@ -92,7 +92,7 @@ function CadastroDeHabilidades(props) {
                                     <option value="Massagem">Massagem</option>
                                     <option value="Pedicure">Pedicure</option>
                                 </select>
-                                <select class="input width-50-margin-10 margin-bottom-15"  onChange={evento => setDescricao(evento.target.value)}>
+                                {/* <select class="input width-50-margin-10 margin-bottom-15"  onChange={evento => setDescricao(evento.target.value)}>
                                     <option value="" hidden="true" default="true">Escolha a Especialidade</option>
                                     <option value="Corte Cabelo">Corte Cabelo</option>
                                     <option value="Hidratação">Hidratação</option>
@@ -101,7 +101,7 @@ function CadastroDeHabilidades(props) {
                                     <option value="Design de sobrancelhas">Design de sobrancelhas</option>
                                     <option value="Massagem">Massagem</option>
                                     <option value="Pedicure">Pedicure</option>
-                                </select>
+                                </select> */}
                                 <input type="number" min="1" step="any" placeholder="Preço (R$)" id="input-preco" class="input width-50-margin-10 margin-bottom-15" />
                                 <input type="text" placeholder="Duração" class="input width-50-margin-10" id="input-duracao-servico" onkeypress="$(this).mask('00:00')" />
                             </div>
