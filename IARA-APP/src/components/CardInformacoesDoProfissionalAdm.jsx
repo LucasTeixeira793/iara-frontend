@@ -19,7 +19,6 @@ function CardInformacoesDoProfissionalAdm(props) {
             const resposta = await api.get(`prestador/${localStorage.idPrestador}`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setPrestador(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
-            console.log(infoPrestador)
         }
         buscarInfos();
     }, [])

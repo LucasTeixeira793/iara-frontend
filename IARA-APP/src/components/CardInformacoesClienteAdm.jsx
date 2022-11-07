@@ -39,7 +39,7 @@ function CardInformacoesClienteAdm(props) {
                     </div>
                 </div>
                 <div class="dflex acenter jbetween">
-                    <div class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-none dflex acenter jbetween"><span>4</span>/5 <i class="icon star"></i></div>
+                    <div class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-none dflex acenter jbetween"><span>{props.avaliacao}</span>/5 <i class="icon star"></i></div>
                 </div>
             </div>
             <div class="margin-top-thirty dflex jbetween width-50-porc">

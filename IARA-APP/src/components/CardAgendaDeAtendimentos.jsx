@@ -7,7 +7,6 @@ import 'moment/locale/pt-br'
 function CardAgendaDeAtendimentos(props) {
 
     const [infoAgenda, setAgenda] = useState([])
-    const [setPrestador] = useState([])
 
     useEffect(() => {
         // const infoPrestador = localStorage.dadosUsuario;

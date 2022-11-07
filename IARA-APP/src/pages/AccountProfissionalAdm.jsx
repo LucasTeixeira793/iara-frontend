@@ -19,7 +19,6 @@ function AccountProfissional() {
             const resposta = await api.get(`prestador/${localStorage.idPrestador}`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setPrestador(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
-            console.log(infoPrestador)
             if (resposta.data.atendeDomicilio === true) {
                 setDomicilio("Domicílio")
             }
@@ -39,7 +38,7 @@ function AccountProfissional() {
         generoCompleto = "Masculino";
     }
 
-    
+
     if (infoPrestador.length != 0) {
         return (
             <>
@@ -53,7 +52,7 @@ function AccountProfissional() {
                             telefone={infoPrestador.telefone}
                             genero={generoCompleto}
                             rua={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].rua : "Nao tem rua"}
-                            numero={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].numero : "Nao tem nummero"}
+                            numero={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].numero : "Nao tem número"}
                             bairro={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].bairro : "Nao tem bairro"}
                             cidade={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].cidade : "Nao tem cidade"}
                             uf={infoPrestador.enderecos.length > 0 ? infoPrestador.enderecos[0].uf : "Nao tem uf"}

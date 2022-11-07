@@ -11,7 +11,7 @@ import api from "../api";
 function PerfilProfissional() {
 
     const params = useParams();
-    const [objPrestador, setObjPrestador] = useState({enderecos: []});
+    const [objPrestador, setObjPrestador] = useState({ enderecos: [] });
 
     const [generoCompleto, setGeneroCompleto] = useState("")
     const [domicilio, setDomicilio] = useState("")
@@ -53,20 +53,20 @@ function PerfilProfissional() {
                         sobrenome={objPrestador.sobrenome}
                         telefone={objPrestador.telefone}
                         genero={generoCompleto}
-                        rua={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].rua : "Nao tem rua"}
-                        numero={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].numero : "Nao tem nummero"}
-                        bairro={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].bairro : "Nao tem bairro"}
-                        cidade={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].cidade : "Nao tem cidade"}
-                        uf={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].uf : "Nao tem uf"}
-                        cep={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].cep : "Nao tem cep"}
-                        complemento={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].complemento : "Nao tem cep"}
+                        rua={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].rua : "Não tem rua"}
+                        numero={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].numero : "Não tem número"}
+                        bairro={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].bairro : "Não tem bairro"}
+                        cidade={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].cidade : "Não tem cidade"}
+                        uf={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].uf : "Não tem UF"}
+                        cep={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].cep : "Não tem cep"}
+                        complemento={objPrestador.enderecos.length > 0 ? objPrestador.enderecos[0].complemento : "Não tem complem."}
                         raio={objPrestador.distancia}
                         domicilio={domicilio}
                         estabelecimento={estabelecimento}
 
                     />
                     <div class="dflex jbetween margin-top-thirty">
-                        <CardTabelaDePrecos/>
+                        <CardTabelaDePrecos />
                         <CardAgendarAtendimentos />
                     </div>
                     <CardPortifolio />

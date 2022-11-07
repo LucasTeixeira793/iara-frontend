@@ -13,7 +13,6 @@ import CarrosselPropaganda from "../components/CarrosselPropaganda";
 
 function Home() {
   const [profissionais, setProfissionais] = useState([]);
-  
 
   const settings = {
     slidesToShow: 5,
@@ -23,12 +22,13 @@ function Home() {
   };
 
   async function selecionarCategoria(idCategoria) {
-    const resposta = await api.get(`categoria/prestador/${idCategoria}`, {headers: {"Access-Control-Allow-Origin": "*"}});
+    const resposta = await api.get(`categoria/prestador/${idCategoria}`, { headers: { "Access-Control-Allow-Origin": "*" } });
     setProfissionais(resposta.data);
     console.log("OLHA O QUE VEIO DA API!!", resposta.data)
   }
+
   async function selecionarProfissionais(idCategoria) {
-    const resposta = await api.get(`categoria/prestador/${idCategoria}`, {headers: {"Access-Control-Allow-Origin": "*"}});
+    const resposta = await api.get(`categoria/prestador/${idCategoria}`, { headers: { "Access-Control-Allow-Origin": "*" } });
     setProfissionais(resposta.data);
     console.log("OLHA O QUE VEIO DA API!!", resposta.data)
   }
@@ -49,7 +49,7 @@ function Home() {
                   sobrenome={profissional.sobrenome}
                   distancia={profissional.distancia + " KM"}
                   avaliacao={4}
-                  foto={profissional.foto}             
+                  foto={profissional.foto}
                 />
               ))}
             </Slider>
