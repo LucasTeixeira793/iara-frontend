@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import 'moment/locale/pt-br'
 
-function CardAgendaDeAtendimentos(props) {
+function CardAgendaDeAtendimentos() {
 
     const [infoAgenda, setAgenda] = useState([])
 
@@ -14,9 +14,11 @@ function CardAgendaDeAtendimentos(props) {
         //     setPrestador(infoPrestador);
         // }
         async function buscarAgenda() {
-            const resposta = await api.get(`agenda/${props.id}`);
+            console.log(localStorage.dadosUsuario.id);
+            const resposta = await api.get(`agenda/${localStorage.dadosUsuario.id}`);
             setAgenda(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Agenda", resposta.data)
+            //console.log("OLHA O QUE VEIO DA API!! --- Agendaaaa", resposta)
         }
         buscarAgenda();
     }, [])

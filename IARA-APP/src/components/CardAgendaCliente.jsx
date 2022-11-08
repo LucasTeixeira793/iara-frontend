@@ -4,17 +4,17 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import 'moment/locale/pt-br'
 
-function CardAgendaCliente() {
+function CardAgendaCliente(props) {
 
     const [infoAgenda, setAgenda] = useState([])
     const [infoIdPrestador, setIdPrestador] = useState([])
     const [setCliente] = useState([])
 
     useEffect(() => {
-        const infoCliente = localStorage.dadosUsuario;
-        if (infoCliente) {
-            setCliente(infoCliente);
-        }
+        // const infoCliente = localStorage.dadosUsuario;
+        // if (infoCliente) {
+        //     setCliente(infoCliente);
+        // }
 
         async function buscarAgenda() {
             const resposta = await api.get(`servico-atribuido/cliente/${localStorage.idCliente}/ativos`);

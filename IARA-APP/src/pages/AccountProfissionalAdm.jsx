@@ -31,7 +31,7 @@ function AccountProfissional() {
     }, [])
 
     var generoCompleto;
-    if (infoPrestador.genero == 'F') {
+    if (infoPrestador.genero === 'F') {
         generoCompleto = "Feminino";
     }
     else {
@@ -39,7 +39,7 @@ function AccountProfissional() {
     }
 
 
-    if (infoPrestador.length != 0) {
+    if (infoPrestador.length !== 0) {
         return (
             <>
                 <HeaderColaborador />
