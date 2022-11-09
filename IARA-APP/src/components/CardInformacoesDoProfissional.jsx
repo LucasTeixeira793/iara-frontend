@@ -59,7 +59,7 @@ function CardInformacoesDoProfissional(props) {
                 </div>
                 <div>
                     <b>Endereço</b><br />
-                    <span>{props.rua}, {props.numero}, {props.complemento}<br />
+                    <span>{props.rua}, {props.numero} {props.complemento}<br />
                         {props.bairro}, {props.cidade}<br />
                         {props.uf} - {props.cep}</span>
                 </div>

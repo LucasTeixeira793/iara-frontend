@@ -67,7 +67,6 @@ function CadastroInformacoesPessoaisCliente() {
         if (senha !== senhaVerificacao) {
             alert("As senhas devem ser iguais!");
         } else {
-            SubmeterFormEndereco();
             api.post('/cliente', jsonCliente, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -81,31 +80,8 @@ function CadastroInformacoesPessoaisCliente() {
         }
     }
 
-
-
-    function SubmeterFormEndereco() {
-
-        let jsonEndereco = {
-            cep: cep,
-            numero: numero,
-            complemento: complemento
-        }
-
-        if (senha !== senhaVerificacao) {
-            alert("As senhas devem ser iguais!");
-        } else {
-            api.post('/endereco', jsonEndereco, {
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    'Content-Type': 'application/json'
-                }
-            });
-        }
-
-    }
-
     function AssociarEndereco(id) {
-        alert("Que bom ter você por aqui " + nome + "!!!")  
+          
         let jsonEndereco = {
             cep: cep,
             numero: numero,
@@ -212,7 +188,7 @@ function CadastroInformacoesPessoaisCliente() {
                     </div>
 
                     <h2>Endereço</h2>
-                    <div class="card bg-off-white low-shadow dflex jbetween fwrap" onSubmit={SubmeterFormEndereco}>
+                    <div class="card bg-off-white low-shadow dflex jbetween fwrap" >
                         <div class="user-input-wrp width-4 input-group">
                             <input
                                 onKeyUp={ViaCep}
