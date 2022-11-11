@@ -13,6 +13,54 @@ function CadastroDeHabilidades(props) {
     const [descricao, setDescricao] = useState("");
     const [id, setId] = useState();
 
+    const [domingo, setDomingo] = useState(false);
+    const [segunda, setSegunda] = useState(false);
+    const [terca, setTerca] = useState(false);
+    const [quarta, setQuarta] = useState(false);
+    const [quinta, setQuinta] = useState(false);
+    const [sexta, setSexta] = useState(false);
+    const [sabado, setSabado] = useState(false);
+
+    function agenda(){
+        alert("entrei")
+        if(segunda === true){
+            var seg = 0;    
+        }
+        alert("segunda "+ seg);
+        alert("segunda "+ segunda)
+
+        
+        if(terca === true){
+            setTerca(2);
+        }else{
+            setTerca();
+        }
+
+        if(quarta === true){
+            setQuarta(3);
+        }else{
+            setQuarta();
+        }
+
+        if(quinta === true){
+            setQuinta(4);
+        }else{
+            setQuinta();
+        }
+
+        if(sexta === true){
+            setSexta(5);
+        }else{
+            setSexta();
+        }
+
+        if(sabado === true){
+            setSabado(6);
+        }else{
+            setSabado();
+        }
+    }
+
     useEffect(() => {
         const infoPrestador = localStorage.dadosUsuario;
         if (infoPrestador) {
@@ -44,27 +92,28 @@ function CadastroDeHabilidades(props) {
     }, [])
 
     function SubmeterFormHabilidade(evento) {
+        agenda();
 
-        evento.preventDefault();
+    //     evento.preventDefault();
 
-        let jsonHabilidade = {
-            idPrestador: parseInt(id),
-            categoria: categoria,
-            descricao: descricao
-        }
+    //     let jsonHabilidade = {
+    //         idPrestador: parseInt(id),
+    //         categoria: categoria,
+    //         descricao: descricao
+    //     }
 
-        api.post(`/habilidade/prestador`, jsonHabilidade, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+    //     api.post(`/habilidade/prestador`, jsonHabilidade, {
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     });
 
-    function CadastrarAgenda(){
+    // function CadastrarAgenda(){
 
-        let jsonAgenda = {
+    //     let jsonAgenda = {
             
-        }
-    }
+    //     }
+    // }
 
     }
     return (
@@ -141,7 +190,7 @@ function CadastroDeHabilidades(props) {
                             <h3>Dias de Atendimento</h3>
                             <div class="dflex fwrap">
                                 <label class="label-checkbox">
-                                    <input type="checkbox" name="Segunda-Feira" />
+                                    <input type="checkbox" name="Segunda-Feira" value={0}  onChange={evento => setSegunda(!segunda)}/>
                                     <div class="checkmark"></div>
                                     <span>Segunda-Feira</span>
                                 </label>

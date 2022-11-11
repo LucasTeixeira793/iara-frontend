@@ -123,65 +123,53 @@ function CadastroInformacoesPessoaisProfissional() {
 
     function SubmeterAgenda(id){
 
-        if(domingo === true){
-            setDomingo(0);
-        }else{
-            setDomingo();
-        }
-
         if(segunda === true){
-            setSegunda(1);
-        }else{
-            setSegunda();
+            var seg = 0;
         }
 
         if(terca === true){
-            setTerca(2);
-        }else{
-            setTerca();
+            var ter = 1;
         }
 
         if(quarta === true){
-            setQuarta(3);
-        }else{
-            setQuarta();
+            var qua = 2;
         }
-
+        
         if(quinta === true){
-            setQuinta(4);
-        }else{
-            setQuinta();
+            var qui = 3;
         }
 
         if(sexta === true){
-            setSexta(5);
-        }else{
-            setSexta();
+            var sex = 4;
         }
 
         if(sabado === true){
-            setSabado(6);
-        }else{
-            setSabado();
+            var sab = 5;
+        }
+
+        
+        if(domingo === true){
+            var dom = 6;
         }
 
         let jsonAgenda = {
             idPrestador: id ,
             diasDaSemana: 
             [
-                domingo,
-                segunda,
-                terca,
-                quarta,
-                quinta,
-                sexta,
-                sabado
+                seg,
+                ter,
+                qua,
+                qui,
+                sex,
+                sab,
+                dom
             ],
             horaInicioTrabalho: atendimentoInicial,
             horaFimTrabalho: atendimentoFim,
             horaInicioPausa: pausaInicial,
             horaFimPausa: pausaFim
           }
+          alert(diasDaSemana)
           console.log(jsonAgenda);
 
         api.post(`agenda/intervalos`, jsonAgenda, {
@@ -439,37 +427,37 @@ function CadastroInformacoesPessoaisProfissional() {
                                 <h3>Dias de Atendimento</h3>
                                 <div class="dflex fwrap">
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Segunda-Feira"  onChange={evento => setSegunda(evento.target.value)}/>
+                                        <input type="checkbox" name="Segunda-Feira"  onChange={evento => setSegunda(!segunda)}/>
                                         <div class="checkmark"></div>
                                         <span>Segunda-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Terça-Feira"  onChange={evento => setTerca(evento.target.value)}/>
+                                        <input type="checkbox" name="Terça-Feira"  onChange={evento => setTerca(!terca)}/>
                                         <div class="checkmark"></div>
                                         <span>Terça-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Quarta-Feira"  onChange={evento => setQuarta(evento.target.value)}/>
+                                        <input type="checkbox" name="Quarta-Feira"  onChange={evento => setQuarta(!quarta)}/>
                                         <div class="checkmark"></div>
                                         <span>Quarta-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Quinta-Feira"  onChange={evento => setQuinta(evento.target.value)}/>
+                                        <input type="checkbox" name="Quinta-Feira"  onChange={evento => setQuinta(!quinta)}/>
                                         <div class="checkmark"></div>
                                         <span>Quinta-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Sexta-Feira"  onChange={evento => setSexta(evento.target.value)}/>
+                                        <input type="checkbox" name="Sexta-Feira"  onChange={evento => setSexta(!sexta)}/>
                                         <div class="checkmark"></div>
                                         <span>Sexta-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Sábado"  onChange={evento => setSabado(evento.target.value)}/>
+                                        <input type="checkbox" name="Sábado"  onChange={evento => setSabado(!sabado)}/>
                                         <div class="checkmark"></div>
                                         <span>Sábado</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Domingo"  onClick={evento => setDomingo(evento.target.value)}/>
+                                        <input type="checkbox" name="Domingo"  onClick={evento => setDomingo(!domingo)}/>
                                         <div class="checkmark"></div>
                                         <span>Domingo</span>
                                     </label>
