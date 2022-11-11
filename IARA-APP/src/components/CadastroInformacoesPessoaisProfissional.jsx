@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import 'moment/locale/pt-br';
 import moment from 'moment';
 import swal from 'sweetalert';
+import { set } from 'react-hook-form';
 
 
 function ViaCep() {
@@ -57,6 +58,14 @@ function CadastroInformacoesPessoaisProfissional() {
     const [atendimentoFim, setAtendimentoFim] = useState('');
     const [pausaInicial, setPausaInicial] = useState('');
     const [pausaFim, setPausaFim] = useState('');
+    const [domingo, setDomingo] = useState(false);
+    const [segunda, setSegunda] = useState(false);
+    const [terca, setTerca] = useState(false);
+    const [quarta, setQuarta] = useState(false);
+    const [quinta, setQuinta] = useState(false);
+    const [sexta, setSexta] = useState(false);
+    const [sabado, setSabado] = useState(false);
+
 
 
     const diaSemana = [];
@@ -98,15 +107,76 @@ function CadastroInformacoesPessoaisProfissional() {
                 // SubmeterFormHabilidade(resposta.data.id);
             });
             //navigate("/sucessoCadastro");
+            console.log
+            (
+                "dom: " + domingo +
+                " seg: " + segunda +
+                " ter: " + terca +
+                " qua: " + quarta +
+                " qui: " + quinta +
+                " sex: " + quarta +
+                " sab: " + sabado 
+            )
         }
 
     }
 
     function SubmeterAgenda(id){
 
+        if(domingo === true){
+            setDomingo(0);
+        }else{
+            setDomingo();
+        }
+
+        if(segunda === true){
+            setSegunda(1);
+        }else{
+            setSegunda();
+        }
+
+        if(terca === true){
+            setTerca(2);
+        }else{
+            setTerca();
+        }
+
+        if(quarta === true){
+            setQuarta(3);
+        }else{
+            setQuarta();
+        }
+
+        if(quinta === true){
+            setQuinta(4);
+        }else{
+            setQuinta();
+        }
+
+        if(sexta === true){
+            setSexta(5);
+        }else{
+            setSexta();
+        }
+
+        if(sabado === true){
+            setSabado(6);
+        }else{
+            setSabado();
+        }
+
         let jsonAgenda = {
             idPrestador: id ,
-            diasDaSemana: [diasDaSemana],
+            diasDaSemana: 
+            [
+                domingo,
+                segunda,
+                terca,
+                quarta,
+                quinta,
+                sexta,
+                sabado
+            ],
             horaInicioTrabalho: atendimentoInicial,
             horaFimTrabalho: atendimentoFim,
             horaInicioPausa: pausaInicial,
@@ -120,7 +190,7 @@ function CadastroInformacoesPessoaisProfissional() {
             }
         });
     }
-
+    console.log(domingo)
     function AssociarEndereco(id) {
         let jsonEndereco = {
             cep: cep,
@@ -369,37 +439,37 @@ function CadastroInformacoesPessoaisProfissional() {
                                 <h3>Dias de Atendimento</h3>
                                 <div class="dflex fwrap">
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Segunda-Feira" value={1} onChange={evento =>guardaDias(document.getElementsByName("Segunda-Feira")[0].valu)}/>
+                                        <input type="checkbox" name="Segunda-Feira"  onChange={evento => setSegunda(evento.target.value)}/>
                                         <div class="checkmark"></div>
                                         <span>Segunda-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Terça-Feira" value={2} onChange={evento => setDiasDaSemana(evento.target.value)}/>
+                                        <input type="checkbox" name="Terça-Feira"  onChange={evento => setTerca(evento.target.value)}/>
                                         <div class="checkmark"></div>
                                         <span>Terça-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Quarta-Feira" value={3} onChange={evento => setDiasDaSemana(evento.target.value)}/>
+                                        <input type="checkbox" name="Quarta-Feira"  onChange={evento => setQuarta(evento.target.value)}/>
                                         <div class="checkmark"></div>
                                         <span>Quarta-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Quinta-Feira" value={4} onChange={evento => setDiasDaSemana(evento.target.value)}/>
+                                        <input type="checkbox" name="Quinta-Feira"  onChange={evento => setQuinta(evento.target.value)}/>
                                         <div class="checkmark"></div>
                                         <span>Quinta-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Sexta-Feira" value={5} onChange={evento => setDiasDaSemana(evento.target.value)}/>
+                                        <input type="checkbox" name="Sexta-Feira"  onChange={evento => setSexta(evento.target.value)}/>
                                         <div class="checkmark"></div>
                                         <span>Sexta-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Sábado" value={6} onChange={evento => setDiasDaSemana(evento.target.value)}/>
+                                        <input type="checkbox" name="Sábado"  onChange={evento => setSabado(evento.target.value)}/>
                                         <div class="checkmark"></div>
                                         <span>Sábado</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Domingo" value={1} onChange={evento => setDiasDaSemana(evento.target.value)}/>
+                                        <input type="checkbox" name="Domingo"  onClick={evento => setDomingo(evento.target.value)}/>
                                         <div class="checkmark"></div>
                                         <span>Domingo</span>
                                     </label>

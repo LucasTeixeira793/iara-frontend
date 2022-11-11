@@ -9,7 +9,7 @@ import 'moment/locale/pt-br'
 function CardTabelaDePrecosAdm(props) {
 
     const [infoPreco, setPreco] = useState([])
-    const [setPrestador] = useState([])
+    const [prestador, setPrestador] = useState([])
 
     useEffect(() => {
         // const infoPrestador = localStorage.dadosUsuario;

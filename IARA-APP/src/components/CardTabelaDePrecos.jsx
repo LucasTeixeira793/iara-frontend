@@ -3,10 +3,10 @@ import api from "../api";
 import { useEffect, useState } from "react";
 import 'moment/locale/pt-br'
 
-function CardTabelaDePrecosAdm() {
+function CardTabelaDePrecos() {
 
     const [infoPreco, setPreco] = useState([])
-    const [setPrestador] = useState([])
+    const [prestador, setPrestador] = useState([])
 
     useEffect(() => {
         const infoPrestador = localStorage.dadosUsuario;
@@ -50,4 +50,4 @@ function CardTabelaDePrecosAdm() {
 
 }
 
-export default CardTabelaDePrecosAdm;
+export default CardTabelaDePrecos;
