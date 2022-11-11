@@ -2,8 +2,51 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import foto from "../html-css-template/img/img-prof-default.png";
+import {useRef} from 'react';
+import api from "../api";
 
 function CardInformacoesClienteAdm(props) {
+
+    const inputRef = useRef(null);
+    const handleClick = () => {
+        inputRef.current.click();
+    };
+
+    const handleFileChange = event => {
+        const fileObj = event.target.files && event.target.files[0];
+        if (!fileObj) {
+            return;
+        }
+
+        event.target.value = null;
+
+        console.log(event.target.files);
+
+        console.log(fileObj);
+        console.log(fileObj.name);
+        
+        const formData = new FormData()
+
+        if (fileObj) {
+        formData.append('novaFoto', fileObj, fileObj.name)
+        }
+
+        let jsonCliente = {
+            novaFoto: fileObj
+        }
+
+            api.patch(`/foto/8`, jsonCliente, {
+                headers: {
+                    'Content-Type': 'image/jpeg'
+                }
+            }
+            ).then(() => {
+                console.log('nova foto salva')
+                //window.location.reload();
+            });
+        
+    };
+
 
     var fotoTratada;
     if (props.foto !== null) {
@@ -32,7 +75,15 @@ function CardInformacoesClienteAdm(props) {
                 </a>
             </Link>
             <div class="dflex acenter jbetween">
-                <div class="dflex acenter jbetween">
+                <div class="dflex acenter jbetween prelative">
+                <input
+                    style={{display: 'none'}}
+                    ref={inputRef}
+                    type="file"
+                    onChange={handleFileChange}
+                />
+                <button class="btn-editar-foto pabsolute bg-hover-white txt-hover-dark-red transform border-none" onClick={handleClick}>
+                <FontAwesomeIcon icon={faPen} /></button>
                     <div style={image.imagemPortfolio} alt="Foto de perfil" class="height-85 margin-right-twenty" />
                     <div>
                         <b>{props.nome} {props.sobrenome}</b><br />
