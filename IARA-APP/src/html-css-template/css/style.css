@@ -1029,6 +1029,10 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
 }
 
+.border-none {
+  border: none;
+}
+
 .zero-km{
   left: 0;
   bottom: -13px;
@@ -1103,6 +1107,18 @@ i.icon.star {
   font-size: 18px;
 }
 
+.btn-editar-foto {
+  color: #ffffff;
+  background-color: #c80230;
+  border-radius: 20px;
+  padding: 7px;
+  top: -2px;
+  left: 54px;
+  box-shadow: 0px 3px 5px 0px #de0235ab;
+  cursor: pointer;
+  font-size: 15px;
+}
+
 .font-size-sixteen{
   font-size: 16px;
 }
@@ -1155,10 +1171,10 @@ i.icon.star {
   background-color: #fdfbfbf0;
     padding: 13px;
     text-align: right;
-    right: 4px;
+    right: 19px;
     border-radius: 9px;
     z-index: 1;
-    top: 72px;
+    top: 91px;
     box-shadow: 0px 3px 9px 0px #de023573;
     width: 131px;
     transition: all .4s;
