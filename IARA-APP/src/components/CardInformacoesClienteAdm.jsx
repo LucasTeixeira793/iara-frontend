@@ -2,7 +2,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import foto from "../html-css-template/img/img-prof-default.png";
-import {useRef} from 'react';
+import { useRef } from 'react';
 import api from "../api";
 
 function CardInformacoesClienteAdm(props) {
@@ -24,27 +24,31 @@ function CardInformacoesClienteAdm(props) {
 
         console.log(fileObj);
         console.log(fileObj.name);
-        
-        const formData = new FormData()
+
+        const formData = new FormData();
 
         if (fileObj) {
-        formData.append('novaFoto', fileObj, fileObj.name)
+            formData.append('novaFoto', fileObj, fileObj.name)
         }
 
-        let jsonCliente = {
-            novaFoto: fileObj
-        }
+        console.log("formData")
+        console.log(formData)
 
-            api.patch(`/foto/8`, jsonCliente, {
+        function atualizarTeste() {
+            api.patch(`cliente/foto/${localStorage.idCliente}`, fileObj, {
                 headers: {
                     'Content-Type': 'image/jpeg'
                 }
             }
-            ).then(() => {
+            ).then((res) => {
+                console.log(res)
                 console.log('nova foto salva')
-                //window.location.reload();
+                window.location.reload();
             });
-        
+        }
+
+        atualizarTeste();
+
     };
 
 
@@ -76,14 +80,15 @@ function CardInformacoesClienteAdm(props) {
             </Link>
             <div class="dflex acenter jbetween">
                 <div class="dflex acenter jbetween prelative">
-                <input
-                    style={{display: 'none'}}
-                    ref={inputRef}
-                    type="file"
-                    onChange={handleFileChange}
-                />
-                <button class="btn-editar-foto pabsolute bg-hover-white txt-hover-dark-red transform border-none" onClick={handleClick}>
-                <FontAwesomeIcon icon={faPen} /></button>
+                    <input
+                        style={{ display: 'none' }}
+                        ref={inputRef}
+                        type="file"
+                        onChange={handleFileChange}
+                    />
+                    <button class="btn-editar-foto pabsolute bg-hover-white txt-hover-dark-red  transform border-none" onClick={handleClick}>
+                        <FontAwesomeIcon icon={faPen} />
+                    </button>
                     <div style={image.imagemPortfolio} alt="Foto de perfil" class="height-85 margin-right-twenty" />
                     <div>
                         <b>{props.nome} {props.sobrenome}</b><br />
