@@ -30,7 +30,7 @@ function LinhaAgenda(props) {
         <td><span class="button bg-red txt-white margin-none pointer-none">{props.horario}</span></td>
         <td><span class="button bg-red txt-white margin-none pointer-none">{props.valor}</span></td>
         <td><span class="button bg-red margin-none bg-hover-white">
-          <u>
+          <u class="txt-white txt-hover-dark-red">
             <a 
              onclick={() =>
                  navigate(`/perfilCliente/${infoAgenda.servicoAtribuido.cliente.id}`)
