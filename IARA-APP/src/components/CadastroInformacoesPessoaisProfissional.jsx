@@ -51,9 +51,7 @@ function CadastroInformacoesPessoaisProfissional() {
     const [complemento, setComplemento] = useState(null);
     const [atendeDomicilio, setAtendeDomicilio] = useState(false);
     const [atendeEstabelecimento, setAtendeEstabelecimento] = useState(false);
-    const [categoria, setCategoria] = useState('');
     const [distancia, setDistancia] = useState();
-    const [diasDaSemana, setDiasDaSemana] = useState([]);
     const [atendimentoInicial, setAtendimentoInicial] = useState('');
     const [atendimentoFim, setAtendimentoFim] = useState('');
     const [pausaInicial, setPausaInicial] = useState('');
@@ -70,17 +68,6 @@ function CadastroInformacoesPessoaisProfissional() {
     const [tipo, setTipo] = useState();
     const ativo = true;
     const [duracaoEstimada, setDuracaoEstimada] = useState();
-    var servicos = [];
-
-
-
-
-
-
-    // function SetDiasDaSemana(name){
-    //     console.log(name)
-    // }
-
     const navigate = useNavigate();
 
     function SubmeterFormProfissional(evento) {
@@ -112,39 +99,16 @@ function CadastroInformacoesPessoaisProfissional() {
                 cadastroServico(resposta.data.id)
                 AssociarEndereco(resposta.data.id);
                 SubmeterAgenda(resposta.data.id)
-                // SubmeterFormHabilidade(resposta.data.id);
+                SubmeterFormHabilidade(resposta.data.id);
             });
-            //navigate("/sucessoCadastro");
-            console.log
-                (
-                    "dom: " + domingo +
-                    " seg: " + segunda +
-                    " ter: " + terca +
-                    " qua: " + quarta +
-                    " qui: " + quinta +
-                    " sex: " + quarta +
-                    " sab: " + sabado
-                )
+            navigate("/sucessoCadastro");
         }
 
     }
 
     function cadastroServico(id) {
-        alert("entrei cadastroServico")
-
-        // let servico = {
-        //     valor: valor,
-        //     descricao: descricao,
-        //     tipo: tipo,
-        //     ativo: ativo,
-        //     duracaoEstimada: duracaoEstimada
-        // }
 
 
-        // let jsonServico = {
-        //     idPrestador: id,
-        //     servico: servico
-        // }
         var jsonServico = {
             idPrestador: id,
             servico: {
@@ -155,10 +119,8 @@ function CadastroInformacoesPessoaisProfissional() {
                 duracaoEstimada: duracaoEstimada
             }
         }
-        console.log(jsonServico)
-        // console.log("servico " + servico)
-        alert("idPrestador: " + id + " valor: " + valor + " descricao: " + descricao + " tipo: " + tipo + " duracaoEstimada: " + duracaoEstimada)
-
+        
+        
         api.post(`servico/`, jsonServico, {
             headers: {
                 'Content-Type': 'application/json'
@@ -231,7 +193,7 @@ function CadastroInformacoesPessoaisProfissional() {
             numero: numero,
             complemento: complemento
         }
-        console.log(jsonEndereco);
+
 
         api.post(`/prestador/endereco/${id}`, jsonEndereco, {
             headers: {
@@ -242,12 +204,10 @@ function CadastroInformacoesPessoaisProfissional() {
 
     function SubmeterFormHabilidade(id) {
 
-        // evento.preventDefault();
-
         let jsonHabilidade = {
             idPrestador: id,
-            categoria: categoria,
-            descricao: categoria
+            categoria: tipo,
+            descricao: tipo
         }
 
         api.post(`/habilidade/prestador`, jsonHabilidade, {
@@ -255,11 +215,6 @@ function CadastroInformacoesPessoaisProfissional() {
                 'Content-Type': 'application/json'
             }
         });
-    }
-
-    function guardaDias(valor) {
-        console.log(valor);
-
     }
 
     return (
@@ -421,10 +376,10 @@ function CadastroInformacoesPessoaisProfissional() {
                     <h2>Cadastro Profissional</h2>
                     <div class="card bg-off-white low-shadow dflex jbetween fwrap">
                         <div class="dflex fwrap astart jaround width-100-porc">
-                            <div class="width-50-margin-20">
+                            <div class="width-100-margin-20">
                                 <h3>Cadastrar Serviços</h3>
                                 <div class="dflex fwrap jbetween">
-                                    <select class="input width-50-margin-10 margin-bottom-15" onChange={evento => setTipo(evento.target.value)}>
+                                    <select class="input width-100-margin-10 margin-bottom-15" onChange={evento => setTipo(evento.target.value)}>
                                         <option value="" hidden="true" default="true">Escolha a Categoria</option>
                                         <option value="Corte Cabelo">Corte de Cabelo</option>
                                         <option value="Hidratação">Hidratação</option>
@@ -434,39 +389,11 @@ function CadastroInformacoesPessoaisProfissional() {
                                         <option value="Massagem">Massagem</option>
                                         <option value="Pedicure">Pedicure</option>
                                     </select>
-                                    <input class="input width-50-margin-10 margin-bottom-15" placeholder="Descrição" onChange={evento => setDescricao(evento.target.value)} />
-                                    <input type="number" min="1" step="any" placeholder="Preço (R$)" id="input-preco" class="input width-50-margin-10 margin-bottom-15" onChange={evento => setValor(evento.target.value)} />
-                                    <input type="text" placeholder="Duração" class="input width-50-margin-10" id="input-duracao-servico" onkeypress="$(this).mask('00:00')" onChange={evento => setDuracaoEstimada(evento.target.value)} />
+                                    <input class="input width-100-margin-10 margin-bottom-15" placeholder="Descrição" onChange={evento => setDescricao(evento.target.value)} />
+                                    <input type="number" min="1" step="any" placeholder="Preço (R$)" id="input-preco" class="input width-100-margin-10 margin-bottom-15" onChange={evento => setValor(evento.target.value)} />
+                                    <input type="text" placeholder="Duração" class="input width-100-margin-10" id="input-duracao-servico" onkeypress="$(this).mask('00:00')" onChange={evento => setDuracaoEstimada(evento.target.value)} />
                                 </div>
-                                <button class="button button-cadastro-profissional txt-white bg-hover-white txt-hover-dark-red">CADASTRAR</button>
                             </div>
-                            {/* <div class="width-50-margin-20">
-                                <h3>Serviços Cadastrados</h3>
-                                <div class="table">
-                                    <table>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <button type="button" class="trash">
-
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <button type="button" class="trash">
-
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div> */}
                         </div>
                         <div class="separador"></div>
                         <div class="dflex fwrap astart jaround width-100-porc">
