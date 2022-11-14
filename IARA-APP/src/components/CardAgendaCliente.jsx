@@ -7,23 +7,16 @@ import 'moment/locale/pt-br'
 function CardAgendaCliente(props) {
 
     const [infoAgenda, setAgenda] = useState([])
-    const [infoIdPrestador, setIdPrestador] = useState([])
     const [setCliente] = useState([])
 
     useEffect(() => {
-        // const infoCliente = localStorage.dadosUsuario;
-        // if (infoCliente) {
-        //     setCliente(infoCliente);
-        // }
 
         async function buscarAgenda() {
             const resposta = await api.get(`servico-atribuido/cliente/${localStorage.idCliente}/ativos`);
             setAgenda(resposta.data);
             console.log("AAAAAAAAAAAAAAAAAAAA", resposta.data);
             
-            const resposta2 = await api.get(`prestador/${resposta.data[0].servico.prestador}`); 
-            setIdPrestador(resposta2.data)
-            console.log("OLHA O QUE VEIO DA API!! --- AgendaCliente", resposta2.data)
+            
         }
         buscarAgenda();
         
@@ -56,11 +49,10 @@ function CardAgendaCliente(props) {
                         {infoAgenda.map((agenda) => (
                             <LinhaTabelaAgenda
                                 tipo={agenda.servico.tipo}
-                                dia={formDate.format(agenda.data)}
-                                horario={formHour.format(infoAgenda.dataHoraInicio)}
+                                dia={agenda.dataHoraInicio.substr(0,10)}
+                                horario={agenda.dataHoraInicio.substr(11, 11)}
                                 valor={formCurrency.format(agenda.servico.valor)}
-                                nomeCliente={infoIdPrestador.nome}
-                                sobrenomeCliente={infoIdPrestador.sobrenome}
+                                id = {agenda.servico.prestador}
                             />
                         ))}
                     </table>

@@ -49,7 +49,7 @@ function CadastroInformacoesPessoaisProfissional() {
     const [cep, setCep] = useState('');
     const [numero, setNumero] = useState('');
     const [complemento, setComplemento] = useState(null);
-    const [atendeDomicilio, setAtendeDomicilio ] = useState(false);
+    const [atendeDomicilio, setAtendeDomicilio] = useState(false);
     const [atendeEstabelecimento, setAtendeEstabelecimento] = useState(false);
     const [categoria, setCategoria] = useState('');
     const [distancia, setDistancia] = useState();
@@ -65,10 +65,17 @@ function CadastroInformacoesPessoaisProfissional() {
     const [quinta, setQuinta] = useState(false);
     const [sexta, setSexta] = useState(false);
     const [sabado, setSabado] = useState(false);
+    const [valor, setValor] = useState();
+    const [descricao, setDescricao] = useState();
+    const [tipo, setTipo] = useState();
+    const ativo = true;
+    const [duracaoEstimada, setDuracaoEstimada] = useState();
+    var servicos = [];
 
 
 
-    const diaSemana = [];
+
+
 
     // function SetDiasDaSemana(name){
     //     console.log(name)
@@ -102,75 +109,114 @@ function CadastroInformacoesPessoaisProfissional() {
                     'Content-Type': 'application/json'
                 }
             }).then((resposta) => {
+                cadastroServico(resposta.data.id)
                 AssociarEndereco(resposta.data.id);
                 SubmeterAgenda(resposta.data.id)
                 // SubmeterFormHabilidade(resposta.data.id);
             });
             //navigate("/sucessoCadastro");
             console.log
-            (
-                "dom: " + domingo +
-                " seg: " + segunda +
-                " ter: " + terca +
-                " qua: " + quarta +
-                " qui: " + quinta +
-                " sex: " + quarta +
-                " sab: " + sabado 
-            )
+                (
+                    "dom: " + domingo +
+                    " seg: " + segunda +
+                    " ter: " + terca +
+                    " qua: " + quarta +
+                    " qui: " + quinta +
+                    " sex: " + quarta +
+                    " sab: " + sabado
+                )
         }
 
     }
 
-    function SubmeterAgenda(id){
+    function cadastroServico(id) {
+        alert("entrei cadastroServico")
 
-        if(segunda === true){
+        // let servico = {
+        //     valor: valor,
+        //     descricao: descricao,
+        //     tipo: tipo,
+        //     ativo: ativo,
+        //     duracaoEstimada: duracaoEstimada
+        // }
+
+
+        // let jsonServico = {
+        //     idPrestador: id,
+        //     servico: servico
+        // }
+        var jsonServico = {
+            idPrestador: id,
+            servico: {
+                valor: valor,
+                descricao: descricao,
+                tipo: tipo,
+                ativo: ativo,
+                duracaoEstimada: duracaoEstimada
+            }
+        }
+        console.log(jsonServico)
+        // console.log("servico " + servico)
+        alert("idPrestador: " + id + " valor: " + valor + " descricao: " + descricao + " tipo: " + tipo + " duracaoEstimada: " + duracaoEstimada)
+
+        api.post(`servico/`, jsonServico, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).catch(erro => {
+            console.log(erro)
+        });
+
+    }
+    function SubmeterAgenda(id) {
+
+        if (segunda === true) {
             var seg = 0;
         }
 
-        if(terca === true){
+        if (terca === true) {
             var ter = 1;
         }
 
-        if(quarta === true){
+        if (quarta === true) {
             var qua = 2;
         }
-        
-        if(quinta === true){
+
+        if (quinta === true) {
             var qui = 3;
         }
 
-        if(sexta === true){
+        if (sexta === true) {
             var sex = 4;
         }
 
-        if(sabado === true){
+        if (sabado === true) {
             var sab = 5;
         }
 
-        
-        if(domingo === true){
+
+        if (domingo === true) {
             var dom = 6;
         }
 
         let jsonAgenda = {
-            idPrestador: id ,
-            diasDaSemana: 
-            [
-                seg,
-                ter,
-                qua,
-                qui,
-                sex,
-                sab,
-                dom
-            ],
+            idPrestador: id,
+            diasDaSemana:
+                [
+                    seg,
+                    ter,
+                    qua,
+                    qui,
+                    sex,
+                    sab,
+                    dom
+                ],
             horaInicioTrabalho: atendimentoInicial,
             horaFimTrabalho: atendimentoFim,
             horaInicioPausa: pausaInicial,
             horaFimPausa: pausaFim
-          }
-          alert(diasDaSemana)
-          console.log(jsonAgenda);
+        }
+        console.log(jsonAgenda);
 
         api.post(`agenda/intervalos`, jsonAgenda, {
             headers: {
@@ -178,7 +224,7 @@ function CadastroInformacoesPessoaisProfissional() {
             }
         });
     }
-    console.log(domingo)
+
     function AssociarEndereco(id) {
         let jsonEndereco = {
             cep: cep,
@@ -211,7 +257,7 @@ function CadastroInformacoesPessoaisProfissional() {
         });
     }
 
-    function guardaDias(valor){
+    function guardaDias(valor) {
         console.log(valor);
 
     }
@@ -378,7 +424,7 @@ function CadastroInformacoesPessoaisProfissional() {
                             <div class="width-50-margin-20">
                                 <h3>Cadastrar Serviços</h3>
                                 <div class="dflex fwrap jbetween">
-                                    <select class="input width-100-margin-10 margin-bottom-15" onChange={evento => setCategoria(evento.target.value)}>
+                                    <select class="input width-50-margin-10 margin-bottom-15" onChange={evento => setTipo(evento.target.value)}>
                                         <option value="" hidden="true" default="true">Escolha a Categoria</option>
                                         <option value="Corte Cabelo">Corte de Cabelo</option>
                                         <option value="Hidratação">Hidratação</option>
@@ -388,12 +434,13 @@ function CadastroInformacoesPessoaisProfissional() {
                                         <option value="Massagem">Massagem</option>
                                         <option value="Pedicure">Pedicure</option>
                                     </select>
-                                    <input type="number" min="1" step="any" placeholder="Preço (R$)" id="input-preco" class="input width-50-margin-10 margin-bottom-15" />
-                                    <input type="text" placeholder="Duração" class="input width-50-margin-10" id="input-duracao-servico" onkeypress="$(this).mask('00:00')" />
+                                    <input class="input width-50-margin-10 margin-bottom-15" placeholder="Descrição" onChange={evento => setDescricao(evento.target.value)} />
+                                    <input type="number" min="1" step="any" placeholder="Preço (R$)" id="input-preco" class="input width-50-margin-10 margin-bottom-15" onChange={evento => setValor(evento.target.value)} />
+                                    <input type="text" placeholder="Duração" class="input width-50-margin-10" id="input-duracao-servico" onkeypress="$(this).mask('00:00')" onChange={evento => setDuracaoEstimada(evento.target.value)} />
                                 </div>
-                                <button type="submit" class="button button-cadastro-profissional txt-white bg-hover-white txt-hover-dark-red">CADASTRAR</button>
+                                <button class="button button-cadastro-profissional txt-white bg-hover-white txt-hover-dark-red">CADASTRAR</button>
                             </div>
-                            <div class="width-50-margin-20">
+                            {/* <div class="width-50-margin-20">
                                 <h3>Serviços Cadastrados</h3>
                                 <div class="table">
                                     <table>
@@ -419,7 +466,7 @@ function CadastroInformacoesPessoaisProfissional() {
                                         </tr>
                                     </table>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div class="separador"></div>
                         <div class="dflex fwrap astart jaround width-100-porc">
@@ -427,37 +474,37 @@ function CadastroInformacoesPessoaisProfissional() {
                                 <h3>Dias de Atendimento</h3>
                                 <div class="dflex fwrap">
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Segunda-Feira"  onChange={evento => setSegunda(!segunda)}/>
+                                        <input type="checkbox" name="Segunda-Feira" onChange={evento => setSegunda(!segunda)} />
                                         <div class="checkmark"></div>
                                         <span>Segunda-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Terça-Feira"  onChange={evento => setTerca(!terca)}/>
+                                        <input type="checkbox" name="Terça-Feira" onChange={evento => setTerca(!terca)} />
                                         <div class="checkmark"></div>
                                         <span>Terça-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Quarta-Feira"  onChange={evento => setQuarta(!quarta)}/>
+                                        <input type="checkbox" name="Quarta-Feira" onChange={evento => setQuarta(!quarta)} />
                                         <div class="checkmark"></div>
                                         <span>Quarta-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Quinta-Feira"  onChange={evento => setQuinta(!quinta)}/>
+                                        <input type="checkbox" name="Quinta-Feira" onChange={evento => setQuinta(!quinta)} />
                                         <div class="checkmark"></div>
                                         <span>Quinta-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Sexta-Feira"  onChange={evento => setSexta(!sexta)}/>
+                                        <input type="checkbox" name="Sexta-Feira" onChange={evento => setSexta(!sexta)} />
                                         <div class="checkmark"></div>
                                         <span>Sexta-Feira</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Sábado"  onChange={evento => setSabado(!sabado)}/>
+                                        <input type="checkbox" name="Sábado" onChange={evento => setSabado(!sabado)} />
                                         <div class="checkmark"></div>
                                         <span>Sábado</span>
                                     </label>
                                     <label class="label-checkbox">
-                                        <input type="checkbox" name="Domingo"  onClick={evento => setDomingo(!domingo)}/>
+                                        <input type="checkbox" name="Domingo" onClick={evento => setDomingo(!domingo)} />
                                         <div class="checkmark"></div>
                                         <span>Domingo</span>
                                     </label>
@@ -468,7 +515,7 @@ function CadastroInformacoesPessoaisProfissional() {
                                 <div class="dflex acenter jbetween margin-bottom-15">
                                     <input type="text" placeholder="Duração" class="input width-40-porc" id="atendimento-inicial" onkeypress="$(this).mask('00:00')" onChange={evento => setAtendimentoInicial(evento.target.value)} />
                                     <span>até</span>
-                                    <input type="text" placeholder="Duração" class="input width-40-porc" id="atendimento-final" onkeypress="$(this).mask('00:00')"   onChange={evento => setAtendimentoFim(evento.target.value)}/>
+                                    <input type="text" placeholder="Duração" class="input width-40-porc" id="atendimento-final" onkeypress="$(this).mask('00:00')" onChange={evento => setAtendimentoFim(evento.target.value)} />
                                 </div>
                                 <h3 class="margin-bottom-10">Horário de Pausa</h3>
                                 <div class="dflex acenter jbetween">
@@ -484,12 +531,12 @@ function CadastroInformacoesPessoaisProfissional() {
                                 <h3>Preferência de Atendimento</h3>
                                 <div class="dflex fwrap">
                                     <label class="label-checkbox wide">
-                                        <input type="checkbox" id="checkbox-estabelecimento" name="Estabelecimento Próprio"  onChange={evento => setAtendeDomicilio(!atendeDomicilio)}/>
+                                        <input type="checkbox" id="checkbox-estabelecimento" name="Estabelecimento Próprio" onChange={evento => setAtendeDomicilio(!atendeDomicilio)} />
                                         <div class="checkmark"></div>
                                         <span>Estabelecimento Próprio</span>
                                     </label>
                                     <label class="label-checkbox wide">
-                                        <input type="checkbox" id="checkbox-domicilio" name="Em Domicílio" onChange={evento => setAtendeEstabelecimento(!atendeEstabelecimento)}/>
+                                        <input type="checkbox" id="checkbox-domicilio" name="Em Domicílio" onChange={evento => setAtendeEstabelecimento(!atendeEstabelecimento)} />
                                         <div class="checkmark"></div>
                                         <span>Em Domicílio</span>
                                     </label>
@@ -499,7 +546,7 @@ function CadastroInformacoesPessoaisProfissional() {
                                 <h3 class="margin-bottom-10">Raio de Atentimento em Domicílio</h3>
                                 <div class="dflex jbetween">
                                     <div id="div-range" class="range-parent width-100-porc disabled">
-                                        <input type="number" min="1" max="100" step="any" placeholder="Raio de 0 Km até 100 Km" class="input width-50-margin-10" id="range"  onChange={evento => setDistancia(evento.target.value)}  />
+                                        <input type="number" min="1" max="100" step="any" placeholder="Raio de 0 Km até 100 Km" class="input width-50-margin-10" id="range" onChange={evento => setDistancia(evento.target.value)} />
                                     </div>
                                 </div>
                             </div>
