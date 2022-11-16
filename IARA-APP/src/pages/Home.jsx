@@ -9,8 +9,6 @@ import { GoChevronRight } from "react-icons/go";
 import { GoChevronLeft } from "react-icons/go";
 import CarrosselPropaganda from "../components/CarrosselPropaganda";
 
-
-
 function Home() {
   const [profissionais, setProfissionais] = useState([]);
 
