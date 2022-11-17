@@ -819,6 +819,10 @@ h2 {
   width: 70%;
 }
 
+.width-75-porc{
+  width: 75%;
+}
+
 .width-90-porc{
   width: 90%;
 }
@@ -912,8 +916,8 @@ h3 {
   cursor: pointer;
   font-size: 20px;
   user-select: none;
-  width: 33%;
-  margin-bottom: 10px;
+  width: 50%;
+  margin-bottom: 15px;
  }
 
  .label-checkbox.wide{
@@ -1457,4 +1461,10 @@ i.icon.star {
 
 .txt-18{
   font-size: 18px;
+}
+
+.not-bold {
+  font-weight: 500;
+  margin-top: 0px;
+  margin-bottom: 30px !important;
 }
