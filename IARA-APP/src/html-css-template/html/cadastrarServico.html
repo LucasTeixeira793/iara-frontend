@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | Iara</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon_io/favicon-16x16.png">
+    <script src="https://kit.fontawesome.com/26f7448628.js" crossorigin="anonymous"></script>   
+    <script src="../script.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+</head>
+<body>
+    <div class="page dflex acenter jcenter txt-medium">
+        <form id="cadastro-cliente" class="container">
+            <a href="institucional.html" class="logo transform prelative margin-special">
+                <img alt="Logo" src="../img/logo-branco.png">
+                <span class="subtitulo">CADASTRO</span>
+            </a>
+            
+            <div class="card bg-off-white dflex jbetween fwrap width-70-porc margin-auto">
+                <div class="dflex fwrap astart jbetween width-100-porc">
+                    <div class="width-100-porc">
+                        <h3 class="txt-19">Cadastrar Serviços</h3>
+                        <div class="dflex jbetween">
+                            <select class="input width-47-porc margin-bottom-15">
+                                <option value="" hidden="true" default="true">Escolha a Categoria</option>
+                            </select>
+                            <select class="input width-47-porc margin-bottom-15">
+                                <option value="" hidden="true" default="true">Escolha a Especialidade</option>
+                            </select>
+                        </div>
+                        <div class="dflex jbetween">
+                            <input type="number" min="1" step="any" placeholder="Preço (R$)" class="input width-47-porc" id="input-preco"/>
+                            <input type="text" placeholder="Duração" class="input width-47-porc" id="input-duracao-servico" onkeypress="$(this).mask('00:00')"/>
+                        </div>
+                        <button type="submit" class="button button-cadastro-profissional txt-white bg-hover-white txt-hover-dark-red txt-18">CADASTRAR</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
