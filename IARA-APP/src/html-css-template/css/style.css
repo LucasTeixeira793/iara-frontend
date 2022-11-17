@@ -803,6 +803,10 @@ h2 {
   width: 40%;
 }
 
+.width-45-porc{
+  width: 45%;
+}
+
 .width-50-porc{
   width: 50%;
 }
@@ -1436,4 +1440,21 @@ i.icon.star {
 
 .low-shadow {
   box-shadow: 0px 2px 4px 0px #de0235 !important;
+}
+
+.margin-special{
+  margin-top: -60px;
+  margin-bottom: 45px;
+}
+
+.width-47-porc{
+  width: 47%;
+}
+
+.txt-19{
+  font-size: 19px;
+}
+
+.txt-18{
+  font-size: 18px;
 }
