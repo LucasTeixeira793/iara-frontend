@@ -2,19 +2,16 @@ import LinhaTabelaPrecos from "../components/LinhaTabelaPrecos";
 import api from "../api";
 import { useEffect, useState } from "react";
 import 'moment/locale/pt-br'
+import { useParams } from "react-router";
 
 function CardTabelaDePrecos() {
 
     const [infoPreco, setPreco] = useState([])
-    const [prestador, setPrestador] = useState([])
+    const params = useParams();
 
     useEffect(() => {
-        const infoPrestador = localStorage.dadosUsuario;
-        if (infoPrestador) {
-            setPrestador(infoPrestador);
-        }
         async function buscarPrecos() {
-            const resposta = await api.get(`servico/prestador/${localStorage.idPrestador}`);
+            const resposta = await api.get(`servico/prestador/${params.id}`);
             setPreco(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Preços", resposta.data)
             console.log(infoPreco)
@@ -38,8 +35,8 @@ function CardTabelaDePrecos() {
                 <h3 class="txt-bigger txt-center txt-red txt-bold">Tabela de Preços</h3>
                 {infoPreco.map((precos) => (
                     <LinhaTabelaPrecos
-                        tipo={precos.tipo}
-                        duracao={precos.duracaoEstimada}
+                        tipo={precos.descricao}
+                        duracao={precos.duracaoEstimada + " h"}
                         preco={formCurrency.format(precos.valor)}
                     />
                 ))}

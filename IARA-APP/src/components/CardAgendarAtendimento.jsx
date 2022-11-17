@@ -4,15 +4,17 @@ import { useEffect, useState } from "react";
 import LinhaServicosAgendar from "../components/LinhaServicosAgendar";
 import LinhaHorariosAgendar from "../components/LinhaHorariosAgendar";
 import api from "../api";
+import { useParams } from "react-router";
 
 function CardAgendarAtendimentos(props) {
 
     const [infoServico, setServico] = useState([])
+    const params = useParams();
     const [prestador, setPrestador] = useState([])
 
     useEffect(() => {
         async function buscarServicos() {
-            const resposta = await api.get(`servico/prestador/${props.id}`);
+            const resposta = await api.get(`servico/prestador/${params.id}`);
             setServico(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Serviços", resposta.data)
         }
@@ -34,7 +36,7 @@ function CardAgendarAtendimentos(props) {
                     <div class="dflex fwrap">
                         {infoServico.map((servicos) => (
                             <LinhaServicosAgendar
-                                tipo={servicos.tipo}
+                                tipo={servicos.descricao}
                             />
                         ))}
                     </div>

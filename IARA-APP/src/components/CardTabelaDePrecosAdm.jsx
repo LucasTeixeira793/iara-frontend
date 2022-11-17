@@ -6,7 +6,7 @@ import api from "../api";
 import { useEffect, useState } from "react";
 import 'moment/locale/pt-br'
 
-function CardTabelaDePrecosAdm(props) {
+function CardTabelaDePrecosAdm() {
 
     const [infoPreco, setPreco] = useState([])
     const [prestador, setPrestador] = useState([])
@@ -17,7 +17,7 @@ function CardTabelaDePrecosAdm(props) {
         //     setPrestador(infoPrestador);
         // }
         async function buscarPrecos() {
-            const resposta = await api.get(`servico/prestador/${props.id}`);
+            const resposta = await api.get(`servico/prestador/${localStorage.idPrestador}`);
             setPreco(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Preços", resposta.data)
             console.log(infoPreco)
@@ -48,7 +48,7 @@ function CardTabelaDePrecosAdm(props) {
                 {infoPreco.map((precos) => (
                     <LinhaTabelaPrecos
                         tipo={precos.tipo}
-                        duracao={precos.duracaoEstimada}
+                        duracao={precos.duracaoEstimada + " h"}
                         preco={formCurrency.format(precos.valor)}
                     />
                 ))}

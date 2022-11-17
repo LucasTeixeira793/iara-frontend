@@ -15,11 +15,10 @@ function LinhaAgenda(props) {
           setAgenda(resposta.data);
           console.log("OLHA O QUE VEIO DA API!! --- Agenda", resposta.data)
           
-          const resposta2 = await api.get(`prestador/${props.id}`); 
+          const resposta2 = await api.get(`prestador/${resposta.data[0].servicoAtribuido.cliente.id}`); 
           setIdPrestador(resposta2.data)
           console.log("OLHA O QUE VEIO DA API!! --- AgendaCliente", resposta2.data)
       }
-
      
       buscarAgenda();
       }, [])

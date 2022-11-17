@@ -15,6 +15,7 @@ function Home() {
   const settings = {
     slidesToShow: 5,
     slidesToScroll: 1,
+    infinite: false,
     nextArrow: <GoChevronRight color="white" />,
     prevArrow: <GoChevronLeft color="white" />
   };

@@ -14,8 +14,8 @@ function CardAgendaDeAtendimentos() {
         //     setPrestador(infoPrestador);
         // }
         async function buscarAgenda() {
-            console.log(localStorage.dadosUsuario.id);
-            const resposta = await api.get(`agenda/${localStorage.dadosUsuario.id}`);
+            console.log(localStorage.dadosUsuario);
+            const resposta = await api.get(`agenda/${localStorage.idPrestador}`);
             setAgenda(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Agenda", resposta.data)
             //console.log("OLHA O QUE VEIO DA API!! --- Agendaaaa", resposta)
