@@ -12,7 +12,7 @@ function AtualizarAgenda() {
                 <h2 class="not-bold">Atualizar Agenda</h2>
                 <div class="dflex fwrap astart jbetween width-100-porc">
                     
-                    <div class="width-50-margin-20">
+                    <div class="width-50-porc">
                         <h3>Dias de Atendimento</h3>
                         <div class="dflex fwrap">
                             <label class="label-checkbox">
@@ -52,7 +52,7 @@ function AtualizarAgenda() {
                             </label>
                         </div>
                     </div>                    
-                    <div class="width-50-margin-20">
+                    <div class="width-50-porc">
                         <h3 class="margin-bottom-10">Horário de Atendimento</h3>
                         <div class="dflex acenter jbetween margin-bottom-15">
                             <input type="text" placeholder="Duração" class="input width-40-porc" id="atendimento-inicial" onkeypress="$(this).mask('00:00')"/>
