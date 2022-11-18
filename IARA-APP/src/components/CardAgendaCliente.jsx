@@ -1,4 +1,4 @@
-import LinhaTabelaAgenda from "../components/LinhaTabelaAgenda";
+import LinhaTabelaAgenda from "./LinhaTabelaAgenda";
 import api from "../api";
 import { useEffect, useState } from "react";
 import moment from "moment";

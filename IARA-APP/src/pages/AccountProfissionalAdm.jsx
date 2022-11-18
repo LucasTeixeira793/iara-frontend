@@ -66,7 +66,7 @@ function AccountProfissional() {
                             <CardTabelaDePrecosAdm id={infoPrestador.id} />
                             <CardAgendaDeAtendimentos id={infoPrestador.id} />
                         </div>
-                        <CardPortifolioAdm />
+                        <CardPortifolioAdm id={infoPrestador.id}/>
                     </div>
                 </main>
                 <Footer />

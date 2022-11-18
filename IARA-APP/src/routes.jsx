@@ -35,6 +35,7 @@ function Rotas(){
                 <Route path="/cadastroHabilidades" element={<CadastroHabilidades/>}/>
                 <Route path="/accountProfissional" element={<AccountProfissional/>}/>
                 <Route path="home/perfilProfissional/:id" element={<PerfilProfissional/>}/>
+                <Route path="accountCliente/perfilProfissional/:id" element={<PerfilProfissional/>}/>
                 <Route path="/accountCliente" element={<AccountCliente/>}/>
                 <Route path="/perfilCliente" element={<PerfilCliente/>}/>
                 <Route path="/dashboard" element={<Dashboard/>}/>

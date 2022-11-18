@@ -22,7 +22,7 @@ function LinhaFotosPortfolio(props) {
 
   }, [])
 
-const imgTratada = `url(data:image;base64,${infoFotoPortfolio[0]})`
+const imgTratada = `url(data:image;base64,${props.imagem})`
 
 const image = {
   imagemPortfolio: {

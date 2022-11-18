@@ -11,7 +11,7 @@ function LinhaAgenda(props) {
 
     useEffect(() => {
         async function buscarAgenda() {
-          const resposta = await api.get(`agenda/${localStorage.idPrestador}`);
+          const resposta = await api.get(`agenda/${props.id}`);
           setAgenda(resposta.data);
           console.log("OLHA O QUE VEIO DA API!! --- Agenda", resposta.data)
           
@@ -36,8 +36,8 @@ function LinhaAgenda(props) {
           <u>
             <a
              onClick={() =>
-                 navigate(`/perfilCliente/${infoAgenda.servicoAtribuido.cliente.id}`)
-             }
+              navigate(`perfilProfissional/${props.id}`)
+            }
             class="txt-white txt-hover-dark-red"
             >
             {infoIdPrestador.nome} {infoIdPrestador.sobrenome}

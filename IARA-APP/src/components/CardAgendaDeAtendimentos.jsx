@@ -1,4 +1,4 @@
-import LinhaTabelaAgenda from "../components/LinhaTabelaAgenda";
+import LinhaAgendaPrestador from "../components/LinhaTabelaAgendaPrestador";
 import api from "../api";
 import { useEffect, useState } from "react";
 import moment from "moment";
@@ -48,13 +48,12 @@ function CardAgendaDeAtendimentos() {
                             <th>Cliente</th>
                         </tr>
                         {infoAgenda.map((agenda) => (
-                            <LinhaTabelaAgenda
+                            <LinhaAgendaPrestador
+                                id={infoAgenda.id}
                                 tipo={agenda.servicoAtribuido.servico.tipo}
                                 dia={date}
                                 horario={agenda.horaInicio}
                                 valor={formCurrency.format(agenda.servicoAtribuido.servico.valor)}
-                                nomeCliente={agenda.servicoAtribuido.cliente.nome}
-                                sobrenomeCliente={agenda.servicoAtribuido.cliente.sobrenome}
                             />
                         ))}
                     </table>
