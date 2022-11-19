@@ -39,7 +39,7 @@ function CardTabelaDePrecosAdm() {
     }else{
         return (
             <div class="card half prelative">
-                <Link to={"/cadastroHabilidades"}>
+                <Link to={"/cadastrarServico"}>
                     <a class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red transform">
                         <FontAwesomeIcon icon={faPen} />
                     </a>

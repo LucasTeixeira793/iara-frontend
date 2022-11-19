@@ -8,8 +8,10 @@ import Slider from "react-slick";
 import { GoChevronRight } from "react-icons/go";
 import { GoChevronLeft } from "react-icons/go";
 import CarrosselPropaganda from "../components/CarrosselPropaganda";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   const [profissionais, setProfissionais] = useState([]);
 
   const settings = {

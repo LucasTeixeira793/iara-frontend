@@ -1,6 +1,9 @@
 import LinhaAgendaPrestador from "../components/LinhaTabelaAgendaPrestador";
 import api from "../api";
 import { useEffect, useState } from "react";
+import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import moment from "moment";
 import 'moment/locale/pt-br'
 
@@ -37,6 +40,11 @@ function CardAgendaDeAtendimentos() {
     } else {
         return (
             <div class="card half prelative">
+                <Link to={"/AtualizarAgenda"}>
+                    <a class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red transform">
+                        <FontAwesomeIcon icon={faPen} />
+                    </a>
+                </Link>
                 <h3 class="txt-bigger txt-center txt-red txt-bold">Agenda de Atendimentos</h3>
                 <div class="table red atendimentos">
                     <table>
