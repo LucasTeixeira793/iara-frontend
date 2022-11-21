@@ -57,7 +57,7 @@ function CardPortifolio() {
                 <Slider {...settings}>
                 {infoFotoPortfolio.map((fotos) => (
                     <LinhaFotosPortfolio 
-                    imagem={fotos}
+                    imagem={fotos.length > 0 ? fotos : "Adicione uma foto ao portfólio!"}
                     />
                     ))}
                 </Slider>

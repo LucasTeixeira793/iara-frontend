@@ -5,16 +5,16 @@ import LinhaServicosAgendar from "../components/LinhaServicosAgendar";
 import LinhaHorariosAgendar from "../components/LinhaHorariosAgendar";
 import api from "../api";
 import { useParams } from "react-router";
+import PopUpHorarios from './PopUpHorarios';
 
-function CardAgendarAtendimentos(props) {
+function CardAgendarAtendimentos() {
 
     const [infoServico, setServico] = useState([])
     const params = useParams();
-    const [prestador, setPrestador] = useState([])
 
     useEffect(() => {
         async function buscarServicos() {
-            const resposta = await api.get(`servico/prestador/${params.id}`);
+            const resposta = await api.get(`servico/prestador/${params.id}`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setServico(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Serviços", resposta.data)
         }
@@ -42,11 +42,11 @@ function CardAgendarAtendimentos(props) {
                     </div>
                 </div>
                 <div>
-                    <h4 class="margin-bottom-10">Selecione o Dia:</h4>
-                    <input required class="bg-almost-white input max-content" min={moment().format(props.dia)} type="date" />
+                    <PopUpHorarios />
                 </div>
                 <div>
-                    <h4 class="margin-bottom-10">Selecione o Horário:</h4>
+                    <br />
+                    <h4 class="margin-bottom-10">Selecione o dia e horário desejados:</h4>
                     <div class="dflex fwrap">
                         <LinhaHorariosAgendar />
                     </div>
