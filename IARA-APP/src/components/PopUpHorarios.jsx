@@ -15,7 +15,7 @@ function PopUpHorarios() {
             setServico(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Serviços", resposta.data)
 
-            const resposta2 = await api.get(`agenda/disponiveis/${params.id}/${resposta.data[0].id}/22/11/2022`, { headers: { "Access-Control-Allow-Origin": "*" } });
+            const resposta2 = await api.get(`agenda/disponiveis/${params.id}/${resposta.data[0].id}/23/11/2022`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setHorario(resposta2.data);
             console.log("OLHA O QUE VEIO DA API!! --- HORÁRIOS DO PREST", resposta2.data)
         }
@@ -32,7 +32,10 @@ function PopUpHorarios() {
         document.body.classList.remove('active-modal')
     }
 
-    // const horarioInicioTratado = Object.values(infoHorario)
+    // const horarioTratado = Object.values(infoHorario)
+    // const horarioTratadoNovamente = Object.values(horarioTratado)
+
+    // console.log("aaaaaaaaaaaaaa", horarioTratadoNovamente[1][0]);
     // const horarioMaximaTratado = Object.values(infoHorario)
 
     if (infoHorario.length !== 0) {
@@ -46,8 +49,8 @@ function PopUpHorarios() {
                         <div onClick={toggleModal} className="overlay"></div>
                         {infoHorario.map((horarios) => (
                             <LinhaHorariosPopUp
-                            // horaInicioMinima={horarioInicioTratado}
-                            // horaInicioMaxima={horarioMaximaTratado}
+                            // horaInicioMinima={horarioTratadoNovamente[1][0].horaInicioMinima}
+                            // horaInicioMaxima={horarioTratadoNovamente[1][0].horaInicioMaxima}
                             />
                         ))}
                     </div>

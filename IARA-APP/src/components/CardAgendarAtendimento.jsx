@@ -21,6 +21,22 @@ function CardAgendarAtendimentos() {
         buscarServicos();
     }, [])
 
+    function submitServico(e) {
+        e.preventDefault();
+
+        let jsonCliente = {
+            idServico: sessionStorage.getItem("IdSelecionado"),
+            dataInicio: sessionStorage.getItem("HorarioSelecionado"),
+            observacoes: " "
+        }
+
+        api.post(`/servico-atribuido/${params.id}`, jsonCliente, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
     return (
         <div class="card half prelative">
             <div id="mensagem_agendamento" class="pabsolute dflex acenter jcenter mensagem"> {/*}classe show para mostrar mensagem*/}
@@ -36,6 +52,7 @@ function CardAgendarAtendimentos() {
                     <div class="dflex fwrap">
                         {infoServico.map((servicos) => (
                             <LinhaServicosAgendar
+                                id={servicos.id}
                                 tipo={servicos.descricao}
                             />
                         ))}
@@ -51,7 +68,10 @@ function CardAgendarAtendimentos() {
                         <LinhaHorariosAgendar />
                     </div>
                 </div>
-                <button class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-auto margin-top-thirty" type="submit">AGENDAR</button>
+                <button class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-auto margin-top-thirty"
+                    type="submit" onClick={submitServico}>
+                    AGENDAR
+                </button>
             </form>
         </div>
     );
