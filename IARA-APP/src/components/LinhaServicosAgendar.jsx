@@ -10,8 +10,8 @@ function LinhaServicosAgendar(props) {
     return (
         <>
             <div class="prelative margin-right-twenty margin-bottom-10" onClick={() => chamarId(props.id)}>
-                <input type="radio" name="selecione_servico" value="Corte" class="radio-button" />
-                <label for="selecione_servico_corte" class="button small bg-white txt-dark-red bg-hover-red box-shadow-none-hover txt-hover-white margin-none">{props.tipo}</label>
+                <input required type="radio" id={`selecione_servico_${props.tipo}`}  name="selecione_servico" value={props.tipo} class="radio-button" />
+                <label for={`selecione_servico_${props.tipo}`} class="button small bg-white txt-dark-red bg-hover-red box-shadow-none-hover txt-hover-white margin-none">{props.tipo}</label>
             </div>
         </>
     );
