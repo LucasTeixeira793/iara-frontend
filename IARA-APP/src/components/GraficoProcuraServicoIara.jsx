@@ -1,20 +1,28 @@
 import React from "react";
 import { Chart } from "react-google-charts";
+import api from "../api";
 
 function GraficoProcuraServicoIara() {
+    SetGraficoProcuraServicoIara();
+    var graficoProcuraServicoIara = [];
+    function SetGraficoProcuraServicoIara(){
+        api.get(`view/servico/contagem`).then(resposta => {
+            graficoProcuraServicoIara=[ ['Serviço', 'Quantidade']]
+            console.log(resposta.data);
+            for (let index = 0; index < resposta.data.length; index++) {
+                graficoProcuraServicoIara.push([resposta.data[index].servico, resposta.data[index].ct_atendimentos])
+            }
+            // console.log(vetor);
+            // setGraficoProcuraServicoIara(vetor);
+            console.log(graficoProcuraServicoIara);
+        }).catch(erro => {
+            console.log(erro)
+        })
 
-    var data = [
-        ['Serviço', 'Quantidade'],
-        ['Corte', 964],
-        ['Escova', 453],
-        ['Permanente', 356],
-        ['Tintura', 521],
-        ['Limpeza de Pele', 367],
-        ['Massagem', 462],
-        ['Depilação', 478],
-        ['Design de Unhas', 674],
-        ['Maquiagem para Festa', 547]
-    ];
+    }
+    
+    var data = graficoProcuraServicoIara;
+    console.log(data);
 
     var options = {
         title: 'VISUALIZAÇÃO DE PROCURA DE SERVIÇOS',
