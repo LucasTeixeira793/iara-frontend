@@ -6,13 +6,20 @@ import LinhaHorariosAgendar from "../components/LinhaHorariosAgendar";
 import api from "../api";
 import { useParams } from "react-router";
 import PopUpHorarios from './PopUpHorarios';
+import React from 'react';
 
 function CardAgendarAtendimentos() {
 
     const [infoServico, setServico] = useState([])
     const params = useParams();
+    
 
     useEffect(() => {
+        sessionStorage.setItem("HorarioSelecionado", "")
+        sessionStorage.setItem("IdSelecionado", "")
+        sessionStorage.setItem("ServicoSelecionado", "")
+
+
         async function buscarServicos() {
             const resposta = await api.get(`servico/prestador/${params.id}`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setServico(resposta.data);
@@ -30,21 +37,45 @@ function CardAgendarAtendimentos() {
             observacoes: " "
         }
 
-        api.post(`/servico-atribuido/${localStorage.getItem('clienteId')}`, jsonCliente, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+
+        // api.post(`/servico-atribuido/${localStorage.getItem('clienteId')}`, jsonCliente, {
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+        if(sessionStorage.getItem("HorarioSelecionado") != "" && sessionStorage.getItem("ServicoSelecionado") != ""){
+            api.post(`/servico-atribuido/${params.id}`, jsonCliente, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(
+                console.log(sessionStorage.getItem("ServicoSelecionado"), sessionStorage.getItem("HorarioSelecionado")),
+                setIsAlertVisible(true),
+                setTimeout(() => {
+                          setIsAlertVisible(false);
+                        }, 5000)
+            )
+        } else {
+            setIsMessageVisible(true);
+            setTimeout(() => {
+                setIsMessageVisible(false);
+              }, 3000)
+        }
     }
+
+    const [ isAlertVisible, setIsAlertVisible ] = React.useState(false);
+    const [ isMessageVisible, setIsMessageVisible ] = React.useState(false);
 
     return (
         <div class="card half prelative">
-            <div id="mensagem_agendamento" class="pabsolute dflex acenter jcenter mensagem"> {/*}classe show para mostrar mensagem*/}
+            {isAlertVisible && <div className='alert-container'>
+               <div id="mensagem_agendamento" class="pabsolute dflex acenter jcenter mensagem show"> {/*}classe show para mostrar mensagem*/}
                 <div class="txt-bold txt-bigger margin-bottom-thirty txt-dark-red" id="titulo_mensagem_agendamento">Agendado com Sucesso!</div>
-                <div class="margin-bottom-10 txt-medium">Serviço: <span id="servico_mensagem_agendamento"></span></div>
-                <div class="margin-bottom-10 txt-medium">Data: <span id="data_mensagem_agendamento"></span></div>
-                <div class="txt-medium">Horário: <span id="horario_mensagem_agendamento"></span></div>
+                <div class="margin-bottom-10 txt-bold">Serviço: {sessionStorage.getItem("ServicoSelecionado")}<span id="servico_mensagem_agendamento"></span></div>
+                <div class="margin-bottom-10 txt-bold">Data: {sessionStorage.getItem("HorarioSelecionado").substring(0,10).split('-').reverse().join('/')}<span id="data_mensagem_agendamento"></span></div>
+                <div class="txt-bold">Horário: {sessionStorage.getItem("HorarioSelecionado").substring(11,16)}<span id="horario_mensagem_agendamento"></span></div>
             </div>
+           </div>}
             <h3 class="txt-bigger txt-center txt-red txt-bold">Agendar Atendimentos</h3>
             <form>
                 <div>
@@ -72,6 +103,9 @@ function CardAgendarAtendimentos() {
                     type="submit" onClick={submitServico}>
                     AGENDAR
                 </button>
+                        {isMessageVisible && <div className='message-container'>
+                        <div class="alert-agendar" id="titulo_alerta_agendamento">Selecione todas as opções!</div>
+                        </div>}
             </form>
         </div>
     );
