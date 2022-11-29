@@ -37,12 +37,6 @@ function CardAgendarAtendimentos() {
             observacoes: " "
         }
 
-
-        // api.post(`/servico-atribuido/${localStorage.getItem('clienteId')}`, jsonCliente, {
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // })
         if(sessionStorage.getItem("HorarioSelecionado") != "" && sessionStorage.getItem("ServicoSelecionado") != ""){
             api.post(`/servico-atribuido/${params.id}`, jsonCliente, {
                 headers: {
