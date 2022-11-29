@@ -30,7 +30,7 @@ function CardAgendarAtendimentos() {
             observacoes: " "
         }
 
-        api.post(`/servico-atribuido/${params.id}`, jsonCliente, {
+        api.post(`/servico-atribuido/${localStorage.getItem('clienteId')}`, jsonCliente, {
             headers: {
                 'Content-Type': 'application/json'
             }

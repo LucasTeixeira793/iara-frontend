@@ -33,10 +33,8 @@ function CardAgendaDeAtendimentos() {
         minimumFractionDigits: 2
     })
 
-    if (infoAgenda === null) {
-        return (
-            <div>Vazio</div>
-        );
+    if (infoAgenda === "") {
+        return "";
     } else {
         return (
             <div class="card half prelative">

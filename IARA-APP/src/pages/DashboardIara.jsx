@@ -16,7 +16,7 @@ function DashboardIara() {
     const [d7, setD7] = useState([{ ct_ultimos_7_dias: 0 }]);
     const [usuariosCadastrados, setUsuariosCadastrados] = useState([{ ct_total_usuarios_cadastrados: 0 }]);
     const [usuariosAtivos, setUsuariosAtivos] = useState([{ vw_ct_total_usuarios_solicitaram_atendimento: 0 }]);
-    var graficoProcuraServicoIara = [];
+    const [graficoProcuraServicoIara, setGraficoProcuraServicoIara] = useState(0);
     const [DiaComMaisAtendimento, setDiaComMaisAtendimento] = useState([{}])
     const [DiaComMenosAtendimento, setDiaComMenosAtendimento] = useState([{}])
     const [atendimentosMesAnterior, setAtendimentosMesAnterior] = useState([{}])
@@ -65,7 +65,7 @@ function DashboardIara() {
 
             function SetUsuariosCadastrados() {
                 api.get(`view/cliente/contagem`).then(usuariosCadastrados => {
-                    console.log(usuariosCadastrados.data);
+                    // console.log(usuariosCadastrados.data);
                     setUsuariosCadastrados(usuariosCadastrados.data);
                 }).catch(erro => {
                     console.log(erro)
@@ -74,7 +74,7 @@ function DashboardIara() {
 
             function SetUsuariosAtivos() {
                 api.get(`/view/cliente/servico/contagem`).then(usuariosAtivos => {
-                    console.log(usuariosAtivos.data);
+                    // console.log(usuariosAtivos.data);
                     setUsuariosAtivos(usuariosAtivos.data);
                 }).catch(erro => {
                     console.log(erro)
@@ -83,14 +83,16 @@ function DashboardIara() {
 
             // function SetGraficoProcuraServicoIara(){
             //     api.get(`view/servico/contagem`).then(resposta => {
-            //         graficoProcuraServicoIara=[ ['Serviço', 'Quantidade']]
-            //         console.log(resposta.data);
-            //         for (let index = 0; index < resposta.data.length; index++) {
-            //             graficoProcuraServicoIara.push([resposta.data[index].servico, resposta.data[index].ct_atendimentos])
-            //         }
-            //         // console.log(vetor);
-            //         // setGraficoProcuraServicoIara(vetor);
-            //         console.log(graficoProcuraServicoIara);
+            //         setGraficoProcuraServicoIara(resposta.data);
+
+            //         // graficoProcuraServicoIara=[ ['Serviço', 'Quantidade']]
+            //         // console.log(resposta.data);
+            //         // for (let index = 0; index < resposta.data.length; index++) {
+            //         //     graficoProcuraServicoIara.push([resposta.data[index].servico, resposta.data[index].ct_atendimentos])
+            //         // }
+            //         // // console.log(vetor);
+            //         // // setGraficoProcuraServicoIara(vetor);
+            //         // console.log(graficoProcuraServicoIara);
             //     }).catch(erro => {
             //         console.log(erro)
             //     })
@@ -98,7 +100,7 @@ function DashboardIara() {
 
             function SetDiaComMaisAtendimento() {
                 api.get(`/view/agendamento/dia/maior`).then(resposta => {
-                    console.log(resposta.data);
+                    // console.log(resposta.data);
                     setDiaComMaisAtendimento(resposta.data);
                 }).catch(erro => {
                     console.log(erro)
@@ -107,7 +109,7 @@ function DashboardIara() {
 
             function SetDiaComMenosAtendimento() {
                 api.get(``).then(resposta => {
-                    console.log(resposta.data);
+                    // console.log(resposta.data);
                     setDiaComMenosAtendimento(resposta.data);
                 }).catch(erro => {
                     console.log(erro)
@@ -116,7 +118,7 @@ function DashboardIara() {
 
             function SetAtendimentosMesAnterior() {
                 api.get(`view/agendamento/contagem/mes-anterior`).then(resposta => {
-                    console.log(resposta.data);
+                    // console.log(resposta.data);
                     setAtendimentosMesAnterior(resposta.data);
                 }).catch(erro => {
                     console.log(erro)
@@ -125,7 +127,7 @@ function DashboardIara() {
 
             function SetAtendimentosSemanaAnterior() {
                 api.get(`view/agendamento/contagem/semana-anterior`).then(resposta => {
-                    console.log(resposta.data);
+                    // console.log(resposta.data);
                     setAtendimentosSemanaAnterior(resposta.data);
                 }).catch(erro => {
                     console.log(erro)
@@ -136,7 +138,7 @@ function DashboardIara() {
             return clearInterval(interval);
         }, 400)
     }, []);
-    console.log(graficoProcuraServicoIara)
+    // console.log(graficoProcuraServicoIara)
     return (
         <>
             <HeaderColaborador />
@@ -174,7 +176,8 @@ function DashboardIara() {
                 </div>
                 <div class="width-100-porc">
                     <h3 class="txt-center font-size-eighteen"><b>VISUALIZAÇÃO DE PROCURA DE SERVIÇOS</b></h3>
-                    <GraficoProcuraServicoIara />
+                    <GraficoProcuraServicoIara
+                    />
                 </div>
             </main>
             <Footer />

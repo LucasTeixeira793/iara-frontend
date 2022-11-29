@@ -11,11 +11,8 @@ function LinhaAgenda(props) {
 
     useEffect(() => {
         async function buscarAgenda() {
-          const resposta = await api.get(`agenda/${props.id}`);
-          setAgenda(resposta.data);
-          console.log("OLHA O QUE VEIO DA API!! --- Agenda", resposta.data)
           
-          const resposta2 = await api.get(`prestador/${resposta.data[0].servicoAtribuido.cliente.id}`); 
+          const resposta2 = await api.get(`prestador/${props.id}`); 
           setIdPrestador(resposta2.data)
           console.log("OLHA O QUE VEIO DA API!! --- AgendaCliente", resposta2.data)
       }
