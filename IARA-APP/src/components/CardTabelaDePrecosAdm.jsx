@@ -12,10 +12,6 @@ function CardTabelaDePrecosAdm() {
     const [prestador, setPrestador] = useState([])
 
     useEffect(() => {
-        // const infoPrestador = localStorage.dadosUsuario;
-        // if (infoPrestador) {
-        //     setPrestador(infoPrestador);
-        // }
         async function buscarPrecos() {
             const resposta = await api.get(`servico/prestador/${localStorage.idPrestador}`);
             setPreco(resposta.data);
@@ -23,7 +19,7 @@ function CardTabelaDePrecosAdm() {
             console.log(infoPreco)
         }
         buscarPrecos();
-        
+
     }, [])
 
     const formCurrency = new Intl.NumberFormat('pt-BR', {
@@ -32,11 +28,11 @@ function CardTabelaDePrecosAdm() {
         minimumFractionDigits: 2
     })
 
-    if(infoPreco === null){
-        return(
+    if (infoPreco === null) {
+        return (
             <div>Vazio</div>
         );
-    }else{
+    } else {
         return (
             <div class="card half prelative">
                 <Link to={"/cadastrarServico"}>
@@ -48,14 +44,15 @@ function CardTabelaDePrecosAdm() {
                 {infoPreco.map((precos) => (
                     <LinhaTabelaPrecos
                         tipo={precos.tipo}
-                        duracao={precos.duracaoEstimada + " h"}
+                        descricao={precos.descricao}
+                        duracao={precos.duracaoEstimada}
                         preco={formCurrency.format(precos.valor)}
                     />
                 ))}
-            </div>       
-        );          
+            </div>
+        );
     }
-   
+
 
 
 }

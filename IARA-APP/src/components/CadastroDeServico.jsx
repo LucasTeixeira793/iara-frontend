@@ -2,6 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import api from "../api";
+import logo from '../html-css-template/img/logo-branco.png';
+import apiCep from '../apiCep';
+import React from 'react';
+import 'moment/locale/pt-br';
+import moment from 'moment';
+import swal from 'sweetalert';
+import { set } from 'react-hook-form';
 
 function CadastroDeServico() {
 
@@ -12,25 +19,29 @@ function CadastroDeServico() {
     const [duracaoEstimada, setDuracaoEstimada] = useState();
     const [prestador, setPrestador] = useState([]);
     const navigate = useNavigate();
+    var id = localStorage.idPrestador;
 
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        async function buscarInfos() {
-            const resposta = await api.get(`prestador/${localStorage.idPrestador}`, { headers: { "Access-Control-Allow-Origin": "*" } });
-            setPrestador(resposta.data);
-            console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
-        }
-        buscarInfos();
+    //     async function buscarInfos() {
+    //         const resposta = await api.get(`prestador/${localStorage.idPrestador}`, { headers: { "Access-Control-Allow-Origin": "*" } });
+    //         setPrestador(resposta.data);
+    //         console.log("OLHA O QUE VEIO DA API!! --- Infos", resposta.data)
+    //     }
+    //     buscarInfos();
 
-    }, [])
+    // }, [])
 
 
     function cadastroServico() {
 
-        console.log("-----id " + prestador.id);
-        var id = prestador.id;
+
+
+        // api.get(`prestador/${localStorage.idPrestador}`, { headers: { "Access-Control-Allow-Origin": "*" } });
+        // setPrestador(resposta.data);
+
 
         var jsonServico = {
             idPrestador: id,
@@ -43,8 +54,6 @@ function CadastroDeServico() {
             }
         }
 
-        console.log("------jsonServico " + jsonServico);
-
         api.post(`servico/`, jsonServico, {
             headers: {
                 'Content-Type': 'application/json'
@@ -53,10 +62,11 @@ function CadastroDeServico() {
             console.log(erro)
         });
         SubmeterFormHabilidade();
+
     }
 
     function SubmeterFormHabilidade() {
-        var id = prestador.id;
+        // var id = localStorage.idPrestador;
 
         let jsonHabilidade = {
             idPrestador: id,
@@ -75,7 +85,7 @@ function CadastroDeServico() {
     return (
         <body>
             <div class="page dflex acenter jcenter txt-medium">
-                <form id="cadastro-cliente" class="container" onSubmit={cadastroServico()}>
+                <form id="cadastro-cliente" class="container" onSubmit={cadastroServico}>
 
 
                     <a class="logo transform prelative margin-special" href=" "
