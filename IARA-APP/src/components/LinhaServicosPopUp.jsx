@@ -5,6 +5,7 @@ function LinhaServicosPopUp(props) {
             <h2>
                 {props.servico}
             </h2>
+            {props.horaInicioMinima} - {props.horaInicioMaxima}
         </>
     );
 
