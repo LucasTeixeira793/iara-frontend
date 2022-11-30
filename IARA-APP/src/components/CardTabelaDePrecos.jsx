@@ -35,8 +35,8 @@ function CardTabelaDePrecos() {
                 <h3 class="txt-bigger txt-center txt-red txt-bold">Tabela de Preços</h3>
                 {infoPreco.map((precos) => (
                     <LinhaTabelaPrecos
-                        tipo={precos.descricao}
-                        duracao={precos.duracaoEstimada + " h"}
+                        descricao={precos.descricao}
+                        duracao={precos.duracaoEstimada}
                         preco={formCurrency.format(precos.valor)}
                     />
                 ))}

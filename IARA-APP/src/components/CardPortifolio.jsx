@@ -49,7 +49,7 @@ function CardPortifolio() {
         nextArrow: <GoChevronRight color="red" />,
         prevArrow: <GoChevronLeft color="red" />
     };
-    if (infoFotoPortfolio == "") {
+    if (infoFotoPortfolio === "") {
         return "";
     } else {
         return (
