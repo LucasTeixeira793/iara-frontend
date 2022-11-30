@@ -57,7 +57,7 @@ function CardAgendaDeAtendimentos() {
                             <LinhaAgendaPrestador
                                 id={infoAgenda.id}
                                 tipo={agenda.servicoAtribuido.servico.tipo}
-                                dia={date}
+                                dia={agenda.data}
                                 horario={agenda.horaInicio}
                                 valor={formCurrency.format(agenda.servicoAtribuido.servico.valor)}
                             />
