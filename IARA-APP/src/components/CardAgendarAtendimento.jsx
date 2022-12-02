@@ -13,7 +13,6 @@ function CardAgendarAtendimentos() {
     const [infoServico, setServico] = useState([])
     const params = useParams();
 
-
     useEffect(() => {
         sessionStorage.setItem("HorarioSelecionado", "")
         sessionStorage.setItem("IdSelecionado", "")
@@ -85,14 +84,14 @@ function CardAgendarAtendimentos() {
                     </div>
                 </div>
                 <div>
-                    <PopUpHorarios />
-                </div>
-                <div>
                     <br />
                     <h4 class="margin-bottom-10">Selecione o dia e horário desejados:</h4>
                     <div class="dflex fwrap">
                         <LinhaHorariosAgendar />
                     </div>
+                </div>
+                <div>
+                    <PopUpHorarios />
                 </div>
                 <button class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-auto margin-top-thirty"
                     type="submit" onClick={submitServico}>

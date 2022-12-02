@@ -15,8 +15,16 @@ function LinhasPopUp(props) {
             const resposta = await api.get(`servico/prestador/${params.id}`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setServico(resposta.data);
             console.log("OLHA O QUE VEIO DA API!! --- Serviços", resposta.data)
-
-            const resposta2 = await api.get(`agenda/disponiveis/${params.id}/${idServico}/30/11/2022`, { headers: { "Access-Control-Allow-Origin": "*" } });
+            setTimeout(()=>{
+                const ano = +sessionStorage.getItem("HorarioSelecionado").substring(0, 4)
+                const mes = +sessionStorage.getItem("HorarioSelecionado").substring(5, 7)
+                const dia = +sessionStorage.getItem("HorarioSelecionado").substring(8, 10)
+                teste(dia,mes,ano)
+            }, 250);
+            
+        }
+        async function teste(dia, mes, ano){
+            const resposta2 = await api.get(`agenda/disponiveis/${params.id}/${sessionStorage.getItem("IdSelecionado")}/${dia}/${mes}/${ano}`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setHorario(resposta2.data.horarios);
             console.log("OLHA O QUE VEIO DA API!! --- HORÁRIOS DO PREST", resposta2.data.horarios)
         }
@@ -30,7 +38,7 @@ function LinhasPopUp(props) {
                     <LinhaServicosPopUp
                         servico={infoServico[idServico-1].descricao}
                         horaInicioMinima={infoHorario[0].horaInicioMinima}
-                        horaInicioMaxima={infoHorario[1].horaInicioMaxima}
+                        horaInicioMaxima={infoHorario[0].horaInicioMaxima}
                     />
 
                 </div>

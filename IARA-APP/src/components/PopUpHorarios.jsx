@@ -29,19 +29,21 @@ function PopUpHorarios() {
         document.body.classList.remove('active-modal')
     }
 
-    return (
-        <>
-            <button class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-auto margin-top-thirty" onClick={toggleModal} >
-                Visualizar horários disponíveis
-            </button>
-            {modal && (
-                <div className="modal">
-                    <div onClick={toggleModal} className="overlay"></div>
-                        <LinhasPopUp/>
-                </div>
-            )}
-        </>
-    );
+    if (infoServico.length !== 0) {
+        return (
+            <>
+                <button class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-auto margin-top-thirty" onClick={toggleModal} >
+                    Visualizar horários disponíveis
+                </button>
+                {modal && (
+                    <div className="modal">
+                        <div onClick={toggleModal} className="overlay"></div>
+                        <LinhasPopUp />
+                    </div>
+                )}
+            </>
+        );
+    }
 }
 
 
