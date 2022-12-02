@@ -105,7 +105,7 @@ function CardPortifolioAdm() {
                         type="file"
                         onChange={handleFileChange}
                     />
-                    <button class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red  transform border-none" onClick={handleClick}>
+                    <button class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red  transform border-none plus" onClick={handleClick}>
                         <FontAwesomeIcon icon={faPlus} />
                     </button>
                 <h3 class="txt-bigger txt-red txt-bold">Portfólio</h3>
@@ -123,7 +123,7 @@ function CardPortifolioAdm() {
                         type="file"
                         onChange={handleFileChange}
                     />
-                    <button class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red  transform border-none" onClick={handleClick}>
+                    <button class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red  transform border-none plus" onClick={handleClick}>
                         <FontAwesomeIcon icon={faPlus} />
                     </button>
                 <h3 class="txt-bigger txt-red txt-bold">Portfólio</h3>
