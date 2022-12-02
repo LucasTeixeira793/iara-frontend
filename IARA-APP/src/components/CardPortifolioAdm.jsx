@@ -6,7 +6,7 @@ import api from "../api";
 import { useEffect, useState, useRef } from "react";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function CardPortifolioAdm() {
 
@@ -106,7 +106,7 @@ function CardPortifolioAdm() {
                         onChange={handleFileChange}
                     />
                     <button class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red  transform border-none" onClick={handleClick}>
-                        <FontAwesomeIcon icon={faPen} />
+                        <FontAwesomeIcon icon={faPlus} />
                     </button>
                 <h3 class="txt-bigger txt-red txt-bold">Portfólio</h3>
                 <div id="portfolio" class="padding-zero-twenty">
@@ -124,7 +124,7 @@ function CardPortifolioAdm() {
                         onChange={handleFileChange}
                     />
                     <button class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red  transform border-none" onClick={handleClick}>
-                        <FontAwesomeIcon icon={faPen} />
+                        <FontAwesomeIcon icon={faPlus} />
                     </button>
                 <h3 class="txt-bigger txt-red txt-bold">Portfólio</h3>
                 <div id="portfolio" class="padding-zero-twenty">
