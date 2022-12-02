@@ -3,7 +3,7 @@ import { GoChevronRight } from "react-icons/go";
 import { GoChevronLeft } from "react-icons/go";
 import LinhaFotosPortfolio from "./LinhaFotosPortfolio";
 import api from "../api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
@@ -28,6 +28,50 @@ function CardPortifolioAdm() {
         buscarFotosPortfolio();
 
     }, [])
+    
+    const inputRef = useRef(null);
+    const handleClick = () => {
+        inputRef.current.click();
+    };
+
+    const handleFileChange = event => {
+        const fileObj = event.target.files && event.target.files[0];
+        if (!fileObj) {
+            return;
+        }
+
+        event.target.value = null;
+
+        console.log(event.target.files);
+
+        console.log(fileObj);
+        console.log(fileObj.name);
+
+        const formData = new FormData();
+
+        if (fileObj) {
+            formData.append('novaFoto', fileObj, fileObj.name)
+        }
+
+        console.log("formData")
+        console.log(formData)
+
+        function atualizarTeste() {
+            api.post(`portifolio/${localStorage.idPrestador}`, fileObj, {
+                headers: {
+                    'Content-Type': 'image/jpeg'
+                }
+            }
+            ).then((res) => {
+                console.log(res)
+                console.log('nova foto salva')
+                window.location.reload();
+            });
+        }
+
+        atualizarTeste();
+
+    };
 
     const imgTratada = `url(data:image;base64,${infoFotoPortfolio})`
 
@@ -55,9 +99,15 @@ function CardPortifolioAdm() {
     if (infoFotoPortfolio === "") {
         return (
             <div class="card margin-top-thirty prelative">
-                <a class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red transform">
-                    <FontAwesomeIcon icon={faPen} />
-                </a>
+                <input
+                        style={{ display: 'none' }}
+                        ref={inputRef}
+                        type="file"
+                        onChange={handleFileChange}
+                    />
+                    <button class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red  transform border-none" onClick={handleClick}>
+                        <FontAwesomeIcon icon={faPen} />
+                    </button>
                 <h3 class="txt-bigger txt-red txt-bold">Portfólio</h3>
                 <div id="portfolio" class="padding-zero-twenty">
                 </div>
@@ -67,9 +117,15 @@ function CardPortifolioAdm() {
     } else {
         return (
             <div class="card margin-top-thirty prelative">
-                <a class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red transform">
-                    <FontAwesomeIcon icon={faPen} />
-                </a>
+                <input
+                        style={{ display: 'none' }}
+                        ref={inputRef}
+                        type="file"
+                        onChange={handleFileChange}
+                    />
+                    <button class="btn-editar-perfil pabsolute bg-hover-white txt-hover-dark-red  transform border-none" onClick={handleClick}>
+                        <FontAwesomeIcon icon={faPen} />
+                    </button>
                 <h3 class="txt-bigger txt-red txt-bold">Portfólio</h3>
                 <div id="portfolio" class="padding-zero-twenty">
                     <Slider {...settings}>
