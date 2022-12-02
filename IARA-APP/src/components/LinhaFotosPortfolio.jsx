@@ -39,8 +39,12 @@ function LinhaFotosPortfolio(props) {
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
-      height: "344px",
-      width: "480px"
+      height: "380px",
+      width: "300px",
+      borderRadius: "10px",
+      boxShadow: "0px 2px 7px 0px #de0235",
+      margin: "13px auto",
+      maxWidth: "100%"
     }
   }
     return (
