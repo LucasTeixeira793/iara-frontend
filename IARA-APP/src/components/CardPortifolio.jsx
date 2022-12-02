@@ -4,12 +4,14 @@ import { GoChevronLeft } from "react-icons/go";
 import LinhaFotosPortfolio from "./LinhaFotosPortfolio";
 import api from "../api";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 
 function CardPortifolio() {
 
     const [infoPrestador, setPrestador] = useState([])
     const [infoFotoPortfolio, setFotoPortfolio] = useState([])
+    const params = useParams();
 
     useEffect(() => {
         const infoPrestador = localStorage.dadosUsuario;
@@ -18,7 +20,7 @@ function CardPortifolio() {
         }
 
         async function buscarFotosPortfolio() {
-            const resposta = await api.get(`portifolio/${localStorage.idPrestador}`);
+            const resposta = await api.get(`portifolio/${params.id}`);
             setFotoPortfolio(resposta.data);
             console.log(resposta.data)
             console.log(infoFotoPortfolio)

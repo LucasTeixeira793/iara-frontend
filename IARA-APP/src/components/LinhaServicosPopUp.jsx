@@ -3,9 +3,13 @@ function LinhaServicosPopUp(props) {
     return (
         <>
             <h2>
-                É possível marcar o serviço em qualquer horário entre:
+                É possível agendar o serviço em qualquer horário entre:
             </h2>
-            {props.horaInicioMinima} e {props.horaInicioMaxima}
+            <br />
+            {props.horaInicioMinima1} {props.horaInicioMaxima1}
+            <br />
+            <br />
+            {props.horaInicioMinima2}  {props.horaInicioMaxima2}
         </>
     );
 
