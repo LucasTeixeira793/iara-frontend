@@ -33,7 +33,7 @@ function PopUpHorarios() {
         return (
             <>
                 <button class="button bg-red txt-white bg-hover-white txt-hover-dark-red margin-auto margin-top-thirty" onClick={toggleModal} >
-                    Visualizar horários disponíveis
+                    Verificar disponibilidade
                 </button>
                 {modal && (
                     <div className="modal">

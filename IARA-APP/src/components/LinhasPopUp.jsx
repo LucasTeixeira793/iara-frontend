@@ -20,9 +20,9 @@ function LinhasPopUp(props) {
                 const mes = +sessionStorage.getItem("HorarioSelecionado").substring(5, 7)
                 const dia = +sessionStorage.getItem("HorarioSelecionado").substring(8, 10)
                 teste(dia,mes,ano)
-            }, 250);
-            
+            }, 100);
         }
+
         async function teste(dia, mes, ano){
             const resposta2 = await api.get(`agenda/disponiveis/${params.id}/${sessionStorage.getItem("IdSelecionado")}/${dia}/${mes}/${ano}`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setHorario(resposta2.data.horarios);
@@ -36,7 +36,6 @@ function LinhasPopUp(props) {
             <>
                 <div className="modal-content">
                     <LinhaServicosPopUp
-                        servico={infoServico[idServico-1].descricao}
                         horaInicioMinima={infoHorario[0].horaInicioMinima}
                         horaInicioMaxima={infoHorario[0].horaInicioMaxima}
                     />

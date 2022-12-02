@@ -3,7 +3,7 @@ import EscolhaCadastro from "./pages/EscolhaCadastro";
 import CadastroCliente from "./pages/CadastroCliente";
 import Login from "./pages/Login";
 import SucessoCadastro from "./pages/SucessoCadastro";
-import Home from "./pages/Home";
+import Home from "./pages/HomeDeslogado";
 import HomeCliente from "./pages/HomeCliente";
 import CadastroProfissional from "./pages/CadastroProfissional";
 import CadastroEndereco from "./pages/CadastroEndereco";

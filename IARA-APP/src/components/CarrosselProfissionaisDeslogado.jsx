@@ -2,7 +2,7 @@ import foto from "../html-css-template/img/img-prof-default.png";
 import { useNavigate } from "react-router-dom";
 //import fotoPadrao from "../html-css-template/img/foto-padrao.png";
 
-function CarrosselProfissionais(props) {
+function CarrosselProfissionaisDeslogado(props) {
   const navigate = useNavigate();
   var fotoTratada;
   if (props.foto !== null) {
@@ -45,7 +45,7 @@ function CarrosselProfissionais(props) {
           </div>
           <button
             onClick={() =>
-              navigate(`perfilProfissional/${props.id}`)
+              navigate(`/escolhaLogin`)
             }
             class="button bg-white txt-dark-red bg-hover-dark-red txt-hover-white"
             href=" "
@@ -59,4 +59,4 @@ function CarrosselProfissionais(props) {
   );
 }
 
-export default CarrosselProfissionais;
+export default CarrosselProfissionaisDeslogado;
