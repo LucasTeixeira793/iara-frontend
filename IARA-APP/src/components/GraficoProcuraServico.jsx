@@ -1,9 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import { Chart } from "react-google-charts";
 
 function GraficoProcuraServicos() {
 
-    const data = ([
+    const [data, setData] = useState([
         ['Serviço', 'Quantidade'],
         ['Corte', 27],
         ['Escova', 12],
