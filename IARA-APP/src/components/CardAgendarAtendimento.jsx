@@ -7,6 +7,7 @@ import api from "../api";
 import { useParams } from "react-router";
 import PopUpHorarios from './PopUpHorarios';
 import React from 'react';
+import DiasDoPrestador from './DiasDoPrestador';
 
 function CardAgendarAtendimentos() {
 
@@ -86,6 +87,9 @@ function CardAgendarAtendimentos() {
                 <div>
                     <br />
                     <h4 class="margin-bottom-10">Selecione o dia e horário desejados:</h4>
+                    <div class="dflex fwrap">
+                        <DiasDoPrestador />
+                    </div>
                     <div class="dflex fwrap">
                         <LinhaHorariosAgendar />
                     </div>

@@ -6,10 +6,6 @@ import LinhasPopUp from "./LinhasPopUp";
 function LinhaHorariosAgendar() {
 
     const [modal, setModal] = useState(false);
-    const [infoServico, setServico] = useState([])
-    const [infoHorario, setHorario] = useState([])
-    const params = useParams();
-    const idServico = sessionStorage.getItem("IdSelecionado");
 
     const toggleModal = (e) => {
         setModal(!modal)
