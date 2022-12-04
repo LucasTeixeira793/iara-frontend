@@ -12,29 +12,34 @@ import api from "../api";
 
 function Dashboard() {
 
-    
-    const [d90, setD90] = useState([{contagemUltimos90Dias: 0}]);
-    const [d30, setD30] = useState([{contagemUltimos30Dias: 0}]);
-    const [d7, setD7] = useState([{contagemUltimos7Dias: 0}]);
+
+    const [d90, setD90] = useState([{ contagemUltimos90Dias: 0 }]);
+    const [d30, setD30] = useState([{ contagemUltimos30Dias: 0 }]);
+    const [d7, setD7] = useState([{ contagemUltimos7Dias: 0 }]);
+    const [horaComMaisAtendimento,setHoraComMaisAtendimento] = useState([{hora: "", qtdAtendimentos: 0}]);
+    const [horaComMenosAtendimento,setHoraComMenosAtendimento] = useState([{hora: "", qtdAtendimentos: 0}]);
+    const [ServicoMaisAtendimento, setServicoMaisAtendimento] = useState();
+    const [ServicoMenosAtendimento, setServicoMenodAtendimento] = useState();
 
     useEffect(() => {
         const interval = setInterval(() => {
             Set90Dias();
             Set30Dias();
             Set7Dias();
+            SetHoraComMaisAtendimento();
+            SetHoraComMenosAtendimento();
+            SetServicoMaisAtendimento()
 
             function Set90Dias() {
                 api.get(`/view/agendamento/contagem/90dias/prestador?idPrestador=${localStorage.idPrestador}`).then(d90 => {
-                    console.log(d90.data);
                     setD90(d90.data);
                 }).catch(erro => {
                     console.log(erro)
-                })    
+                })
             }
 
             function Set30Dias() {
                 api.get(`/view/agendamento/contagem/30dias/prestador?idPrestador=${localStorage.idPrestador}`).then(d30 => {
-                    console.log(d30.data);
                     setD30(d30.data);
                 }).catch(erro => {
                     console.log(erro)
@@ -43,12 +48,41 @@ function Dashboard() {
 
             function Set7Dias() {
                 api.get(`/view/agendamento/contagem/7dias/prestador?idPrestador=${localStorage.idPrestador}`).then(d7 => {
-                    console.log(d7.data);
                     setD7(d7.data);
                 }).catch(erro => {
                     console.log(erro)
                 })
             }
+
+            function SetHoraComMaisAtendimento() {
+                api.get(`/view/atendimento/hora/${localStorage.idPrestador}/maior`).then(resposta => {
+                    setHoraComMaisAtendimento(resposta.data);
+                }).catch(erro => {
+                    console.log(erro)
+                })
+            }
+
+            function SetHoraComMenosAtendimento() {
+                api.get(`/view/atendimento/hora/${localStorage.idPrestador}/menor`).then(resposta => {
+                    setHoraComMenosAtendimento(resposta.data);
+                }).catch(erro => {
+                    console.log(erro)
+                })
+            }
+
+            function SetServicoMaisAtendimento(){
+                var japassou;
+                if (japassou != 0) {
+                api.get().then(resposta => {
+                    console.log(resposta.data);
+                    setServicoMaisAtendimento(resposta.data);
+                }).catch(erro => {
+                    console.log(erro)
+                })
+                
+            }
+            }
+
             return clearInterval(interval);
         }, 400)
 
@@ -70,15 +104,20 @@ function Dashboard() {
                         <GraficoSemanal />
                     </div>
                     <div class="width-30-margin-15 dflex fwrap">
-                        <DashCardTotalAtendimentos 
-                            d90dias = {d90[0].contagemUltimos90Dias}
-                            d30dias = {d30[0].contagemUltimos30Dias}
-                            d7dias = {d7[0].contagemUltimos7Dias}
+                        <DashCardTotalAtendimentos
+                            d90dias={d90[0].contagemUltimos90Dias}
+                            d30dias={d30[0].contagemUltimos30Dias}
+                            d7dias={d7[0].contagemUltimos7Dias}
                         />
                     </div>
                 </div>
                 <div class="dflex jbetween margin-bottom-110">
-                    <DashCardRelatorioAtendimentos />
+                    <DashCardRelatorioAtendimentos 
+                            horaMais={horaComMaisAtendimento.hora}
+                            atendimentosHoraMais={horaComMaisAtendimento.qtdAtendimentos}
+                            horaMenos={horaComMenosAtendimento.hora}
+                            atendimentosHoraMenos={horaComMenosAtendimento.qtdAtendimentos}
+                    />
                 </div>
                 <div class="dflex jbetween margin-bottom-80">
                     <DashCardServicoAtendimentos />

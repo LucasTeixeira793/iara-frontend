@@ -1,18 +1,37 @@
 import { Chart } from "react-google-charts";
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import api from "../api";
 
 function GraficoSemanalIara() {
 
-    var data = [
-        ['Dia da Semana', 'Quantidade'],
-        ['Domingo', 2780],
-        ['Segunda', 623],
-        ['Terça', 754],
-        ['Quarta', 1250],
-        ['Quinta', 1346],
-        ['Sexta', 2450],
-        ['Sábado', 3109]
-    ];
+    const [data, setData] = useState([['Dia da Semana', 'Quantidade'],])
+    var japassou;
+    useEffect(() => {
+        if (japassou != 0) {
+            api.get("/view/grafico/contagem/semana-atual").then(async (response) => {
+                console.log(response.data);
+                response.data.forEach(element => {
+                    setData((x) => [
+                        ...x,
+                        [
+                            element.diaSemana,
+                            element.qtdServicos
+                        ],
+                    ]);
+                });
+            });
+            japassou = 0;
+        }
+    }, []);
+    //     ['Domingo', 2780],
+    //     ['Segunda', 623],
+    //     ['Terça', 754],
+    //     ['Quarta', 1250],
+    //     ['Quinta', 1346],
+    //     ['Sexta', 2450],
+    //     ['Sábado', 3109]
+    // ];
 
     var options = {
         title: 'Número de Atendimentos por Dia da Semana',

@@ -16,7 +16,6 @@ function DashboardIara() {
     const [d7, setD7] = useState([{ ct_ultimos_7_dias: 0 }]);
     const [usuariosCadastrados, setUsuariosCadastrados] = useState([{ ct_total_usuarios_cadastrados: 0 }]);
     const [usuariosAtivos, setUsuariosAtivos] = useState([{ vw_ct_total_usuarios_solicitaram_atendimento: 0 }]);
-    const [graficoProcuraServicoIara, setGraficoProcuraServicoIara] = useState(0);
     const [DiaComMaisAtendimento, setDiaComMaisAtendimento] = useState([{}])
     const [DiaComMenosAtendimento, setDiaComMenosAtendimento] = useState([{}])
     const [atendimentosMesAnterior, setAtendimentosMesAnterior] = useState([{}])
@@ -30,7 +29,6 @@ function DashboardIara() {
             Set7Dias();
             SetUsuariosCadastrados();
             SetUsuariosAtivos();
-            // SetGraficoProcuraServicoIara();
             SetDiaComMaisAtendimento();
             SetDiaComMenosAtendimento();
             SetAtendimentosMesAnterior();
@@ -81,23 +79,6 @@ function DashboardIara() {
                 })
             }
 
-            // function SetGraficoProcuraServicoIara(){
-            //     api.get(`view/servico/contagem`).then(resposta => {
-            //         setGraficoProcuraServicoIara(resposta.data);
-
-            //         // graficoProcuraServicoIara=[ ['Serviço', 'Quantidade']]
-            //         // console.log(resposta.data);
-            //         // for (let index = 0; index < resposta.data.length; index++) {
-            //         //     graficoProcuraServicoIara.push([resposta.data[index].servico, resposta.data[index].ct_atendimentos])
-            //         // }
-            //         // // console.log(vetor);
-            //         // // setGraficoProcuraServicoIara(vetor);
-            //         // console.log(graficoProcuraServicoIara);
-            //     }).catch(erro => {
-            //         console.log(erro)
-            //     })
-            // }
-
             function SetDiaComMaisAtendimento() {
                 api.get(`/view/agendamento/dia/maior`).then(resposta => {
                     // console.log(resposta.data);
@@ -108,7 +89,7 @@ function DashboardIara() {
             }
 
             function SetDiaComMenosAtendimento() {
-                api.get(``).then(resposta => {
+                api.get(`/view/agendamento/dia/menor`).then(resposta => {
                     // console.log(resposta.data);
                     setDiaComMenosAtendimento(resposta.data);
                 }).catch(erro => {

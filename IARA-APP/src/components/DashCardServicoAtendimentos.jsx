@@ -1,4 +1,4 @@
-function DashCardServicoAtendimentos() {
+function DashCardServicoAtendimentos(props) {
 
     return (
         <>
