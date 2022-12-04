@@ -10,11 +10,6 @@ function HeaderCliente() {
     const [infoCliente, setCliente] = useState([])
 
     useEffect(() => {
-        // const infoCliente = localStorage.dadosUsuario;
-        // if (infoCliente) {
-        //     setCliente(infoCliente);
-        // }
-
         async function buscarInfos() {
             const resposta = await api.get(`cliente/${localStorage.idCliente}`, { headers: { "Access-Control-Allow-Origin": "*" } });
             setCliente(resposta.data);

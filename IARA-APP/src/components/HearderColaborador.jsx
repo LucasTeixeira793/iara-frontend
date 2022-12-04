@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from "react";
 import api from "../api";
 import foto from "../html-css-template/img/img-prof-default.png";
+import logo from "../html-css-template/img/logo-sem-fundo.png";
+
 
 function HeaderColaborador() {
 
@@ -45,7 +47,7 @@ function HeaderColaborador() {
         <header class="header-logged">
             <div class="container dflex acenter jbetween">
                 <a href=" " class="logo transform">
-                    <img alt="Logo" src="../img/logo.png" />
+                    <img alt="Logo" src={logo} />
                 </a>
                 <form>
                     <input type="text" placeholder="Buscar" class="input-search" required />

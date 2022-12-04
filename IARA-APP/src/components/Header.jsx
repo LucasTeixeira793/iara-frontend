@@ -1,13 +1,14 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
+import logo from "../html-css-template/img/logo-sem-fundo.png";
 
 function Header() {
     return (
         <header class="header-logged">
             <div class="container dflex acenter jbetween">
                 <a href=" " class="logo transform">
-                    <img alt="Logo" src="../img/logo.png" />
+                    <img alt="Logo" src={logo} />
                 </a>
                 <form>
                     <input type="text" placeholder="Buscar" class="input-search" required />

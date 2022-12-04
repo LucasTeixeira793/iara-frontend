@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import logo from '../html-css-template/img/logo-red.png';
+// import logo from '../html-css-template/img/logo-red.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faInstagram, faLinkedinIn, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import logo from "../html-css-template/img/logo-sem-fundo.png";
+
 
 function Footer() {
     return (
@@ -9,7 +11,7 @@ function Footer() {
             <div class="container dflex jbetween">
                 <div>
                     <a class="logo transform">
-                        <img alt="Logo" src="../img/logo.png" />
+                        <img alt="Logo" src={logo} />
                     </a>
                 </div>
                 <div>
