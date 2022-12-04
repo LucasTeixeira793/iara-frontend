@@ -24,14 +24,6 @@ function GraficoSemanalIara() {
             japassou = 0;
         }
     }, []);
-    //     ['Domingo', 2780],
-    //     ['Segunda', 623],
-    //     ['Terça', 754],
-    //     ['Quarta', 1250],
-    //     ['Quinta', 1346],
-    //     ['Sexta', 2450],
-    //     ['Sábado', 3109]
-    // ];
 
     var options = {
         title: 'Número de Atendimentos por Dia da Semana',

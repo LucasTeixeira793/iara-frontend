@@ -8,10 +8,10 @@ function DashCardServicoAtendimentos(props) {
                         <span>Serviço com <b>mais</b> atendimentos</span>
                     </div>
                     <div class="width-50-porc">
-                        <b><span class="font-size-twenty">CORTE</span></b>
+                        <b><span class="font-size-twenty">{props.tipoMais}</span></b>
                     </div>
                     <div class="width-50-porc">
-                        <b><span class="font-size-thirty">27</span></b><br />
+                        <b><span class="font-size-thirty">{props.agendamentosMais}</span></b><br />
                         <span class="font-size-thirteen">ATENDIMENTOS</span>
                     </div>
                 </div>
@@ -20,10 +20,10 @@ function DashCardServicoAtendimentos(props) {
                         <span>Serviço com <b>menos</b> atendimentos</span>
                     </div>
                     <div class="width-50-porc">
-                        <b><span class="font-size-twenty">TINTURA</span></b>
+                        <b><span class="font-size-twenty">{props.tipoMenos}</span></b>
                     </div>
                     <div class="width-50-porc">
-                        <b><span class="font-size-thirty">6</span></b><br />
+                        <b><span class="font-size-thirty">{props.agendamentosMenos}</span></b><br />
                         <span class="font-size-thirteen">ATENDIMENTOS</span>
                     </div>
                 </div>

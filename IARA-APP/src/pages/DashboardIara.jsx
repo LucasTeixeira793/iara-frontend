@@ -16,10 +16,10 @@ function DashboardIara() {
     const [d7, setD7] = useState([{ ct_ultimos_7_dias: 0 }]);
     const [usuariosCadastrados, setUsuariosCadastrados] = useState([{ ct_total_usuarios_cadastrados: 0 }]);
     const [usuariosAtivos, setUsuariosAtivos] = useState([{ vw_ct_total_usuarios_solicitaram_atendimento: 0 }]);
-    const [DiaComMaisAtendimento, setDiaComMaisAtendimento] = useState([{}])
-    const [DiaComMenosAtendimento, setDiaComMenosAtendimento] = useState([{}])
-    const [atendimentosMesAnterior, setAtendimentosMesAnterior] = useState([{}])
-    const [atendimentosSemanaAnterior, setAtendimentosSemanaAnterior] = useState([{}])
+    const [diaComMaisAtendimento, setDiaComMaisAtendimento] = useState([{dia: "", atendimentos: 0 }])
+    const [diaComMenosAtendimento, setDiaComMenosAtendimento] = useState([{dia: "", atendimentos: 0 }])
+    const [atendimentosMesAnterior, setAtendimentosMesAnterior] = useState([{ct_mes_anterior: 0}])
+    const [atendimentosSemanaAnterior, setAtendimentosSemanaAnterior] = useState([{ct_semana_anterior: 0}])
     
 
     useEffect(() => {
@@ -122,7 +122,8 @@ function DashboardIara() {
     // console.log(graficoProcuraServicoIara)
     return (
         <>
-            <HeaderColaborador />
+            {/* <HeaderColaborador /> */}
+            <a class="txt-dark-red transform-bold" href="/">SAIR</a>
             <main class="margin-top-thirty margin-bottom-thirty container">
                 <div class="dflex jbetween margin-bottom-80">
                     <div class="width-70-porc">
@@ -139,14 +140,12 @@ function DashboardIara() {
                 </div>
                 <div class="dflex jbetween margin-bottom-110">
                     <DashIaraRelatorioAtendimentos
-                        diaMais={DiaComMaisAtendimento.dia}
-                        atendimentosMais ={DiaComMaisAtendimento.atendimentos}
-                        diaMenos={DiaComMenosAtendimento.dia}
-                        atendimentosMenos ={DiaComMenosAtendimento.atendimentos}
+                        diaMais={diaComMaisAtendimento.dia}
+                        atendimentosMais ={diaComMaisAtendimento.atendimentos}
+                        diaMenos={diaComMenosAtendimento.dia}
+                        atendimentosMenos ={diaComMenosAtendimento.atendimentos}
                         mes={atendimentosMesAnterior.ct_mes_anterior}
                         semana={atendimentosSemanaAnterior.ct_semana_anterior}
-
-
                     />
                 </div>
                 <div class="dflex jaround margin-bottom-55">

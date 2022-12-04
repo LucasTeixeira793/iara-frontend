@@ -1,21 +1,31 @@
 import { Chart } from "react-google-charts";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import api from "../api";
 
 function GraficoSemanal() {
 
-    const data = [
-        ['Dia da Semana', 'Semana Atual', 'Semana Anterior'],
-        ['Domingo', 7, 5],
-        ['Segunda', 1, 0],
-        ['Terça', 2, 1],
-        ['Quarta', 3, 4],
-        ['Quinta', 6, 8],
-        ['Sexta', 12, 10],
-        ['Sábado', 16, 19]
-    ]
+    const [dataGraficoSemanal, setDataGraficoSemanal] = useState([['Dia da Semana', 'Quantidade'],])
+    var japassou;
+    useEffect(() => {
+        if (japassou != 0) {
+            api.get(`/view/grafico/contagem/semana-atual/prestador?idPrestador=${localStorage.idPrestador}`).then(async (response) => {
+                console.log(response.data);
+                response.data.forEach(element => {
+                    setDataGraficoSemanal((x) => [
+                        ...x,
+                        [
+                            element.diaSemana,
+                            element.qtdServicos
+                        ],
+                    ]);
+                });
+            });
+            japassou = 0;
+        }
+    }, []);
 
     const options = {
-        title: 'Número de Atendimentos em comparação com a semana anterior',
+        title: 'Número de Atendimentos por Dia da Semana',
         titlePosition: 'none',
         vAxis: { title: '' },
         hAxis: { title: 'Dias da Semana' },
@@ -38,7 +48,7 @@ function GraficoSemanal() {
             <Chart
                 chartType='ColumnChart'
                 options={options}
-                data={data}
+                data={dataGraficoSemanal}
                 height={"350px"}
             />
     )
