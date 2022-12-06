@@ -25,7 +25,7 @@ function Home() {
   async function selecionarCategoria(idCategoria) {
     const resposta = await api.get(`categoria/prestador/${idCategoria}`, { headers: { "Access-Control-Allow-Origin": "*" } });
     setProfissionais(resposta.data);
-    console.log("OLHA O QUE VEIO DA API!!", resposta.data)
+    console.log("OLHA O QUE VEIO DA API!! - Categoria!!!", resposta.data)
   }
 
   async function selecionarProfissionais(idCategoria) {
@@ -33,6 +33,8 @@ function Home() {
     setProfissionais(resposta.data);
     console.log("OLHA O QUE VEIO DA API!!", resposta.data)
   }
+
+  const nota = Math.floor(Math.random() * (5 - 3 + 1) + 3);
 
   return (
     <>
@@ -49,7 +51,7 @@ function Home() {
                   nome={profissional.nome}
                   sobrenome={profissional.sobrenome}
                   distancia={profissional.distancia + " KM"}
-                  avaliacao={4}
+                  avaliacao={nota}
                   foto={profissional.foto}
                 />
               ))}

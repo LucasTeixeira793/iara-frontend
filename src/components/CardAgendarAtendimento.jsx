@@ -38,7 +38,7 @@ function CardAgendarAtendimentos() {
         }
 
         if (sessionStorage.getItem("HorarioSelecionado") != "" && sessionStorage.getItem("ServicoSelecionado") != "") {
-            api.post(`/servico-atribuido/${params.id}`, jsonCliente, {
+            api.post(`/servico-atribuido/${localStorage.idCliente}`, jsonCliente, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

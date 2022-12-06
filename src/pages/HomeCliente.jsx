@@ -25,6 +25,9 @@ function Home() {
         setProfissionais(resposta.data);
         console.log("OLHA O QUE VEIO DA API!!", resposta.data)
     }
+
+    const nota = Math.floor(Math.random() * (5 - 3 + 1) + 3);
+
     return (
         <>
 
@@ -41,7 +44,7 @@ function Home() {
                                     nome={profissional.nome}
                                     sobrenome={profissional.sobrenome}
                                     distancia={profissional.distancia + " KM"}
-                                    avaliacao={4}
+                                    avaliacao={nota}
                                     foto={profissional.foto}
                                 />
                             ))}

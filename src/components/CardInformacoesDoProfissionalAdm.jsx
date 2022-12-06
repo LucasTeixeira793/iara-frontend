@@ -108,7 +108,7 @@ function CardInformacoesDoProfissionalAdm(props) {
                     <div style={image.imagemPortfolio} alt="Foto de perfil" class="height-85 margin-right-twenty" />
                     <div>
                         <span>
-                            <b>{props.nome} {props.sobrenome}</b><br />Cabeleireira
+                            <b>{props.nome} {props.sobrenome}</b><br />Especialista
                         </span>
                     </div>
                 </div>

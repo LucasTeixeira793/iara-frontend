@@ -34,7 +34,7 @@ function CardInformacoesDoProfissional(props) {
                 <div class="dflex acenter jbetween">
                     <div style={image.imagemPortfolio} alt="Foto de perfil" class="height-85 margin-right-twenty" />
                     <div>
-                        <b>{props.nome} {props.sobrenome}</b><br />Cabeleireira
+                        <b>{props.nome} {props.sobrenome}</b><br />Especialista
                     </div>
                 </div>
                 <div class="dflex acenter jbetween">
